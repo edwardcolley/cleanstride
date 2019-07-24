@@ -6,11 +6,15 @@ export default class App extends React.Component {
     this.state = {
       message: []
     };
-    this.getMessage = this.getMessage.bind(this);
   }
 
   getMessage() {
-    fetch('/api/endpoint.php')
+    fetch('/api/endpoint.php', {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
       .then(response => {
         return response.json();
       })
@@ -26,10 +30,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>hello
-        {this.state.message.message}
-      </div>
-    );
+    if (this.state.message[0] !== undefined) {
+      return (
+        <div> {this.state.message[0].message}
+        </div>
+      );
+    } else {
+      return <div>nothing rendered</div>;
+    }
   }
 }

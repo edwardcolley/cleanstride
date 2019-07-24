@@ -2,6 +2,8 @@
 
 header('Content-Type: application/json');
 
-readfile('test-message.json');
+if (empty($_GET['id'])) {
+  readfile('test-message.json');
+} 
 
 ?>
