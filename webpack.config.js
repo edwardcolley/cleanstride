@@ -37,10 +37,7 @@ module.exports = {
     stats: 'minimal',
     proxy: {
       '/api': {
-        target: 'http://localhost',
-        headers: {
-          Host: 'wicked-sales.localhost'
-        }
+        target: 'http://localhost/519_business-trends/server/public'
       }
     }
   }
