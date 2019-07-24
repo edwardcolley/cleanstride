@@ -10,7 +10,12 @@ export default class App extends React.Component {
   }
 
   getMessage() {
-    fetch('/api/endpoint.php')
+    fetch('/api/endpoint.php', {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
       .then(response => {
         return response.json();
       })
