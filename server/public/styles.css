@@ -9,11 +9,3 @@ body{
 .landingForm {
     margin-top: 30vh;
 }
-
-.button1 {
-    cursor: pointer;
-}
-
-.input {
-    cursor: auto;
-}
