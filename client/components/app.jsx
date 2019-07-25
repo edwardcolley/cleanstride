@@ -5,25 +5,21 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: []
+      view: {
+        name: 'landing',
+        params: {}
+      }
     };
+    this.setView = this.setView.bind(this);
   }
 
-  getMessage() {
-    fetch('/api/endpoint.php', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+  setView(name, params) {
+    this.setState({
+      view: {
+        name: name,
+        params: params
       }
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(myJson => {
-        this.setState({
-          message: myJson
-        });
-      });
+    });
   }
 
   componentDidMount() {
@@ -31,16 +27,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.message[0] !== undefined) {
+    if (this.state.view.name === 'landing') {
       return (
         <React.Fragment>
-          {/* {this.state.message[0].message} */}
-          <LandingPage />
+          <LandingPage onclick={this.setView}/>
         </React.Fragment>
-
       );
-    } else {
-      return <div>nothing rendered</div>;
+    } else if (this.state.view.name === 'recoveryresults') {
+      return null;
     }
   }
 }

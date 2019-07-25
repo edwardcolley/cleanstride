@@ -2,13 +2,6 @@ import React from 'react';
 import { Form, FormGroup, Input, Button, Container, Row, Col } from 'reactstrap';
 
 export default class LandingPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchZone: undefined
-    };
-  }
 
   handleSearchZoneChange(event) {
     this.setState({ searchZone: event.target.value });
@@ -37,7 +30,7 @@ export default class LandingPage extends React.Component {
                 <Input required placeholder="City or Zipcode" bsSize="lg" value={this.state.searchZone} onChange={this.handleSearchZoneChange} />
                 <Row className="mt-2">
                   <Col xs={{ size: 10, offset: 2 }}>
-                    <Button type="submit" color="primary">Search Recovery</Button>{' '}
+                    <Button onClick={() => this.props.onclick('recoveryresults', {})} type="submit" color="primary">Search Recovery</Button>{' '}
                   </Col>
                 </Row>
                 <Row className="mt-1 mr-2">
