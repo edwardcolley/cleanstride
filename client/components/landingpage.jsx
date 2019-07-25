@@ -2,6 +2,12 @@ import React from 'react';
 import { Form, FormGroup, Input, Button, Container, Row, Col } from 'reactstrap';
 
 export default class LandingPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchZone: []
+    };
+  }
 
   handleSearchZoneChange(event) {
     this.setState({ searchZone: event.target.value });
@@ -35,7 +41,7 @@ export default class LandingPage extends React.Component {
                 </Row>
                 <Row className="mt-1 mr-2">
                   <Col xs={{ size: 10, offset: 2 }}>
-                    <Button color="secondary">Meeting Directory</Button>{' '}
+                    <Button onClick={() => this.props.onclick('meetings', {})} color="secondary">Meeting Directory</Button>{' '}
                   </Col>
                 </Row>
               </FormGroup>
