@@ -1,4 +1,5 @@
 import React from 'react';
+import LandingPage from './landingpage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,8 +12,8 @@ export default class App extends React.Component {
   getMessage() {
     fetch('/api/endpoint.php', {
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       }
     })
       .then(response => {
@@ -32,8 +33,11 @@ export default class App extends React.Component {
   render() {
     if (this.state.message[0] !== undefined) {
       return (
-        <div> {this.state.message[0].message}
-        </div>
+        <React.Fragment>
+          {/* {this.state.message[0].message} */}
+          <LandingPage />
+        </React.Fragment>
+
       );
     } else {
       return <div>nothing rendered</div>;
