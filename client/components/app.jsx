@@ -1,5 +1,6 @@
 import React from 'react';
 import LandingPage from './landingpage';
+import { Meetings } from './meetings';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,10 +23,6 @@ export default class App extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.getMessage();
-  }
-
   render() {
     if (this.state.view.name === 'landing') {
       return (
@@ -35,6 +32,10 @@ export default class App extends React.Component {
       );
     } else if (this.state.view.name === 'recoveryresults') {
       return null;
+    } else if (this.state.view.name === 'recoveryresults') {
+      return (
+        <Meetings />
+      );
     }
   }
 }
