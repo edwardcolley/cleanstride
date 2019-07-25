@@ -2,6 +2,18 @@ body{
     background-color: #fafafa;
 }
 
+.landingPage {
+    overflow: hidden;
+}
+
 .landingForm {
     margin-top: 30vh;
+}
+
+.button1 {
+    cursor: pointer;
+}
+
+.input {
+    cursor: auto;
 }

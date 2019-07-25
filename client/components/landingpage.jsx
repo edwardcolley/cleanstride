@@ -24,8 +24,8 @@ export default class LandingPage extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Row>
+      <Container className="landingPage">
+        <Row className="ml-1">
           <Col xs={{ size: 12, offset: 1 }}>
             <img src="./images/cleanStrideLogo.png" alt="App Logo"/>
           </Col>
