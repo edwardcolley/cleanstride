@@ -1,4 +1,7 @@
-.cart,
-.card {
-    cursor: pointer;
+body{
+    background-color: #fafafa;
+}
+
+.landingForm {
+    margin-top: 30vh;
 }
