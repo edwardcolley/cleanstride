@@ -35,7 +35,7 @@ export default class App extends React.Component {
       );
     } else if (this.state.view.name === 'recoveryresults') {
       return <DetailsPage/>;
-    } else if (this.state.view.name === 'recoveryresults') {
+    } else if (this.state.view.name === 'meetings') {
       return (
         <Meetings />
       );
