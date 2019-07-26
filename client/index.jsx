@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DetailsPage from './components/details-page';
 
 ReactDOM.render(
-  <DetailsPage/>,
+  <App/>,
   document.querySelector('#root')
 );
