@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `aa_meetings`
 --
 
-CREATE TABLE `aa_meetings` (
+CREATE TABLE `AA` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `day` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `city` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,

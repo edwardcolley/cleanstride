@@ -1,7 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { Container, Row, Col, Form, FormGroup, Input, Button } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Button, Card, CardText } from 'reactstrap';
 import Meetingcard from './meeting-card';
-
 export default class Meetings extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ export default class Meetings extends React.Component {
   }
 
   getMeetings() {
-    fetch('/api/meetings.php?day=' + this.state.day + '&city=' + this.state.city)
+    fetch('/api/meetings.php?day=' + this.state.day + '&city=' + this.state.city + '&program=' + this.state.program)
       .then(response => {
         return response.json();
       })
@@ -62,12 +62,12 @@ export default class Meetings extends React.Component {
 
   render() {
     return (
-      <Container xs={{ fluid: true }}>
+      <Container className="meetingContainer" xs={{ fluid: true }}>
         <Row className="mt-4">
           <Col xs={{ size: 10, offset: 1 }}>
             <Form>
               <FormGroup>
-                <Input type="select" name="" id="exampleSelect" onChange={this.handleChangeProgram}>
+                <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeProgram}>
                   <option>PROGRAM</option>
                   <option>AA</option>
                   <option>Al-Anon</option>
@@ -76,7 +76,7 @@ export default class Meetings extends React.Component {
                 </Input>
               </FormGroup>
               <FormGroup>
-                <Input type="select" name="" id="exampleSelect" onChange={this.handleChangeCity}>
+                <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeCity}>
                   <option>CITY</option>
                   <option>LAGUNA HILLS</option>
                   <option>NEWPORT BEACH</option>
@@ -86,7 +86,7 @@ export default class Meetings extends React.Component {
                 </Input>
               </FormGroup>
               <FormGroup>
-                <Input type="select" name="" id="exampleSelect" onChange={this.handleChangeDay}>
+                <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeDay}>
                   <option>DAY</option>
                   <option>SUNDAY</option>
                   <option>MONDAY</option>
@@ -98,13 +98,38 @@ export default class Meetings extends React.Component {
                 </Input>
               </FormGroup>
               <Row>
-                <Col xs={{ size: 4, offset: 4 }}>
-                  <Button onClick={this.getMeetings} color="info" size="sm">Search</Button>
+                <Col xs={{ size: 4, offset: 4 }} md={{ size: 4, offset: 5 }}>
+                  <Button className="shadow" onClick={this.getMeetings} color="info" size="sm">Search</Button>
                 </Col>
               </Row>
             </Form>
           </Col>
         </Row>
+        {this.state.program === 'AA' &&
+        <Row className="mt-2">
+          <Col md={{ size: 6, offset: 3 }}>
+            <Card body inverse color="info">
+              <CardText>
+                <ul>
+                  <li>C = Closed, alcholics only</li>
+                  <li>O = Open</li>
+                  <li>Y = Young People</li>
+                  <li>~ = Spanish speaking</li>
+                  <li>W = Women's</li>
+                  <li>M = Men's</li>
+                  <li>GA = Gay</li>
+                  <li>CC = Childcare Available</li>
+                  <li>BG = Beginner</li>
+                  <li>TA = Meditation</li>
+                  <li>SP = Speaker</li>
+                  <li>SE = Secular</li>
+                  <li>TG = Transgender</li>
+                </ul>
+              </CardText>
+            </Card>
+          </Col>
+        </Row>
+        }
         {this.state.search === true &&
           this.renderMeetingcards()
         }
