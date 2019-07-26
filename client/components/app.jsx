@@ -1,5 +1,6 @@
 import React from 'react';
 import LandingPage from './landingpage';
+import LoadingPage from './loadingpage';
 import DetailsPage from './details-page';
 import Meetings from './meeting-page';
 
@@ -38,6 +39,10 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'meetings') {
       return (
         <Meetings />
+      );
+    } else if (this.state.view.name === 'loading'){
+      return( 
+        <LoadingPage setView={this.setView}/>
       );
     }
   }
