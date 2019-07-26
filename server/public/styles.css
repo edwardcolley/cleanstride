@@ -9,3 +9,23 @@ body{
 .landingForm {
     margin-top: 30vh;
 }
+
+.header {
+    background-color: lightgrey;
+}
+
+.contactInfo {
+    background-color: lightgrey;
+}
+
+.contactInfo > h1 {
+    font-size: 25px;
+}
+
+.description {
+    background-color: lightgrey;
+}
+
+.description > h1 {
+    font-size: 25px;
+}
