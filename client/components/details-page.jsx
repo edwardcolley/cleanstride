@@ -2,11 +2,7 @@ import React from 'react';
 import {
   Container,
   Card,
-  CardBody,
-  Carousel,
-  CarouselItem,
-  CarouselControl, CarouselIndicators,
-  CarouselCaption
+  CardBody
 } from 'reactstrap';
 
 class DetailsPage extends React.Component {
