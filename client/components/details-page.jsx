@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
 class DetailsPage extends React.Component {
   constructor(props) {
@@ -13,9 +14,14 @@ class DetailsPage extends React.Component {
       return null;
     }
     return (
-      <div>
-        <p className="recovery-details">{this.state.centers.items[0].pagemap.website[0].description}</p>
-      </div>
+      <Container>
+        <Card>
+          <CardBody>
+            <CardTitle>Title</CardTitle>
+            <CardText>{this.state.centers.items[0].pagemap.website[0].description}</CardText>
+          </CardBody>
+        </Card>
+      </Container>
     );
   }
 
