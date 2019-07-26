@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Form, FormGroup, Input, Button } from 'reactstrap';
+import Meetingcard from './meeting-card';
 
 export default class Meetings extends React.Component {
   constructor(props) {
@@ -10,12 +11,14 @@ export default class Meetings extends React.Component {
       city: null,
       meetings: {
 
-      }
+      },
+      search: false
     };
     this.getMeetings = this.getMeetings.bind(this);
     this.handleChangeDay = this.handleChangeDay.bind(this);
     this.handleChangeCity = this.handleChangeCity.bind(this);
     this.handleChangeProgram = this.handleChangeProgram.bind(this);
+    this.renderMeetingcards = this.renderMeetingcards.bind(this);
   }
 
   getMeetings() {
@@ -25,7 +28,8 @@ export default class Meetings extends React.Component {
       })
       .then(myJson => {
         this.setState({
-          meetings: myJson
+          meetings: myJson,
+          search: true
         });
       });
   }
@@ -48,6 +52,14 @@ export default class Meetings extends React.Component {
     });
   }
 
+  renderMeetingcards() {
+    return this.state.meetings.map(input => {
+      return (
+        <Meetingcard key={input.id} input={input}/>
+      );
+    });
+  }
+
   render() {
     return (
       <Container xs={{ fluid: true }}>
@@ -56,7 +68,7 @@ export default class Meetings extends React.Component {
             <Form>
               <FormGroup>
                 <Input type="select" name="" id="exampleSelect" onChange={this.handleChangeProgram}>
-                  <option>Program</option>
+                  <option>PROGRAM</option>
                   <option>AA</option>
                   <option>Al-Anon</option>
                   <option>NA</option>
@@ -65,7 +77,7 @@ export default class Meetings extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Input type="select" name="" id="exampleSelect" onChange={this.handleChangeCity}>
-                  <option>City</option>
+                  <option>CITY</option>
                   <option>LAGUNA HILLS</option>
                   <option>NEWPORT BEACH</option>
                   <option>LAKE FOREST</option>
@@ -93,6 +105,9 @@ export default class Meetings extends React.Component {
             </Form>
           </Col>
         </Row>
+        {this.state.search === true &&
+          this.renderMeetingcards()
+        }
       </Container>
     );
   }

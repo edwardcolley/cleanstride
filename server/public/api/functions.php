@@ -15,6 +15,8 @@ function startUp() {
     header('Content-type:application/json');
 }
 
+
+
 // function getBodyDate(){
 //    return json_decode(file_get_contents("php://input"), true);
 // };

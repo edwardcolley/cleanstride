@@ -29,5 +29,3 @@ class DetailsPage extends React.Component {
 }
 
 export default DetailsPage;
-
-// this.state.centers.items[0].pagemap.website[0].description
