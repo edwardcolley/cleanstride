@@ -40,8 +40,8 @@ export default class App extends React.Component {
       return (
         <Meetings />
       );
-    } else if (this.state.view.name === 'loading'){
-      return( 
+    } else if (this.state.view.name === 'loading') {
+      return (
         <LoadingPage setView={this.setView}/>
       );
     }
