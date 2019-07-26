@@ -10,6 +10,34 @@ body{
     margin-top: 30vh;
 }
 
+.headerCard {
+    margin-top: 60%;
+    margin-bottom: 2%;
+}
+
+.header {
+    background-color: lightgrey;
+}
+
+.contactInfoCard {
+    margin-bottom: 2%;
+}
+
+.contactInfo {
+    background-color: lightgrey;
+}
+
+.contactInfo > h1 {
+    font-size: 25px;
+}
+
+.description {
+    background-color: lightgrey;
+}
+
+.description > h1 {
+    font-size: 25px;
+}
 
 .loaderContainer{
     display: flex;

@@ -1,5 +1,9 @@
 import React from 'react';
-import { Container, Card, CardText, CardBody, CardTitle } from 'reactstrap';
+import {
+  Container,
+  Card,
+  CardBody
+} from 'reactstrap';
 
 export default class DetailsPage extends React.Component {
   constructor(props) {
@@ -26,10 +30,25 @@ export default class DetailsPage extends React.Component {
     }
     return (
       <Container>
-        <Card>
-          <CardBody>
-            <CardTitle>Title</CardTitle>
-            <CardText>{this.state.centers.items[0].pagemap.website[0].description}</CardText>
+        <Card className="headerCard">
+          <CardBody className="header">
+            <h1></h1>
+            <p>Name: </p>
+            <p>Rating: </p>
+          </CardBody>
+        </Card>
+        <Card className="contactInfoCard">
+          <CardBody className="contactInfo">
+            <h1>Contact Information</h1>
+            <p>Name: </p>
+            <p>Address: </p>
+            <p>Phone: </p>
+          </CardBody>
+        </Card>
+        <Card className="descriptionCard">
+          <CardBody className="description">
+            <h1>Description</h1>
+            <p>{this.state.centers.items[0].pagemap.website[0].description}</p>
           </CardBody>
         </Card>
       </Container>

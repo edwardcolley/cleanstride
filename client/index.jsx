@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Meetings from './components/meeting-page';
+import App from './components/app';
 
 ReactDOM.render(
-  <Meetings/>,
+  <App/>,
   document.querySelector('#root')
 );
