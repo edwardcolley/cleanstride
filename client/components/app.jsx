@@ -1,6 +1,7 @@
 import React from 'react';
 import LandingPage from './landingpage';
 import Meetings from './meetings';
+import LoadingPage from './loadingpage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,10 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'meetings') {
       return (
         <Meetings />
+      );
+    } else if (this.state.view.name === 'loading'){
+      return( 
+        <LoadingPage setView={this.setView}/>
       );
     }
   }
