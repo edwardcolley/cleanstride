@@ -19,7 +19,7 @@ export default class Meetings extends React.Component {
   }
 
   getMeetings() {
-    fetch('/api/products.php?day=' + this.state.day + '&city=' + this.state.city)
+    fetch('/api/meetings.php?day=' + this.state.day + '&city=' + this.state.city)
       .then(response => {
         return response.json();
       })

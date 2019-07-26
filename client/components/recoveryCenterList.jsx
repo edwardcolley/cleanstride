@@ -20,7 +20,6 @@ class ListNearbyRC extends React.Component {
         this.setState({
           googleResult: myJson
         });
-        console.log('Setting State', this.state.googleResult);
 
       });
   }
