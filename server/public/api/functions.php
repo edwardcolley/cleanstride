@@ -11,6 +11,7 @@ if(!function_exists('handleError')){
         print($json_output);
     };
 }
+
 function startUp() {
     header('Content-type:application/json');
 }

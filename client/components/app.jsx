@@ -3,6 +3,7 @@ import LandingPage from './landingpage';
 import LoadingPage from './loadingpage';
 import DetailsPage from './details-page';
 import Meetings from './meeting-page';
+import RecoveryResults from './recoveryresults';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,11 +32,17 @@ export default class App extends React.Component {
     if (this.state.view.name === 'landing') {
       return (
         <React.Fragment>
-          <LandingPage onclick={this.setView}/>
+          <LandingPage setView={this.setView}/>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'recoveryresults') {
-      return <DetailsPage/>;
+      return (
+        <RecoveryResults setView={this.setView} params={this.state.view.params}/>
+      )
+    } else if(this.state.view.name === "details"){
+      return (
+        <DetailsPage setView={this.setView} />
+      )
     } else if (this.state.view.name === 'meetings') {
       return (
         <Meetings />
