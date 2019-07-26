@@ -15,7 +15,6 @@ export default class LoadingPage extends React.Component{
 
     componentDidMount() {
         this.getUserLocation();
-        console.log("loadingPage props: ", this.props);
     }
 
     GoToReusltsPage(){
@@ -31,8 +30,6 @@ export default class LoadingPage extends React.Component{
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         })
-
-        console.log("LoadingPage state: ", this.state);
     }
 
     componentDidUpdate(){
@@ -41,7 +38,9 @@ export default class LoadingPage extends React.Component{
 
     render(){
         return(
-            <div>loading...</div>
+            <div className="loaderContainer">
+                <div className="loader"></div>
+            </div>
         )
     }
 }

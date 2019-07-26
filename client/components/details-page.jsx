@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
-class DetailsPage extends React.Component {
+export default class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,7 +9,18 @@ class DetailsPage extends React.Component {
     };
   }
 
+
+  componentDidMount() {
+    fetch('https://www.googleapis.com/customsearch/v1?key=AIzaSyCDfSs7m4X6jeepCTsFxLrhu6MXrDQtBG4&cx=017903074074624854424:2a98z0iuzye&q=recoverycenters')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ centers: result });
+      });
+  }
+
+
   render() {
+    console.log("details page props: ", this.props);
     if (this.state.centers === null) {
       return null;
     }
@@ -24,14 +35,5 @@ class DetailsPage extends React.Component {
       </Container>
     );
   }
-
-  componentDidMount() {
-    fetch('https://www.googleapis.com/customsearch/v1?key=AIzaSyCDfSs7m4X6jeepCTsFxLrhu6MXrDQtBG4&cx=017903074074624854424:2a98z0iuzye&q=recoverycenters')
-      .then(res => res.json())
-      .then(result => {
-        this.setState({ centers: result });
-      });
-  }
 }
 
-export default DetailsPage;
