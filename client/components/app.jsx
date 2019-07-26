@@ -1,7 +1,7 @@
 import React from 'react';
 import LandingPage from './landingpage';
 import DetailsPage from './details-page';
-import { Meetings } from './meetings';
+import Meetings from './meeting-page';
 
 export default class App extends React.Component {
   constructor(props) {
