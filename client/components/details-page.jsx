@@ -1,5 +1,13 @@
 import React from 'react';
-import { Container, Card, CardBody } from 'reactstrap';
+import {
+  Container,
+  Card,
+  CardBody,
+  Carousel,
+  CarouselItem,
+  CarouselControl, CarouselIndicators,
+  CarouselCaption
+} from 'reactstrap';
 
 class DetailsPage extends React.Component {
   constructor(props) {
@@ -15,14 +23,14 @@ class DetailsPage extends React.Component {
     }
     return (
       <Container>
-        <Card className="mt-5">
+        <Card className="headerCard">
           <CardBody className="header">
             <h1></h1>
             <p>Name: </p>
             <p>Rating: </p>
           </CardBody>
         </Card>
-        <Card className="mt-3">
+        <Card className="contactInfoCard">
           <CardBody className="contactInfo">
             <h1>Contact Information</h1>
             <p>Name: </p>
@@ -30,7 +38,7 @@ class DetailsPage extends React.Component {
             <p>Phone: </p>
           </CardBody>
         </Card>
-        <Card className="mt-3">
+        <Card className="descriptionCard">
           <CardBody className="description">
             <h1>Description</h1>
             <p>{this.state.centers.items[0].pagemap.website[0].description}</p>

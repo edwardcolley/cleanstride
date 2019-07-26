@@ -10,8 +10,17 @@ body{
     margin-top: 30vh;
 }
 
+.headerCard {
+    margin-top: 60%;
+    margin-bottom: 2%;
+}
+
 .header {
     background-color: lightgrey;
+}
+
+.contactInfoCard {
+    margin-bottom: 2%;
 }
 
 .contactInfo {
