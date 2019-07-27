@@ -1,6 +1,6 @@
 import React from 'react';
-import LoadingPage from './loadingpage';
 import RecoveryResultsCard from './recovery-results-item';
+import { Container } from 'reactstrap';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class RecoveryResults extends React.Component {
       googleResult: null,
       searchZone: ''
     };
+    this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
   }
 
   getGooglePlacesList(userInput) {
@@ -39,15 +40,16 @@ class RecoveryResults extends React.Component {
 
   render() {
     if (this.state.googleResult) {
+
       return (
-        <div>
-          <div>
-            {this.renderRecoveryCard()}
-          </div>
-        </div>
+        <Container>
+          {this.renderRecoveryCard()}
+        </Container>
       );
     } else {
-      return <p>loading</p>;
+      return (
+        <p>loading...</p>
+      );
     }
   }
 }
