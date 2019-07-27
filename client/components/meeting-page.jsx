@@ -8,7 +8,7 @@ export default class Meetings extends React.Component {
     this.state = {
       program: null,
       day: null,
-      city: null,
+      city: 'CITY',
       meetings: {
 
       },
@@ -22,7 +22,7 @@ export default class Meetings extends React.Component {
   }
 
   getMeetings() {
-    fetch('/api/meetings.php?day=' + this.state.day + '&city=' + this.state.city + '&program=' + this.state.program)
+    fetch('/api/meetings.php?day=' + this.state.day + '&program=' + this.state.program + '&city=' + this.state.city)
       .then(response => {
         return response.json();
       })
