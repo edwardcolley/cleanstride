@@ -5,21 +5,31 @@ export default class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchZone: []
+      searchZone: ""
     };
+
+    this.handleSearchZoneChange = this.handleSearchZoneChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.goToResultsPage = this.goToResultsPage.bind(this);
+
   }
 
   handleSearchZoneChange(event) {
     this.setState({ searchZone: event.target.value });
   }
 
+  goToResultsPage(){
+    this.props.setView("recoveryresults", {searchZone: this.state.searchZone});
+  }
+
   handleSubmit(event) {
     event.preventDefault();
+    this.goToResultsPage();
     this.setState({
-      searchZone: undefined
+      searchZone: ""
     });
-
   }
+  
 
   render() {
     return (
@@ -33,15 +43,20 @@ export default class LandingPage extends React.Component {
           <Col xs={{ size: 9, offset: 1 }}>
             <Form onSubmit={this.handleSubmit} action="">
               <FormGroup>
-                <Input required placeholder="City or Zipcode" bsSize="lg" value={this.state.searchZone} onChange={this.handleSearchZoneChange} />
+                <div className="input-group mb-3">
+                    <input type="text" className="form-control" placeholder="City or Zipcode" aria-label="Recipient's username" aria-describedby="basic-addon2" value={this.state.searchZone} onChange={this.handleSearchZoneChange}/>
+                    <div className="input-group-append">
+                      <button className="btn btn-pirmary btn-outline-primary" color="primary" type="button" onClick={this.handleSubmit}>Search</button>
+                    </div>
+                </div>
                 <Row className="mt-2">
                   <Col xs={{ size: 10, offset: 2 }}>
-                    <Button onClick={() => this.props.onclick('recoveryresults', {})} type="submit" color="primary">Search Recovery</Button>{' '}
+                    <Button onClick={() => this.props.setView('loading', {})} type="submit" color="primary">Use My Location</Button>{' '}
                   </Col>
                 </Row>
                 <Row className="mt-1 mr-2">
                   <Col xs={{ size: 10, offset: 2 }}>
-                    <Button onClick={() => this.props.onclick('meetings', {})} color="secondary">Meeting Directory</Button>{' '}
+                    <Button onClick={() => this.props.setView('meetings', {})} color="secondary">Meeting Directory</Button>{' '}
                   </Col>
                 </Row>
               </FormGroup>

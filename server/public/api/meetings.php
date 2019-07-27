@@ -1,6 +1,4 @@
 <?php
-
-header('Content-Type: application/json');
 require('functions.php');
 
 set_exception_handler('handleError');
@@ -9,12 +7,19 @@ startUp();
 require_once('db_connection.php');
 
 
-if (!empty($_GET['day'] && !empty($_GET['city']))) {
+if (!empty($_GET['day'] && !empty($_GET['city'])) && !empty($_GET['program'])) {
   $day = mysqli_real_escape_string( $conn,$_GET['day']);
   $city = mysqli_real_escape_string( $conn,$_GET['city']);
-  
+  $program = mysqli_real_escape_string( $conn, $_GET['program']);
 
-  $query = "SELECT * FROM `aa_meetings` WHERE `day` = '$day' AND `city` = '$city'";
+  $query = "SELECT * FROM `$program` WHERE `day` = '$day' AND `city` = '$city'";
+
+} else if (!empty($_GET['day']) && empty($_GET['city'])) {
+  $day = mysqli_real_escape_string( $conn, $_GET['day']);
+  $program = mysqli_real_escape_string( $conn, $_GET['program']);
+
+  $query = "SELECT * FROM `$program` WHERE `day` = '$day'";
+}
 
   $result = mysqli_query($conn, $query);
 
@@ -28,5 +33,5 @@ if (!empty($_GET['day'] && !empty($_GET['city']))) {
   }
 
   print(json_encode($data));
-} 
+
 ?>
