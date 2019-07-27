@@ -5,7 +5,7 @@ function Meetingcard(props) {
   return (
     <React.Fragment>
       <Row className="mt-5">
-        <Col md={{ size: 6, offset: 3 }}>
+        <Col md={{ size: 6, offset: 3 }} lg={{ size: 3, offset: 2 }}>
           <Card className="shadow" body inverse style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }}>
             <CardBody>
               <CardTitle>{props.input.day}</CardTitle>
