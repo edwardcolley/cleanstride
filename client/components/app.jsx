@@ -38,11 +38,11 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'recoveryresults') {
       return (
         <RecoveryResults setView={this.setView} params={this.state.view.params}/>
-      )
-    } else if(this.state.view.name === "details"){
+      );
+    } else if (this.state.view.name === 'details') {
       return (
         <DetailsPage setView={this.setView} />
-      )
+      );
     } else if (this.state.view.name === 'meetings') {
       return (
         <Meetings />

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { Container, Row, Col, Form, FormGroup, Input, Button, Card, CardText } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Button, Card, CardText, InputGroup } from 'reactstrap';
 import Meetingcard from './meeting-card';
 export default class Meetings extends React.Component {
   constructor(props) {
@@ -65,15 +65,22 @@ export default class Meetings extends React.Component {
       <Container className="meetingContainer" xs={{ fluid: true }}>
         <Row className="mt-4">
           <Col xs={{ size: 10, offset: 1 }}>
+            <h3 className="text-center text-secondary"><span><i className="far fa-handshake"></i></span> Meeting Directory</h3>
+          </Col>
+        </Row>
+        <Row className="mt-4">
+          <Col xs={{ size: 10, offset: 1 }}>
             <Form>
               <FormGroup>
-                <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeProgram}>
-                  <option>PROGRAM</option>
-                  <option>AA</option>
-                  <option>Al-Anon</option>
-                  <option>NA</option>
-                  <option>OA</option>
-                </Input>
+                <InputGroup>
+                  <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeProgram}>
+                    <option>PROGRAM</option>
+                    <option>AA</option>
+                    <option>Al-Anon</option>
+                    <option>NA</option>
+                    <option>OA</option>
+                  </Input>
+                </InputGroup>
               </FormGroup>
               <FormGroup>
                 <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeCity}>
