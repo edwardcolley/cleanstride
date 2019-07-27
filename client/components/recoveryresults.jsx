@@ -1,13 +1,14 @@
 import React from 'react';
+import LoadingPage from './loadingpage';
+import RecoveryResultsCard from './recovery-results-item';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      googleResult: [],
-      searchZone: ""
+      googleResult: null,
+      searchZone: ''
     };
-
   }
 
   getGooglePlacesList(userInput) {
@@ -19,25 +20,35 @@ class RecoveryResults extends React.Component {
       })
       .then(myJson => {
         this.setState({
-          googleResult: myJson
+          googleResult: myJson.results
         });
       });
-      console.log("RR page get list state: ", this.state);
   }
 
   componentDidMount() {
     this.getGooglePlacesList(this.props.params.searchZone);
   }
 
+  renderRecoveryCard() {
+    return this.state.googleResult.map(input => {
+      return (
+        <RecoveryResultsCard key={input.id} input={input}/>
+      );
+    });
+  }
+
   render() {
-    console.log("recovery page this.state: ", this.state)
-    return (
-      <div>
+    if (this.state.googleResult) {
+      return (
         <div>
-          {this.state.googleResults}results
+          <div>
+            {this.renderRecoveryCard()}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <p>loading</p>;
+    }
   }
 }
 export default RecoveryResults;
