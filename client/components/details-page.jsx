@@ -14,7 +14,7 @@ import {
 
 const items = [
   {
-    src: { photos: this.props.googleResult[0].photos },
+    src: 'https://cdn0.sussexdirectories.com/rms/rms_photos/sized/24/49/364924-1126760-1_1500x1500.jpg?pu=1511989191',
     altText: 'photo1',
     caption: 'photo1'
   },
@@ -117,7 +117,11 @@ export default class DetailsPage extends React.Component {
       <Container>
         <Row>
           <Col>
-            {this.carouselPhotos()}
+            <Card className="carouselCard">
+              <CardBody className="carousel">
+                {this.carouselPhotos()}
+              </CardBody>
+            </Card>
           </Col>
         </Row>
         <Row>
@@ -140,7 +144,6 @@ export default class DetailsPage extends React.Component {
             <Card className="descriptionCard">
               <CardBody className="description">
                 <h1>Description</h1>
-                {/* <p>{this.state.centers.items[0].pagemap.website[0].description}</p> */}
               </CardBody>
             </Card>
           </Col>
