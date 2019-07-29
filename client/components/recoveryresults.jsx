@@ -34,14 +34,13 @@ class RecoveryResults extends React.Component {
   renderRecoveryCard() {
     return this.state.googleResult.map(input => {
       return (
-        <RecoveryResultsCard key={input.id} input={input}/>
+        <RecoveryResultsCard onClick={this.props.setView} key={input.id} input={input}/>
       );
     });
   }
 
   render() {
     if (this.state.googleResult) {
-
       return (
         <div>
           <NavBar setView={this.props.setView}/>

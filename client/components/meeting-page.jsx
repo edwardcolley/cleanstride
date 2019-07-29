@@ -33,7 +33,6 @@ export default class Meetings extends React.Component {
         });
       });
   }
-
   handleChangeDay(event) {
     this.setState({
       day: event.target.value
