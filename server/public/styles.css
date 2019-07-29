@@ -46,7 +46,10 @@ body{
     margin-top: 50%;
 }
 .loaderText{
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
 }
 .loader {
     display: block;
