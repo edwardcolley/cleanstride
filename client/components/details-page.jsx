@@ -1,5 +1,4 @@
 import React from 'react';
-import RecoveryResults from './recoveryresults';
 import {
   Col,
   Row,
@@ -15,7 +14,7 @@ import {
 
 const items = [
   {
-    src: '<RecoveryResults data={this.state.googleResult.results.photos}/>',
+    src: { photos: this.props.googleResult[0].photos },
     altText: 'photo1',
     caption: 'photo1'
   },
@@ -34,7 +33,10 @@ const items = [
 export default class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { activeIndex: 0 };
+    this.state = {
+      googleResult: null,
+      activeIndex: 0
+    };
 
     this.goToIndex = this.goToIndex.bind(this);
     this.previous = this.previous.bind(this);
@@ -108,6 +110,9 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
+    // if (this.state.googleResult === null) {
+    //   return null;
+    // }
     return (
       <Container>
         <Row>
