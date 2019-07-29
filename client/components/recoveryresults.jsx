@@ -4,9 +4,8 @@ class RecoveryResults extends React.Component {
     super(props);
     this.state = {
       googleResult: [],
-      searchZone: ""
+      searchZone: ''
     };
-
   }
 
   getGooglePlacesList(userInput) {
@@ -17,11 +16,14 @@ class RecoveryResults extends React.Component {
         return response.json();
       })
       .then(myJson => {
+        // eslint-disable-next-line no-console
+        console.log('google results: ', myJson);
         this.setState({
           googleResult: myJson
         });
       });
-      console.log("RR page get list state: ", this.state);
+    // eslint-disable-next-line no-console
+    console.log('RR page get list state: ', this.state);
   }
 
   componentDidMount() {
@@ -29,12 +31,14 @@ class RecoveryResults extends React.Component {
   }
 
   render() {
-    console.log("recovery page this.state: ", this.state)
+    // eslint-disable-next-line no-console
+    console.log('recovery page this.state: ', this.state.googleResult.results);
     return (
       <div>
-        <div>
-          {this.state.googleResults}results
-        </div>
+        {this.state.googleResult.results.map(index => (
+          <li key={index.id} index />
+        ))}
+        {/* {this.state.googleResult.results.map(results => (console.log('what is results in map', results)))} */}
       </div>
     );
   }
