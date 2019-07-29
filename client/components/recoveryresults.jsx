@@ -1,6 +1,7 @@
 import React from 'react';
 import RecoveryResultsCard from './recovery-results-item';
 import { Container } from 'reactstrap';
+import NavBar from './nav-bar';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
@@ -42,13 +43,21 @@ class RecoveryResults extends React.Component {
     if (this.state.googleResult) {
 
       return (
-        <Container>
-          {this.renderRecoveryCard()}
-        </Container>
+        <div>
+          <NavBar setView={this.props.setView}/>
+          <Container>
+            {this.renderRecoveryCard()}
+          </Container>
+        </div>
       );
     } else {
       return (
-        <p>loading...</p>
+        <div>
+          <div className="loaderContainer">
+            <div className="loader"></div>
+          </div>
+          <div className="loaderText">Loading Results...</div>
+        </div>
       );
     }
   }
