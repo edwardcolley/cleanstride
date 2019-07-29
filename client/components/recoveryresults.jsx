@@ -31,6 +31,7 @@ class RecoveryResults extends React.Component {
   }
 
   renderRecoveryCard() {
+    console.log(this.state.googleResult);
     return this.state.googleResult.map(input => {
       return (
         <RecoveryResultsCard key={input.id} input={input}/>
