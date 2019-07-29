@@ -12,13 +12,13 @@ if (!empty($_GET['day'] && !empty($_GET['city'])) && !empty($_GET['program'])) {
   $city = mysqli_real_escape_string( $conn,$_GET['city']);
   $program = mysqli_real_escape_string( $conn, $_GET['program']);
 
-  $query = "SELECT * FROM `$program` WHERE `day` = '$day' AND `city` = '$city'";
+  if($city !== 'CITY') {
+    $query = "SELECT * FROM `$program` WHERE `day` = '$day' AND `city` = '$city'";
+  } else {
+    $query = "SELECT * FROM `$program` WHERE `day` = '$day'";
 
-} else if (!empty($_GET['day']) && empty($_GET['city'])) {
-  $day = mysqli_real_escape_string( $conn, $_GET['day']);
-  $program = mysqli_real_escape_string( $conn, $_GET['program']);
+  }
 
-  $query = "SELECT * FROM `$program` WHERE `day` = '$day'";
 }
 
   $result = mysqli_query($conn, $query);

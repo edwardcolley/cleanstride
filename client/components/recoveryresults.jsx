@@ -1,11 +1,16 @@
 import React from 'react';
+import RecoveryResultsCard from './recovery-results-item';
+import { Container } from 'reactstrap';
+
 class RecoveryResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      googleResult: [],
+      googleResult: null,
       searchZone: ''
     };
+    this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
+
   }
 
   getGooglePlacesList(userInput) {
@@ -19,28 +24,39 @@ class RecoveryResults extends React.Component {
         // eslint-disable-next-line no-console
         console.log('google results: ', myJson);
         this.setState({
-          googleResult: myJson
+          googleResult: myJson.results
         });
       });
-    // eslint-disable-next-line no-console
-    console.log('RR page get list state: ', this.state);
+
   }
 
   componentDidMount() {
     this.getGooglePlacesList(this.props.params.searchZone);
   }
 
+  renderRecoveryCard() {
+    return this.state.googleResult.map(input => {
+      return (
+        <RecoveryResultsCard key={input.id} input={input}/>
+      );
+    });
+  }
+
   render() {
-    // eslint-disable-next-line no-console
-    console.log('recovery page this.state: ', this.state.googleResult.results);
-    return (
-      <div>
-        {this.state.googleResult.results.map(index => (
-          <li key={index.id} index />
-        ))}
-        {/* {this.state.googleResult.results.map(results => (console.log('what is results in map', results)))} */}
-      </div>
-    );
+
+    if (this.state.googleResult) {
+
+      return (
+        <Container>
+          {this.renderRecoveryCard()}
+        </Container>
+      );
+    } else {
+      return (
+        <p>loading...</p>
+      );
+    }
+
   }
 }
 export default RecoveryResults;
