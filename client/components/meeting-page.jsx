@@ -2,6 +2,7 @@
 import React from 'react';
 import { Container, Row, Col, Form, FormGroup, Input, Button, Card, CardText, InputGroup } from 'reactstrap';
 import Meetingcard from './meeting-card';
+import NavBar from './nav-bar';
 export default class Meetings extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,7 @@ export default class Meetings extends React.Component {
     this.renderMeetingcards = this.renderMeetingcards.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.getFavorites = this.getFavorites.bind(this);
+    this.goToFavorites = this.goToFavorites.bind(this);
   }
 
   getMeetings() {
@@ -48,6 +50,10 @@ export default class Meetings extends React.Component {
           favorites: myJson
         });
       });
+  }
+
+  goToFavorites(){
+    this.props.setView('favorites', {favorites: this.state.favorites});
   }
 
   addFavorite(newMeeting) {
@@ -96,6 +102,7 @@ export default class Meetings extends React.Component {
   render() {
     return (
       <Container className="meetingContainer" xs={{ fluid: true }}>
+        <NavBar setView={this.props.setView}/>
         <Row className="mt-4">
           <Col xs={{ size: 10, offset: 1 }}>
             <h3 className="text-center text-secondary"><span><i className="far fa-handshake"></i></span> Meeting Directory</h3>
@@ -140,6 +147,7 @@ export default class Meetings extends React.Component {
               <Row>
                 <Col xs={{ size: 4, offset: 4 }} md={{ size: 4, offset: 5 }}>
                   <Button className="shadow" onClick={this.getMeetings} color="info" size="sm">Search</Button>
+                  <Button className="shadow" onClick={this.goToFavorites} color="info" size="sm">Go To Favorites</Button>
                 </Col>
               </Row>
             </Form>

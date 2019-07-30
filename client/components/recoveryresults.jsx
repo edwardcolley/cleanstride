@@ -52,10 +52,10 @@ class RecoveryResults extends React.Component {
     } else {
       return (
         <div>
-          <div className="loaderContainer">
+          <div className="flexCentering loaderContainer">
             <div className="loader"></div>
           </div>
-          <div className="loaderText">Loading Results...</div>
+          <div className="flexCentering loaderText">Loading Results...</div>
         </div>
       );
     }

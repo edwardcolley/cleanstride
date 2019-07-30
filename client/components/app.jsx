@@ -4,6 +4,7 @@ import LoadingPage from './loadingpage';
 import DetailsPage from './details-page';
 import Meetings from './meeting-page';
 import RecoveryResults from './recoveryresults';
+import Favorites from './favorites';
 import Calendar from './calendar-page';
 
 export default class App extends React.Component {
@@ -46,8 +47,12 @@ export default class App extends React.Component {
       );
     } else if (this.state.view.name === 'meetings') {
       return (
-        <Meetings />
+        <Meetings setView={this.setView}/>
       );
+    } else if (this.state.view.name === 'favorites'){
+        return (
+        <Favorites setView={this.setView} favorites={this.state.view.params.favorites}/>
+        )
     } else if (this.state.view.name === 'loading') {
       return (
         <LoadingPage setView={this.setView}/>
