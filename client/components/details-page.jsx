@@ -34,7 +34,6 @@ export default class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      googleResult: null,
       activeIndex: 0
     };
 
@@ -110,9 +109,6 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
-    // if (this.state.googleResult === null) {
-    //   return null;
-    // }
     return (
       <Container>
         <Row>
@@ -122,28 +118,24 @@ export default class DetailsPage extends React.Component {
                 {this.carouselPhotos()}
               </CardBody>
             </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
             <Card className="headerCard">
               <CardBody className="header">
                 <h1></h1>
-                <p>Name: </p>
-                <p>Rating: </p>
+                <p>Name: {this.props.data.name}</p>
+                <p>Rating: {this.props.data.rating}</p>
               </CardBody>
             </Card>
             <Card className="contactInfoCard">
               <CardBody className="contactInfo">
                 <h1>Contact Information</h1>
-                <p>Name: </p>
-                <p>Address: </p>
-                <p>Phone: </p>
+                <p>Address: {this.props.data.formatted_address}/5</p>
+                <p>Phone: (123) 555-5555</p>
               </CardBody>
             </Card>
             <Card className="descriptionCard">
               <CardBody className="description">
                 <h1>Description</h1>
+                <p>Hello</p>
               </CardBody>
             </Card>
           </Col>

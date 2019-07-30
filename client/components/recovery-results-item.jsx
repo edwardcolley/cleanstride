@@ -5,7 +5,7 @@ import { Card, CardText, CardBody,
 function RecoveryResultsCard(props) {
 
   return (
-    <Card onClick={() => props.onClick('details', {})}>
+    <Card onClick={() => props.onClick('details', { details: props.input })}>
       {/* <CardImg top width="100%" src={props.input.icon} alt="Card image cap" /> */}
       <CardBody>
         <CardTitle>{props.input.name}</CardTitle>
@@ -16,7 +16,6 @@ function RecoveryResultsCard(props) {
       </CardBody>
     </Card>
   );
-
 }
 
 export default RecoveryResultsCard;
