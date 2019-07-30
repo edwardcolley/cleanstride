@@ -13,6 +13,8 @@ export default class NavBar extends React.Component {
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.toggle = this.toggle.bind(this);
     this.setViewToMeetings = this.setViewToMeetings.bind(this);
+    this.setViewToLandingPage = this.setViewToLandingPage.bind(this);
+    this.setViewToFavorites = this.setViewToFavorites.bind(this);
   }
 
   toggleNavbar() {
@@ -33,6 +35,12 @@ export default class NavBar extends React.Component {
   setViewToCalendar(){
     this.props.setView("calendar", {});
   }
+  setViewToLandingPage(){
+    this.props.setView("landing", {});
+  }
+  setViewToFavorites(){
+    this.props.setView("favorites", {});
+  }
 
   render() {
     return (
@@ -46,7 +54,13 @@ export default class NavBar extends React.Component {
             <DropdownMenu right>
               <DropdownItem header>Navigation</DropdownItem>
               <NavItem>
+                <NavLink href="#" onClick={this.setViewToLandingPage}>Home</NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink href="#" onClick={this.setViewToMeetings}>Meetings</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#" onClick={this.setViewToFavorites}>Favorites</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#" onClick={this.setViewToCalendar}>Calendar</NavLink>
