@@ -39,7 +39,7 @@ export default class Meetings extends React.Component {
         });
       });
   }
-  
+
   getFavorites() {
     fetch('/api/favorites.php')
       .then(response => {
@@ -68,7 +68,7 @@ export default class Meetings extends React.Component {
       .then(myJson => this.setState({ favorites: [...this.state.favorites, myJson] }));
     this.getFavorites();
   }
-        
+
   handleChangeDay(event) {
     this.setState({
       day: event.target.value
