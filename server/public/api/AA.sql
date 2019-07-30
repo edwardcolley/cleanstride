@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 26, 2019 at 01:26 AM
+-- Generation Time: Jul 30, 2019 at 07:22 PM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `clean_stride`
+-- Database: `c519cleanstride`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aa_meetings`
+-- Table structure for table `AA`
 --
 
 CREATE TABLE `AA` (
@@ -38,10 +38,10 @@ CREATE TABLE `AA` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `aa_meetings`
+-- Dumping data for table `AA`
 --
 
-INSERT INTO `aa_meetings` (`id`, `day`, `city`, `time`, `type`, `name`, `address`, `zip`) VALUES
+INSERT INTO `AA` (`id`, `day`, `city`, `time`, `type`, `name`, `address`, `zip`) VALUES
 (1, 'SUNDAY', 'LAGUNA HILLS', '5:00 PM', '(O,TA)', '11TH STEP MEDITATION MEETING', '23802 Avenida de la Carlota @ Valencia (St. George\'s Church-Sanctuary)', 92653),
 (2, 'SUNDAY', 'LAGUNA HILLS', '7:30 PM', '(O,SP)', 'LEGACIES GROUP', '23802 Avenida de la Carlota @ Valencia (St. George\'s Church)', 92653),
 (3, 'MONDAY', 'LAGUNA HILLS', '7:30 AM', '(O)', 'SOBRIETY - 12 X 12 STEP STUDY', '23802 Avenida de la Carlota @ Valencia (St. George\'s Church)', 92653),
@@ -136,16 +136,48 @@ INSERT INTO `aa_meetings` (`id`, `day`, `city`, `time`, `type`, `name`, `address
 (92, 'TUESDAY', 'NEWPORT BEACH', '7:30 PM', '(C,M)', 'EASTBLUFF MEN\'S', '2046 Mar Vista Dr. @ Eastbluff (Queen of Angels Church)', 92660),
 (93, 'TUESDAY', 'NEWPORT BEACH', '7:30 PM', '(C,M)', 'MEN\'S BOOK STUDY	', '798 Dover Dr @ 16th Street (Newport Harbor Lutheran Church)', 92663),
 (94, 'TUESDAY', 'NEWPORT BEACH', '7:30 PM', '(C,M)', 'CDM SOUP KITCHEN MEN\'S STAG', '2401 Irvine Ave. (Harbor Christian Church)', 92660),
-(95, 'TUESDAY', 'NEWPORT BEACH', '8:00 PM', 'O,W', 'SIRENS OF SOBRIETY \"S.O.S\"', '414 E. 32nd St. (Upstairs)', 92663);
+(95, 'TUESDAY', 'NEWPORT BEACH', '8:00 PM', 'O,W', 'SIRENS OF SOBRIETY \"S.O.S\"', '414 E. 32nd St. (Upstairs)', 92663),
+(96, 'WEDNESDAY', 'NEWPORT BEACH', '6:30 AM', '(O)', 'JUMPSTART DISCUSSION', '414 E. 32nd St.', 92663),
+(97, 'WEDNESDAY', 'NEWPORT BEACH', '6:30 AM', '(O)', 'ROUND TABLE TOPIC DISCUSSION', '414 E. 32nd St.', 92663),
+(98, 'WEDNESDAY', 'NEWPORT BEACH', '6:30 AM', '(O)', 'CHICKEN COOP ROUND TABLE', '414 Old Newport Blvd @ Hospital Rd (Chicken Coop)', 92663),
+(99, 'WEDNESDAY', 'NEWPORT BEACH', '(O)', '6:45 AM', '6:45 AM DAILY ATTITUDE ADJUSTMENT', '1099 Bayside Dr @ Jamboree (Newport Beach Yacht Club)', 92660),
+(100, 'WEDNESDAY', 'NEWPORT BEACH', '8:00 AM', '(O)', 'TWO OR MORE', '414 E. 32nd St.', 92663),
+(101, 'WEDNESDAY', 'NEWPORT BEACH', '12:00 PM', '(O)', 'DISCUSSION', '414 E. 32nd St.', 92663),
+(102, 'WEDNESDAY', 'NEWPORT BEACH', '12:15 PM', '(O)', 'SHARK AT THE AQUATIC CENTER', '1 Whitecliffs Dr. (Newport Aquatic Center)', 92660),
+(103, 'WEDNESDAY', 'NEWPORT BEACH', '2:00 PM', '(O)', 'NEWPORT NOMADS', '414 Old Newport Blvd @ Hospital Rd (Chicken Coop, downstairs)', 92663),
+(104, 'WEDNESDAY', 'NEWPORT BEACH', '3:30 PM', '(O)', 'STEP STUDY', '414 E. 32nd St.', 92663),
+(105, 'WEDNESDAY', 'NEWPORT BEACH', '5:30 PM', '(C)', 'FISH OUT\'A WATER', '414 E. 32nd St.', 92663),
+(106, 'WEDNESDAY', 'NEWPORT BEACH', '6:00 PM', '(C,M)', 'CASTAWAY MEN\'S STAG', '798 Dover Dr @ 16th Street (Newport Harbor Lutheran Church)', 92663),
+(107, 'WEDNESDAY', 'NEWPORT BEACH', '6:00 PM', '(C,M)', 'MEN\'S', '414 E. 32nd St.', 92663),
+(108, 'WEDNESDAY', 'NEWPORT BEACH', '7:00 PM', '(C)', 'STEPS AND TRADITIONS', '2200 San Jaoquin Hills Rd. @ MacArthur (St. Mark\'s Church, downstairs - Fireside Room)', 92660),
+(109, 'WEDNESDAY', 'NEWPORT BEACH', '7:30 PM', '(C,M)', 'NEWPORT WED. NIGHT MEN\'S MEETING', '2401 Irvine Ave. c/s Santa Isabel (Harbor Christian Church)', 92627),
+(110, 'WEDNESDAY', 'NEWPORT BEACH', '8:00 PM', '(O)', 'DISCUSSION RECOVERY RADICALS', '1 Hoag Dr. @ PCH (Hoag Chemical Dependency Unit)', 92663),
+(136, 'THURSDAY', 'NEWPORT BEACH', '6:30 AM', '(O)', 'ROUND TABLE TOPIC DISCUSSION', '414 E. 32nd St.', 92663),
+(137, 'THURSDAY', 'NEWPORT BEACH', '6:30 AM', '(O)', 'JUMPSTART 12 & 12 DISCUSSION', '414 E. 32nd St.', 92663),
+(138, 'THURSDAY', 'NEWPORT BEACH', '6:30 AM', '(O)', 'CHICKEN COOP ROUND TABLE', '414 Old Newport Blvd @ Hospital Rd (Chicken Coop)', 92663),
+(139, 'THURSDAY', 'NEWPORT BEACH', '6:45 AM', '(O)', '6:45 AM DAILY ATTITUDE ADJUSTMENT', '1099 Bayside Dr @ Jamboree (Newport Beach Yacht Club)', 92660),
+(140, 'THURSDAY', 'NEWPORT BEACH', '8:00 AM', '(O)', 'TWO OR MORE-BIG BOOK', '414 E. 32nd St.', 92663),
+(141, 'THURSDAY', 'NEWPORT BEACH', '9:00 AM', '(C,W)', 'WOMEN\'S BIG BOOK STUDY', '414 E. 32nd St.', 92663),
+(142, 'THURSDAY', 'NEWPORT BEACH', '9:30 AM', '(C,W)', 'WOMEN\'S SOLUTIONS OF SOBRIETY', '2200 San Joaquin Hills Rd. @ MacArthur (St. Mark\'s Church)', 92660),
+(143, 'THURSDAY', 'NEWPORT BEACH', '12:00 PM', '(O,BG)', 'BEGINNERS', '414 E. 32nd St.', 92663),
+(144, 'THURSDAY', 'NEWPORT BEACH', '12:15 PM', '(O)', 'SHARK AT THE AQUATIC CENTER', '1 Whitecliffs Dr. (Newport Aquatic Center)', 92660),
+(145, 'THURSDAY', 'NEWPORT BEACH', '2:00 PM', '(O)', 'NEWPORT NOMADS', '414 Old Newport Blvd @ Hospital Rd (Chicken Coop, downstairs)', 92663),
+(151, 'THURSDAY', 'NEWPORT BEACH', '3:30 PM', '(O)', 'DISCUSSION', '414 E. 32nd St.', 92663),
+(152, 'THURSDAY', 'NEWPORT BEACH', '5:30 PM', '(C)', 'FISH OUT\'A WATER', '414 E. 32nd St.	', 92663),
+(153, 'THURSDAY', 'NEWPORT BEACH', '7:00 PM', '(C,W)', 'WOMEN\'S CANDLELIGHT STEP/BOOK STUDY', '798 Dover Dr @ 16th Street (Newport Harbor Lutheran Church)', 92663),
+(154, 'THURSDAY', 'NEWPORT BEACH', '7:00 PM', '(O)', 'OVER 40', '414 E. 32nd St.	', 92663),
+(155, 'THURSDAY', 'NEWPORT BEACH', '7:00 PM', '(O)', 'PRIMARY PURPOSE GROUP BOOK STUDY', '1400 W. Balboa Blvd. (Christ Church by the Sea)', 92661),
+(156, 'THURSDAY', 'NEWPORT BEACH', '7:30 PM', '(O,SP)', 'BALBOA SPEAKER GROUP', '414 E. 32nd St.', 92663),
+(157, 'THURSDAY', 'NEWPORT BEACH', '8:00 PM', '(O,Y)', 'MOOREHEAD PODIUM CALL-UP', '2401 Irvine Ave. c/s Santa Isabel (Harbor Christian Church)', 92627);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `aa_meetings`
+-- Indexes for table `AA`
 --
-ALTER TABLE `aa_meetings`
+ALTER TABLE `AA`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -153,10 +185,10 @@ ALTER TABLE `aa_meetings`
 --
 
 --
--- AUTO_INCREMENT for table `aa_meetings`
+-- AUTO_INCREMENT for table `AA`
 --
-ALTER TABLE `aa_meetings`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+ALTER TABLE `AA`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -8,8 +8,8 @@ $item = file_get_contents('php://input');
 if ($method == 'POST') {
   http_response_code(201);
   $itemConverted = json_decode($item);
-//   print($item);
-//   print($itemConverted);
+
+  
   $sql = "INSERT INTO `Favorites` (program, program_id)
             VALUES ('AA', $itemConverted->id)";
   $return_value = mysqli_query($conn, $sql);
