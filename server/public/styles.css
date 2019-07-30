@@ -10,8 +10,12 @@ body{
     margin-top: 30vh;
 }
 
+.carouselCard {
+    margin-top: 5%;
+}
+
 .headerCard {
-    margin-top: 60%;
+    margin-top: 5%;
     margin-bottom: 2%;
 }
 
@@ -71,4 +75,8 @@ body{
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  .carousel-item > img { 
+    width: 100%; 
   }
