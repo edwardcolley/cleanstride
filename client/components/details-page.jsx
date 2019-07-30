@@ -129,13 +129,13 @@ export default class DetailsPage extends React.Component {
               <CardBody className="contactInfo">
                 <h1>Contact Information</h1>
                 <p>Address: {this.props.data.formatted_address}/5</p>
-                <p>Phone: (123) 555-5555</p>
+                <p>Phone: </p>
               </CardBody>
             </Card>
             <Card className="descriptionCard">
               <CardBody className="description">
                 <h1>Description</h1>
-                <p>Hello</p>
+                <p>this.state.centers.</p>
               </CardBody>
             </Card>
           </Col>
