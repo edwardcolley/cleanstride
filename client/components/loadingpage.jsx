@@ -1,6 +1,7 @@
 import React from 'react';
 import RecoveryResults from './recoveryresults';
 
+
 export default class LoadingPage extends React.Component {
   constructor(props) {
     super(props);
