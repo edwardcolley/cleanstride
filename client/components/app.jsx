@@ -41,7 +41,7 @@ export default class App extends React.Component {
       );
     } else if (this.state.view.name === 'details') {
       return (
-        <DetailsPage setView={this.setView} />
+        <DetailsPage setView={this.setView}/>
       );
     } else if (this.state.view.name === 'meetings') {
       return (

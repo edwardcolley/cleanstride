@@ -1,4 +1,6 @@
 import React from 'react';
+import RecoveryResults from './recoveryresults';
+
 
 export default class LoadingPage extends React.Component {
   constructor(props) {
@@ -39,6 +41,7 @@ export default class LoadingPage extends React.Component {
   render() {
     return (
       <div className="loaderContainer">
+        <RecoveryResults data={this.state} />
         <div className="loader"></div>
       </div>
     );
