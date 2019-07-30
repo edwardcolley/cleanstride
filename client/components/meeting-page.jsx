@@ -12,6 +12,8 @@ export default class Meetings extends React.Component {
       meetings: {
 
       },
+      favorites: {
+      },
       search: false
     };
     this.getMeetings = this.getMeetings.bind(this);
@@ -19,6 +21,8 @@ export default class Meetings extends React.Component {
     this.handleChangeCity = this.handleChangeCity.bind(this);
     this.handleChangeProgram = this.handleChangeProgram.bind(this);
     this.renderMeetingcards = this.renderMeetingcards.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.getFavorites = this.getFavorites.bind(this);
   }
 
   getMeetings() {
@@ -32,6 +36,31 @@ export default class Meetings extends React.Component {
           search: true
         });
       });
+  }
+
+  getFavorites() {
+    fetch('/api/favorites.php')
+      .then(response => {
+        return response.json();
+      })
+      .then(myJson => {
+        this.setState({
+          favorites: myJson
+        });
+      });
+  }
+
+  addFavorite(newMeeting) {
+    fetch('/api/favorites.php', {
+      method: 'POST',
+      body: JSON.stringify(newMeeting),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(myJson => this.setState({ favorites: [...this.state.favorites, myJson] }));
+    this.getFavorites();
   }
 
   handleChangeDay(event) {
@@ -55,9 +84,13 @@ export default class Meetings extends React.Component {
   renderMeetingcards() {
     return this.state.meetings.map(input => {
       return (
-        <Meetingcard key={input.id} input={input}/>
+        <Meetingcard key={input.id} input={input} addFavorite={this.addFavorite}/>
       );
     });
+  }
+
+  componentDidMount() {
+    this.getFavorites();
   }
 
   render() {
