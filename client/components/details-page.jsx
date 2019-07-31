@@ -47,7 +47,7 @@ export default class DetailsPage extends React.Component {
     this.onExited = this.onExited.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.carouselPhotos = this.carouselPhotos.bind(this);
-    this.getDetails = this.getDetails.bind(this);
+    // this.getDetails = this.getDetails.bind(this);
   }
 
   onExiting() {
@@ -107,10 +107,10 @@ export default class DetailsPage extends React.Component {
 
   getDetails() {
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = 'https://api.yelp.com/v3/businesses/search?location=newport beach&sort_by=rating&categories=addictionmedicine&term=rehab center&photos';
+    let targetURL = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos&reviews`;
     fetch(proxyURL + targetURL, {
       headers: {
-        "Authorization": 'Bearer + _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
       }
     })
       .then(res => res.json())
@@ -124,48 +124,59 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
-    return (
-      <Container>
-        <Row>
-          <Col>
-            <Card className="carouselCard">
-              <CardBody className="carousel">
-                {this.carouselPhotos()}
-              </CardBody>
-            </Card>
-            <Card className="headerCard">
-              <CardBody className="header">
-                <h1></h1>
-                Name: {this.props.data.name}
-                Rating: {this.props.data.rating}/5
-              </CardBody>
-            </Card>
-            <Card className="contactInfoCard">
-              <CardBody className="contactInfo">
-                <h1>Contact Information</h1>
-                Address: {this.props.data.formatted_address}
-                Phone:
-              </CardBody>
-            </Card>
-            <Card className="descriptionCard">
-              <CardBody className="description">
-                <h1>Description</h1>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    );
+    if (this.state.centers) {
+      return (
+        <Container>
+          <Row>
+            <Col>
+              <Card className="carouselCard">
+                <CardBody className="carousel">
+                  {this.carouselPhotos()}
+                </CardBody>
+              </Card>
+              <Card className="headerCard">
+                <CardBody className="header">
+                  <h1></h1>
+                  <p>Name: {this.state.centers.businesses[0].name}</p>
+                  <p>Rating: {this.state.centers.businesses[0].rating}/5</p>
+                </CardBody>
+              </Card>
+              <Card className="contactInfoCard">
+                <CardBody className="contactInfo">
+                  <h1>Contact Information</h1>
+                  <p>Address: {this.state.centers.businesses[0].location.display_address}</p>
+                  <p>Phone: {this.state.centers.businesses[0].display_phone}</p>
+                </CardBody>
+              </Card>
+              <Card className="descriptionCard">
+                <CardBody className="description">
+                  <h1>Description</h1>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      );
+    } else {
+      return (
+        <div>
+          <div className="flexCentering loaderContainer">
+            <div className="loader"></div>
+          </div>
+          <div className="flexCentering loaderText">Loading Details...</div>
+        </div>
+      );
+    }
   }
 }
 
 // Promise.all([
 //   fetch('https://www.googleapis.com/customsearch/v1?key=AIzaSyCDfSs7m4X6jeepCTsFxLrhu6MXrDQtBG4&cx=017903074074624854424:2a98z0iuzye&q=yelp ' + ' image ' + this.props.data.name + ' recovery center')
 
-    // let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    // let targetURL = 'https://api.yelp.com/v3/businesses/search?location=newport beach&sort_by=rating&categories=addictionmedicine&term=rehab center&photos';
-    // fetch(proxyURL + targetURL)
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     this.setState({ centers: result });
-    //   });
+// let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+// let targetURL = 'https://api.yelp.com/v3/businesses/search?location=newport beach&sort_by=rating&categories=addictionmedicine&term=rehab center&photos';
+// fetch(proxyURL + targetURL)
+//   .then(res => res.json())
+//   .then(result => {
+//     this.setState({ centers: result });
+//   });
