@@ -11,11 +11,12 @@ class RecoveryResults extends React.Component {
       searchZone: ''
     };
     this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
+
   }
 
   getGooglePlacesList(userInput) {
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=rehab centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000@40.0150,105.2705`;
+    let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000@40.0150,105.2705`;
     fetch(proxyURL + targetURL)
       .then(response => {
         return response.json();
@@ -25,6 +26,7 @@ class RecoveryResults extends React.Component {
           googleResult: myJson.results
         });
       });
+
   }
 
   componentDidMount() {
@@ -59,6 +61,7 @@ class RecoveryResults extends React.Component {
         </div>
       );
     }
+
   }
 }
 export default RecoveryResults;

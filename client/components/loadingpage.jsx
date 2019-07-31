@@ -1,7 +1,6 @@
 import React from 'react';
 import RecoveryResults from './recoveryresults';
 
-
 export default class LoadingPage extends React.Component {
   constructor(props) {
     super(props);
@@ -20,8 +19,11 @@ export default class LoadingPage extends React.Component {
   }
 
   GoToReusltsPage() {
-    this.props.setView('recoveryresults', { latitude: this.state.latitude, longitude: this.state.longitude });
-  }
+
+    this.props.setView('recoveryresults', {
+      latitude: this.state.latitude,
+      longitude: this.state.longitude
+    });
 
   getUserLocation() {
     navigator.geolocation.getCurrentPosition(this.showPosition);
@@ -43,6 +45,7 @@ export default class LoadingPage extends React.Component {
       <div className="flexCentering loaderContainer">
         <RecoveryResults data={this.state} />
         <div className="loader"></div>
+
       </div>
     );
   }
