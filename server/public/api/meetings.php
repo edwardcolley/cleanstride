@@ -13,9 +13,9 @@ if (!empty($_GET['day'] && !empty($_GET['city'])) && !empty($_GET['program'])) {
   $program = mysqli_real_escape_string( $conn, $_GET['program']);
 
   if($city !== 'CITY') {
-    $query = "SELECT * FROM `$program` WHERE `day` = '$day' AND `city` = '$city'";
+    $query = "SELECT * FROM `AA` WHERE `day` = '$day' AND `city` = '$city' AND `program` = '$program'";
   } else {
-    $query = "SELECT * FROM `$program` WHERE `day` = '$day'";
+    $query = "SELECT * FROM `AA` WHERE `day` = '$day' AND `program` = '$program'";
 
   }
 
