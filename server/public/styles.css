@@ -334,6 +334,8 @@ button {
     5px 5px rgba(39, 72, 102, 0.22);
     cursor: pointer;
     transition: 0.4s;
+
+    
 }
 .resultsBody {
     background-color: #DCF5FF;
