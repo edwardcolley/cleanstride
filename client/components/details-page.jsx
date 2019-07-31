@@ -14,6 +14,10 @@ import {
 
 const items = [
   {
+    // src: '{this.state.centers.items[0].pagemap.cse_image[0].src}',
+    // altText: 'photo1',
+    // caption: 'photo1',
+
     src: 'https://cdn0.sussexdirectories.com/rms/rms_photos/sized/24/49/364924-1126760-1_1500x1500.jpg?pu=1511989191',
     altText: 'photo1',
     caption: 'photo1'
@@ -25,8 +29,8 @@ const items = [
   },
   {
     src: 'https://cdn2.sussexdirectories.com/rms/rms_photos/sized/24/49/364924-1126758-1_1500x1500.jpg?pu=1511989182',
-    altText: 'photo2',
-    caption: 'photo2'
+    altText: 'photo3',
+    caption: 'photo3'
   }
 ];
 
@@ -101,7 +105,9 @@ export default class DetailsPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://www.googleapis.com/customsearch/v1?key=AIzaSyCDfSs7m4X6jeepCTsFxLrhu6MXrDQtBG4&cx=017903074074624854424:2a98z0iuzye&q=recoverycenters')
+    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    let targetURL = 'https://api.yelp.com/v3/businesses/search?location=newport beach&sort_by=rating&categories=addictionmedicine&term=rehab center&photos';
+    fetch(proxyURL + targetURL)
       .then(res => res.json())
       .then(result => {
         this.setState({ centers: result });
@@ -121,21 +127,20 @@ export default class DetailsPage extends React.Component {
             <Card className="headerCard">
               <CardBody className="header">
                 <h1></h1>
-                <p>Name: {this.props.data.name}</p>
-                <p>Rating: {this.props.data.rating}</p>
+                Name: {this.props.data.name}
+                Rating: {this.props.data.rating}/5
               </CardBody>
             </Card>
             <Card className="contactInfoCard">
               <CardBody className="contactInfo">
                 <h1>Contact Information</h1>
-                <p>Address: {this.props.data.formatted_address}/5</p>
-                <p>Phone: </p>
+                Address: {this.props.data.formatted_address}
+                Phone:
               </CardBody>
             </Card>
             <Card className="descriptionCard">
               <CardBody className="description">
                 <h1>Description</h1>
-                <p>this.state.centers.</p>
               </CardBody>
             </Card>
           </Col>
@@ -144,3 +149,6 @@ export default class DetailsPage extends React.Component {
     );
   }
 }
+
+// Promise.all([
+//   fetch('https://www.googleapis.com/customsearch/v1?key=AIzaSyCDfSs7m4X6jeepCTsFxLrhu6MXrDQtBG4&cx=017903074074624854424:2a98z0iuzye&q=yelp ' + ' image ' + this.props.data.name + ' recovery center')
