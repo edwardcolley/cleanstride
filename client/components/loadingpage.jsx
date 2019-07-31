@@ -24,6 +24,7 @@ export default class LoadingPage extends React.Component {
       latitude: this.state.latitude,
       longitude: this.state.longitude
     });
+  }
 
   getUserLocation() {
     navigator.geolocation.getCurrentPosition(this.showPosition);
