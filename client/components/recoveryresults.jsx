@@ -1,7 +1,6 @@
 import React from 'react';
 import RecoveryResultsCard from './recovery-results-item';
 import { Container } from 'reactstrap';
-import NavBar from './nav-bar';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
@@ -43,7 +42,6 @@ class RecoveryResults extends React.Component {
     if (this.state.googleResult) {
       return (
         <div>
-          <NavBar setView={this.props.setView}/>
           <Container>
             {this.renderRecoveryCard()}
           </Container>

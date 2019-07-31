@@ -17,18 +17,18 @@ export default class Calendar extends React.Component {
     const dateFormat = 'MMMM YYYY';
 
     return (
-      <div className="header row flex-middle">
-        <div className="col col-start">
+      <div className="header row flex-middle rowStyle">
+        <div className="col col-start colStyle">
           <div className = "icon" onClick={this.prevMonth}>
             chevron_left
           </div>
         </div>
-        <div className="col col-center">
+        <div className="col col-center colStyle">
           <span>
             {dateFns.format(this.state.currentMonth, dateFormat)}
           </span>
         </div>
-        <div className="col col-end" onClick={this.nextMonth}>
+        <div className="col col-end colStyle" onClick={this.nextMonth}>
           <div className="icon">
             chevron_right
           </div>
@@ -45,12 +45,12 @@ export default class Calendar extends React.Component {
 
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col col-center" key={i}>
+        <div className="col col-center col-style" key={i}>
           {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
         </div>
       );
     }
-    return <div className="days row">{days}</div>;
+    return <div className="days row rowStyle">{days}</div>;
   }
 
   renderCells() {
@@ -71,7 +71,7 @@ export default class Calendar extends React.Component {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
         days.push(
-          <div className={`col cell ${!dateFns.isSameMonth(day, monthStart)
+          <div className={`col colStyle cell ${!dateFns.isSameMonth(day, monthStart)
             ? 'disabled'
             : dateFns.isSameDay(day, selectedDate) ? 'selected' : ''
           }`}
@@ -85,7 +85,7 @@ export default class Calendar extends React.Component {
         day = dateFns.addDays(day, 1);
       }
       rows.push(
-        <div className="row" key={day}>
+        <div className="row rowStyle" key={day}>
           {days}
         </div>
       );
@@ -114,7 +114,7 @@ export default class Calendar extends React.Component {
 
   render() {
     return (
-      <div className="calendar">
+      <div className="calendar calendarStyle mt-3">
         {this.renderHeader()}
         {this.renderDays()}
         {this.renderCells()}

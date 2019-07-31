@@ -6,6 +6,7 @@ import Meetings from './meeting-page';
 import RecoveryResults from './recoveryresults';
 import Favorites from './favorites';
 import Calendar from './calendar-page';
+import NavBar from './nav-bar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ export default class App extends React.Component {
       view: {
         name: 'landing',
         params: {}
+      },
+      favorites: {
       }
     };
     this.setState = this.setState.bind(this);
@@ -34,44 +37,48 @@ export default class App extends React.Component {
     if (this.state.view.name === 'landing') {
       return (
         <React.Fragment>
+          <NavBar setView={this.setView}/>
           <LandingPage setView={this.setView}/>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'recoveryresults') {
       return (
-        <RecoveryResults setView={this.setView} params={this.state.view.params}/>
+        <React.Fragment>
+          <NavBar setView={this.setView} />
+          <RecoveryResults setView={this.setView} params={this.state.view.params}/>
+        </React.Fragment>
       );
     } else if (this.state.view.name === 'details') {
       return (
-        <DetailsPage setView={this.setView} data={this.state.view.params.details}/>
+        <React.Fragment>
+          <NavBar setView={this.setView} />
+          <DetailsPage setView={this.setView} data={this.state.view.params.details}/>
+        </React.Fragment>
       );
     } else if (this.state.view.name === 'meetings') {
       return (
-        <Meetings setView={this.setView}/>
+        <React.Fragment>
+          <NavBar setView={this.setView} />
+          <Meetings setView={this.setView}/>
+        </React.Fragment>
       );
-    } else if (this.state.view.name === 'favorites'){
-        return (
-        <Favorites setView={this.setView} favorites={this.state.view.params.favorites}/>
-        )
+    } else if (this.state.view.name === 'favorites') {
+      return (
+        <React.Fragment>
+          <NavBar setView={this.setView} />
+          <Favorites setView={this.setView} favorites={this.state.view.params.favorites}/>
+        </React.Fragment>
+      );
     } else if (this.state.view.name === 'loading') {
       return (
         <LoadingPage setView={this.setView}/>
       );
     } else if (this.state.view.name === 'calendar') {
       return (
-        <div className="App">
-          <header>
-            <div id="logo">
-              <span className="icon">date_range</span>
-              <span>
-              meeting<b> calendar</b>
-              </span>
-            </div>
-          </header>
-          <main>
-            <Calendar />
-          </main>
-        </div>
+        <React.Fragment>
+          <NavBar setView={this.setView}/>
+          <Calendar />
+        </React.Fragment>
       );
     }
   }

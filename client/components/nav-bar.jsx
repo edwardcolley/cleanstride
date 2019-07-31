@@ -1,74 +1,56 @@
 import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Link, ButtonDropdown } from 'reactstrap';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink } from 'reactstrap';
 
 export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      collapsed: true,
-      dropdownOpen: false
-    };
-
-    this.toggleNavbar = this.toggleNavbar.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.setViewToMeetings = this.setViewToMeetings.bind(this);
-    this.setViewToLandingPage = this.setViewToLandingPage.bind(this);
-    this.setViewToFavorites = this.setViewToFavorites.bind(this);
-  }
-
-  toggleNavbar() {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
+    this.state = {
+      isOpen: false
+    };
+    this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
-  }
-
-  setViewToMeetings(){
-    this.props.setView("meetings", {});
-  }
-  setViewToCalendar(){
-    this.props.setView("calendar", {});
-  }
-  setViewToLandingPage(){
-    this.props.setView("landing", {});
-  }
-  setViewToFavorites(){
-    this.props.setView("favorites", {});
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   render() {
     return (
-      <div>
-        <Navbar color="faded" light>
-          <NavbarBrand href="/" className="mr-auto">
-            <img src="./images/cleanStrideLogo.png" style={{width: 100}}/>
+      <React.Fragment>
+        <Navbar style={{ backgroundColor: '#A9A9A9' }} light expand="md" className="text-white">
+          <NavbarBrand className="navButton" onClick={() => this.props.setView('landing', {})}>
+            <img src="./images/transparentLogo.png" style={{ width: 40 }} />Clean Stride
           </NavbarBrand>
-          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle caret className="mr-2"><i className="fas fa-bars"></i></DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem header>Navigation</DropdownItem>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto text-white" navbar>
               <NavItem>
-                <NavLink href="#" onClick={this.setViewToLandingPage}>Home</NavLink>
+                <NavLink className="navButton text-white" onClick={() => this.props.setView('landing', {})}>Search Recovery</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" onClick={this.setViewToMeetings}>Meetings</NavLink>
+                <NavLink className="navButton text-white" onClick={() => this.props.setView('meetings', {})}>Meeting Directory</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" onClick={this.setViewToFavorites}>Favorites</NavLink>
+                <NavLink className="navButton text-white" onClick={() => this.props.setView('favorites', {})}>Favorite Meetings</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" onClick={this.setViewToCalendar}>Calendar</NavLink>
+                <NavLink className="navButton text-white" onClick={() => this.props.setView('calendar', {})} >Calendar</NavLink>
               </NavItem>
-            </DropdownMenu>
-          </Dropdown>
+            </Nav>
+          </Collapse>
         </Navbar>
-      </div>
+      </React.Fragment>
     );
   }
 }
