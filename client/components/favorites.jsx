@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, CardBody } from 'reactstrap';
+import { Container, Row, Col, Card, CardTitle } from 'reactstrap';
 
 export default class Favorites extends React.Component {
   constructor(props) {
@@ -30,19 +30,25 @@ export default class Favorites extends React.Component {
   favoritesCards() {
     const cardCreator = this.state.favorites.map((data, index) => {
       return (
-        <Container key={index} className="container">
-          <Row className="row flexCentering favoritesCardBody">
-            <CardBody className="col-3">
+        <Card key={index} className="mt-3 shadow" body inverse style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }}>
+          <CardTitle className="cardTitle">{data.name}</CardTitle>
+          <Row className="flexCentering favoritesText mt-1">
+            <Col xs={{ size: 4 }} md={{ size: 3, offset: 2 }}>
               {data.day}
-            </CardBody>
-            <CardBody className="col-5">
-              {data.name}
-            </CardBody>
-            <CardBody className="col-4">
+            </Col>
+            <Col xs={{ size: 5 }} md={{ size: 3, offset: 0 }}>
+              {data.city}
+            </Col>
+            <Col xs={{ size: 3 }} md={{ size: 4, offset: 0 }}>
               {data.time}
-            </CardBody>
+            </Col>
           </Row>
-        </Container>
+          <Row>
+            <Col className="mt-1">
+              {data.address}
+            </Col>
+          </Row>
+        </Card>
       )
       ;
     });
@@ -53,14 +59,21 @@ export default class Favorites extends React.Component {
   render() {
     if (this.state.favorites !== null) {
       return (
-        <div>
-          <h1 className="display-5 flexCentering">Favorite Meetings</h1>
+        <Container>
+          <Row className="mt-4">
+            <Col xs={{ size: 10, offset: 1 }}>
+              <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorite Meetings</h3>
+            </Col>
+          </Row>
           {this.favoritesCards()}
-        </div>
+        </Container>
       );
     } else {
       return (
-        <div>loading...</div>
+        <div className="loaderContainer">
+          <div className="loader"></div>
+          <div className="loaderText">Loading</div>
+        </div>
       );
     }
   }
