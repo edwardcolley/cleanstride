@@ -4,6 +4,8 @@ import LoadingPage from './loadingpage';
 import DetailsPage from './details-page';
 import Meetings from './meeting-page';
 import RecoveryResults from './recoveryresults';
+import Favorites from './favorites';
+import Calendar from './calendar-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -41,15 +43,35 @@ export default class App extends React.Component {
       );
     } else if (this.state.view.name === 'details') {
       return (
-        <DetailsPage setView={this.setView} />
+        <DetailsPage setView={this.setView} data={this.state.view.params.details}/>
       );
     } else if (this.state.view.name === 'meetings') {
       return (
-        <Meetings />
+        <Meetings setView={this.setView}/>
       );
+    } else if (this.state.view.name === 'favorites'){
+        return (
+        <Favorites setView={this.setView} favorites={this.state.view.params.favorites}/>
+        )
     } else if (this.state.view.name === 'loading') {
       return (
         <LoadingPage setView={this.setView}/>
+      );
+    } else if (this.state.view.name === 'calendar') {
+      return (
+        <div className="App">
+          <header>
+            <div id="logo">
+              <span className="icon">date_range</span>
+              <span>
+              meeting<b> calendar</b>
+              </span>
+            </div>
+          </header>
+          <main>
+            <Calendar />
+          </main>
+        </div>
       );
     }
   }

@@ -15,7 +15,7 @@ function Meetingcard(props) {
               <CardSubtitle className="mt-1">{props.input.time}</CardSubtitle>
               <CardText className="mt-2">{props.input.address}</CardText>
               <CardSubtitle>{props.input.zip}</CardSubtitle>
-              <Button className="mt-2" color="primary">Favorite</Button>{' '}
+              <Button onClick={() => props.addFavorite(props.input)} className="mt-2" color="primary">Favorite</Button>{' '}
             </CardBody>
           </Card>
         </Col>

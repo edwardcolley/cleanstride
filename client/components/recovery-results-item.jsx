@@ -27,6 +27,7 @@ function RecoveryResultsCard(props) {
   // }
 
   return (
+
     <Container className='Main'>
       <Card className='cardContents' >
         {/* <CardImg top width="100%" src={urlFormat} alt="Card image cap" /> */}
@@ -41,6 +42,7 @@ function RecoveryResultsCard(props) {
         </CardBody>
       </Card>
     </Container >
+
   );
 }
 

@@ -34,4 +34,6 @@ if (!empty($_GET['day'] && !empty($_GET['city'])) && !empty($_GET['program'])) {
 
   print(json_encode($data));
 
+
+
 ?>

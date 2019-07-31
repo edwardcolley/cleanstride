@@ -1,6 +1,7 @@
 import React from 'react';
 import RecoveryResultsCard from './recovery-results-item';
 import { Container } from 'reactstrap';
+import NavBar from './nav-bar';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
@@ -35,23 +36,29 @@ class RecoveryResults extends React.Component {
   renderRecoveryCard() {
     return this.state.googleResult.map(input => {
       return (
-        <RecoveryResultsCard key={input.id} input={input}/>
+        <RecoveryResultsCard onClick={this.props.setView} key={input.id} input={input}/>
       );
     });
   }
 
   render() {
-
     if (this.state.googleResult) {
-
       return (
-        <Container className='resultsBody'>
-          {this.renderRecoveryCard()}
-        </Container>
+        <div>
+          <NavBar setView={this.props.setView}/>
+          <Container>
+            {this.renderRecoveryCard()}
+          </Container>
+        </div>
       );
     } else {
       return (
-        <p>loading...</p>
+        <div>
+          <div className="flexCentering loaderContainer">
+            <div className="loader"></div>
+          </div>
+          <div className="flexCentering loaderText">Loading Results...</div>
+        </div>
       );
     }
 
