@@ -228,6 +228,8 @@ main {
   width: calc(100%/7);
 } 
 
+/* Cards CSS */
+
 body {
     background-color: lightcyan;
 }
@@ -291,6 +293,20 @@ button {
     margin: 0.5rem auto;
 }
 
+.favoritedImg{
+  background-image: url("./images/favoritedIcon.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+  background-color: transparent;
+  margin: 0;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .flexCentering{
     display: flex;
     align-items: center;
@@ -343,7 +359,7 @@ button {
     font-weight: bold;
 }
 .card-subtitle, .card-text {
-    color: #B3B3B3;
+    /* color: #B3B3B3; */
     font-size: .8rem;
 }
 .cardTitle:hover, .card-subtitle:hover {

@@ -52,6 +52,8 @@ export default class Favorites extends React.Component {
 
   render() {
     if (this.state.favorites !== null) {
+      console.log("Favorites Props: ", this.props);
+      console.log("Favorites State: ", this.state);
       return (
         <div>
           <h1 className="display-5 flexCentering">Favorite Meetings</h1>
@@ -60,7 +62,7 @@ export default class Favorites extends React.Component {
       );
     } else {
       return (
-        <div>loading...</div>
+        null
       );
     }
   }
