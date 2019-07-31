@@ -69,3 +69,27 @@ body{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+.cardContents {
+    border-radius: 1rem;
+    border: 1px solid #B6EAFF;
+    margin: 1rem;
+    transform: scale(1.05, 1.05);
+    box-shadow: 2px 2px rgba(108, 118, 255, 0.322), 
+    5px 5px rgba(39, 72, 102, 0.22);
+    cursor: pointer;
+    transition: 0.4s;
+}
+.resultsBody {
+    background-color: #DCF5FF;
+    height: 100%;
+}
+.cardTitle {
+    font-weight: bold;
+}
+.card-subtitle, .card-text {
+    color: #B3B3B3;
+    font-size: .8rem;
+}
+.cardTitle:hover, .card-subtitle:hover {
+    text-decoration: underline;
+}
