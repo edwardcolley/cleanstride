@@ -62,7 +62,7 @@ export default class Favorites extends React.Component {
         <Container>
           <Row className="mt-4">
             <Col xs={{ size: 10, offset: 1 }}>
-              <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorite Meetings</h3>
+              <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorited Meetings</h3>
             </Col>
           </Row>
           {this.favoritesCards()}
@@ -70,10 +70,7 @@ export default class Favorites extends React.Component {
       );
     } else {
       return (
-        <div className="loaderContainer">
-          <div className="loader"></div>
-          <div className="loaderText">Loading</div>
-        </div>
+        null
       );
     }
   }

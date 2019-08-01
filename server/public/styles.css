@@ -288,6 +288,20 @@ button {
     margin: 0.5rem auto;
 }
 
+.favoritedImg{
+  background-image: url("./images/favoritedIcon.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+  background-color: transparent;
+  margin: 0;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .flexCentering{
     display: flex;
     align-items: center;

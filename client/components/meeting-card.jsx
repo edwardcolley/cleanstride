@@ -8,6 +8,7 @@ function Meetingcard(props) {
         <Col md={{ size: 6, offset: 3 }}>
           <Card className="shadow" body inverse style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }}>
             <CardBody>
+              <div className="favoritedImg"></div>
               <CardTitle>{props.input.day}</CardTitle>
               <CardSubtitle >{props.input.city}</CardSubtitle>
               <CardSubtitle className="mt-1">{props.input.type}</CardSubtitle>
