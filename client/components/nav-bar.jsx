@@ -42,7 +42,7 @@ export default class NavBar extends React.Component {
                 <NavLink className="navButton text-white" onClick={() => this.props.setView('meetings', {})}>Meeting Directory</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="navButton text-white" onClick={() => this.props.setView('favorites', {})}>Favorite Meetings</NavLink>
+                <NavLink className="navButton text-white" onClick={() => this.props.setView('favorites', {})}>Favorited Meetings</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink className="navButton text-white" onClick={() => this.props.setView('calendar', {})} >Calendar</NavLink>

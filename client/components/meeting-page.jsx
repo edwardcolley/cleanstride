@@ -14,6 +14,9 @@ export default class Meetings extends React.Component {
       },
       favorites: {
       },
+      favoritesList: {
+
+      },
       search: false
     };
     this.getMeetings = this.getMeetings.bind(this);
@@ -75,8 +78,8 @@ export default class Meetings extends React.Component {
     });
   }
 
+  
   render() {
-    console.log("Meeting Page State: ", this.state)
     return (
       <Container className="meetingContainer" xs={{ fluid: true }}>
         <Row className="mt-4">

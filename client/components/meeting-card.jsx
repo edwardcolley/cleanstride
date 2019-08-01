@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Col, Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 function Meetingcard(props) {
-  console.log("Meeting Card Props: ", props);
   return (
     <React.Fragment>
       <Row className="mt-5">

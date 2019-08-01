@@ -18,7 +18,7 @@ if ($method == 'POST') {
   ]));
 } else if ($method == 'GET') {
     http_response_code(201);
-    $query = "SELECT a.day, a.city, a.time, a.type, a.name, a.address, a.zip,
+    $query = "SELECT a.day, a.city, a.time, a.type, a.name, a.address, a.zip, a.id,
             f.program_id
             FROM `AA` AS a
             JOIN `Favorites`AS f ON a.id = f.program_id";
