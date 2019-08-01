@@ -9,7 +9,8 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
+  CarouselCaption,
+  Button
 } from 'reactstrap';
 
 const items = [
@@ -47,7 +48,6 @@ export default class DetailsPage extends React.Component {
     this.onExited = this.onExited.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.carouselPhotos = this.carouselPhotos.bind(this);
-    // this.getDetails = this.getDetails.bind(this);
   }
 
   onExiting() {
@@ -106,16 +106,24 @@ export default class DetailsPage extends React.Component {
   }
 
   getDetails() {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos&reviews`;
-    fetch(proxyURL + targetURL, {
-      headers: {
-        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-      }
-    })
-      .then(res => res.json())
+    let targetURL1 = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos&reviews`;
+    let targetURL2 = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/${this.props.data.name}/reviews`;
+    
+    Promise.all([
+      fetch(targetURL1, {
+        headers: {
+          'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+        }
+        .then(res => res.json()),
+      fetch(targetURL2, {
+        headers: {
+          'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+        }
+        .then(res => res.json())
+      })
+      ])
       .then(result => {
-        this.setState({ centers: result });
+        this.setState({ details: result });
       });
   }
 
@@ -124,9 +132,10 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
-    if (this.state.centers) {
+    if (this.state.details) {
       return (
         <Container>
+          <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
           <Row>
             <Col>
               <Card className="carouselCard">
@@ -137,15 +146,15 @@ export default class DetailsPage extends React.Component {
               <Card className="headerCard">
                 <CardBody className="header">
                   <h1></h1>
-                  <p>Name: {this.state.centers.businesses[0].name}</p>
-                  <p>Rating: {this.state.centers.businesses[0].rating}/5</p>
+                  <p>Name: {this.state.details.businesses[0].name}</p>
+                  <p>Rating: {this.state.details.businesses[0].rating}/5</p>
                 </CardBody>
               </Card>
               <Card className="contactInfoCard">
                 <CardBody className="contactInfo">
                   <h1>Contact Information</h1>
-                  <p>Address: {this.state.centers.businesses[0].location.display_address}</p>
-                  <p>Phone: {this.state.centers.businesses[0].display_phone}</p>
+                  <p>Address: {this.state.details.businesses[0].location.display_address}</p>
+                  <p>Phone: {this.state.details.businesses[0].display_phone}</p>
                 </CardBody>
               </Card>
               <Card className="descriptionCard">
