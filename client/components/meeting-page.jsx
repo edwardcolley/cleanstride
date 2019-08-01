@@ -2,6 +2,7 @@
 import React from 'react';
 import { Container, Row, Col, Form, FormGroup, Input, Button, Card, CardText, InputGroup } from 'reactstrap';
 import Meetingcard from './meeting-card';
+
 export default class Meetings extends React.Component {
   constructor(props) {
     super(props);
@@ -14,9 +15,6 @@ export default class Meetings extends React.Component {
       },
       favorites: {
       },
-      favoritesList: {
-
-      },
       search: false
     };
     this.getMeetings = this.getMeetings.bind(this);
@@ -25,6 +23,7 @@ export default class Meetings extends React.Component {
     this.handleChangeProgram = this.handleChangeProgram.bind(this);
     this.renderMeetingcards = this.renderMeetingcards.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
+    this.addFavoriteTagToMeeting = this.addFavoriteTagToMeeting.bind(this);
   }
 
   getMeetings() {
@@ -48,8 +47,21 @@ export default class Meetings extends React.Component {
         'Content-Type': 'application/json'
       }
     })
-      .then(response => response.json())
-      .then(myJson => this.setState({ favorites: [...this.state.favorites, myJson] }));
+      .then(response => response.json());
+    // .then(myJson => this.setState({ favorites: [...this.state.favorites, myJson] }));
+    this.addFavoriteTagToMeeting(newMeeting);
+  }
+
+  addFavoriteTagToMeeting(newMeeting) {
+    fetch('/api/favoritedata.php', {
+      method: 'POST',
+      body: JSON.stringify(newMeeting),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json());
+    // .then(myJson => this.setState({ favorites: [...this.state.favorites, myJson] }));
   }
 
   handleChangeDay(event) {
@@ -78,7 +90,6 @@ export default class Meetings extends React.Component {
     });
   }
 
-  
   render() {
     return (
       <Container className="meetingContainer" xs={{ fluid: true }}>
