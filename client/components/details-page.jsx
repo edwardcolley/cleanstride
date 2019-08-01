@@ -106,24 +106,29 @@ export default class DetailsPage extends React.Component {
   }
 
   getDetails() {
-    let targetURL1 = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos&reviews`;
-    let targetURL2 = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/${this.props.data.name}/reviews`;
-    
-    Promise.all([
-      fetch(targetURL1, {
-        headers: {
-          'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-        }
-        .then(res => res.json()),
-      fetch(targetURL2, {
-        headers: {
-          'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-        }
-        .then(res => res.json())
-      })
-      ])
+    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    let targetURL1 = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos`;
+
+    fetch(proxyURL + targetURL1, {
+      headers: {
+        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+      }
+    }).then(res => res.json())
       .then(result => {
         this.setState({ details: result });
+      });
+  }
+
+  getBusinessID() {
+    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses[0].id}/reviews`;
+    fetch(proxyURL + targetURL2, {
+      headers: {
+        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+      }
+    }).then(res => res.json())
+      .then(result => {
+        this.setState({ yelpReviews: result });
       });
   }
 
@@ -131,8 +136,12 @@ export default class DetailsPage extends React.Component {
     this.getDetails();
   }
 
+  componentDidUpdate() {
+    this.getBusinessID();
+  }
+
   render() {
-    if (this.state.details) {
+    if (this.state.details && this.state.yelpReviews) {
       return (
         <Container>
           <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
@@ -159,7 +168,8 @@ export default class DetailsPage extends React.Component {
               </Card>
               <Card className="descriptionCard">
                 <CardBody className="description">
-                  <h1>Description</h1>
+                  <h1>Reviews</h1>
+                  <p>{this.state.yelpReviews.reviews[0].text}</p>
                 </CardBody>
               </Card>
             </Col>
@@ -179,13 +189,24 @@ export default class DetailsPage extends React.Component {
   }
 }
 
-// Promise.all([
-//   fetch('https://www.googleapis.com/customsearch/v1?key=AIzaSyCDfSs7m4X6jeepCTsFxLrhu6MXrDQtBG4&cx=017903074074624854424:2a98z0iuzye&q=yelp ' + ' image ' + this.props.data.name + ' recovery center')
+// getDetails() {
+//   let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses.id}/reviews`;
+//   let targetURL1 = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos`;
+//   let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses.id}/reviews`;
 
-// let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-// let targetURL = 'https://api.yelp.com/v3/businesses/search?location=newport beach&sort_by=rating&categories=addictionmedicine&term=rehab center&photos';
-// fetch(proxyURL + targetURL)
-//   .then(res => res.json())
-//   .then(result => {
-//     this.setState({ centers: result });
-//   });
+//   Promise.all([
+//     fetch(proxyURL + targetURL1, {
+//       headers: {
+//         'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+//       }
+//     }).then(res => res.json()),
+//     fetch(proxyURL + targetURL2, {
+//       headers: {
+//         'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+//       }
+//     }).then(res => res.json())
+//   ])
+//     .then(result => {
+//       this.setState({ details: result });
+//     });
+// }
