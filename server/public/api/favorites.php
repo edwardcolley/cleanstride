@@ -10,18 +10,17 @@ if ($method == 'POST') {
   $itemConverted = json_decode($item);
 
   
-  $sql = "INSERT INTO `Favorites` (program, program_id)
-            VALUES ('AA', $itemConverted->id)";
+  $sql =  "INSERT INTO `Favorites` (program_id)
+            VALUES ($itemConverted->id)";
   $return_value = mysqli_query($conn, $sql);
   print(json_encode([
       'success' => $return_value
   ]));
 } else if ($method == 'GET') {
     http_response_code(201);
-    $query = "SELECT a.day, a.city, a.time, a.type, a.name, a.address, a.zip, a.id,
-            f.program_id
-            FROM `AA` AS a
-            JOIN `Favorites`AS f ON a.id = f.program_id";
+    $query = "SELECT a.*, (f.program_id is not null) as favorite
+              from AA as a
+              right join Favorites as f on a.id = f.program_id";
 
     $result = mysqli_query($conn, $query);
 
