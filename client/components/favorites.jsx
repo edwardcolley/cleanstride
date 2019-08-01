@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardTitle } from 'reactstrap';
+import { Container, Row, Col, Card, CardTitle, Button } from 'reactstrap';
 
 export default class Favorites extends React.Component {
   constructor(props) {
@@ -46,6 +46,14 @@ export default class Favorites extends React.Component {
           <Row>
             <Col className="mt-1">
               {data.address}
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={{ size: 6 }} md={{ size: 4, offset: 0 }}>
+              <Button className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
+            </Col>
+            <Col xs={{ size: 6 }} md={{ size: 4, offset: 0 }}>
+              <Button className="btn btn-primary shadow favoritesCardButton favoritesDeleteButtonRightPos" size="sm">Delete</Button>
             </Col>
           </Row>
         </Card>
