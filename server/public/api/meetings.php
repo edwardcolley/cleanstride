@@ -16,7 +16,7 @@ if (!empty($_GET['day'] && !empty($_GET['city'])) && !empty($_GET['program'])) {
     $query = "SELECT a.*, (f.program_id is not null) as favorite
               from AA as a
               left join Favorites as f on a.id = f.program_id
-              WHERE `day` = '$day' AND `city` = $city AND `program` = '$program'";
+              WHERE `day` = '$day' AND `city` = '$city' AND `program` = '$program'";
   } else {
     $query = "SELECT a.*, (f.program_id is not null) as favorite
               from AA as a

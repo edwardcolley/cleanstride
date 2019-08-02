@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, CardTitle, Button } from 'reactstrap';
+import NavBar from './nav-bar';
 
 export default class Favorites extends React.Component {
   constructor(props) {
@@ -64,14 +65,17 @@ export default class Favorites extends React.Component {
   render() {
     if (this.state.favorites !== null) {
       return (
-        <Container>
-          <Row className="mt-4">
-            <Col xs={{ size: 10, offset: 1 }}>
-              <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorite Meetings</h3>
-            </Col>
-          </Row>
-          {this.favoritesCards()}
-        </Container>
+        <React.Fragment>
+          <NavBar />
+          <Container>
+            <Row className="mt-4">
+              <Col xs={{ size: 10, offset: 1 }}>
+                <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorite Meetings</h3>
+              </Col>
+            </Row>
+            {this.favoritesCards()}
+          </Container>
+        </React.Fragment>
       );
     } else {
       return (
