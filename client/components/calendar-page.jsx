@@ -1,5 +1,6 @@
 import React from 'react';
 import dateFns from 'date-fns';
+import NavBar from './nav-bar';
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export default class Calendar extends React.Component {
   }
 
   renderDays() {
-    const daysOfWeek = ["SUN", "MON", "TUES", "WED", "THURS", "FRI", "SAT"];
+    const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
     const days = [];
 
     for (let i = 0; i < 7; i++) {
@@ -253,12 +254,15 @@ export default class Calendar extends React.Component {
 
   render() {
     return (
-      <div className="calendar calendarStyle mt-3">
-        {this.renderHeader()}
-        {this.renderDays()}
-        {this.renderCells()}
-        {/* {this.getFavoritedList()} */}
-      </div>
+
+      <React.Fragment>
+        <NavBar />
+        <div className="calendar calendarStyle mt-3">
+          {this.renderHeader()}
+          {this.renderDays()}
+          {this.renderCells()}
+        </div>
+      </React.Fragment>
     );
   }
 }

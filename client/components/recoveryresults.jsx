@@ -1,6 +1,8 @@
 import React from 'react';
 import RecoveryResultsCard from './recovery-results-item';
 import { Container } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import NavBar from './nav-bar';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
@@ -29,13 +31,16 @@ class RecoveryResults extends React.Component {
   }
 
   componentDidMount() {
-    this.getGooglePlacesList(this.props.params.searchZone);
+    const { match: { params } } = this.props;
+    this.getGooglePlacesList(params.id);
   }
 
   renderRecoveryCard() {
     return this.state.googleResult.map(input => {
       return (
-        <RecoveryResultsCard onClick={this.props.setView} key={input.id} input={input}/>
+        <Link to={'/detailspage/' + input.name} key={input.id}>
+          <RecoveryResultsCard input={input}/>
+        </Link>
       );
     });
   }
@@ -44,6 +49,7 @@ class RecoveryResults extends React.Component {
     if (this.state.googleResult) {
       return (
         <div>
+          <NavBar />
           <Container>
             {this.renderRecoveryCard()}
           </Container>
