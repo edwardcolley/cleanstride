@@ -9,6 +9,7 @@ export default class Favorites extends React.Component {
     };
 
     this.getFavorites = this.getFavorites.bind(this);
+    // this.addToCalendar = this.addToCalendar.bind(this);
   }
 
   getFavorites() {
@@ -26,6 +27,17 @@ export default class Favorites extends React.Component {
   componentDidMount() {
     this.getFavorites();
   }
+
+  // addToCalendarBackEnd(selectedCard){
+  //   fetch(/*'/api/favorites.php'*/, {
+  //     method: 'POST',
+  //     body: JSON.stringify(newMeeting),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(response => response.json());
+  // }
 
   favoritesCards() {
     const cardCreator = this.state.favorites.map((data, index) => {
@@ -50,7 +62,7 @@ export default class Favorites extends React.Component {
           </Row>
           <Row>
             <Col xs={{ size: 6, offset: 3 }} md={{ size: 4, offset: 5 }}>
-              <Button className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
+              <Button onClick={/*this.addToCalendarBackEnd(data)*/} className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
             </Col>
           </Row>
         </Card>
@@ -63,6 +75,8 @@ export default class Favorites extends React.Component {
 
   render() {
     if (this.state.favorites !== null) {
+      console.log("favorites page state: ", this.state);
+      console.log("favorites page props: ", this.props);
       return (
         <Container>
           <Row className="mt-4">
