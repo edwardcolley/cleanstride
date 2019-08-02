@@ -28,8 +28,6 @@ function RecoveryResultsCard(props) {
               value={props.input.rating}
               starColor={'#04ecf0'}
             />
-            <br/>
-            {props.input.user_ratings_total} reviews
           </CardText>
         </CardBody>
       </Card>
