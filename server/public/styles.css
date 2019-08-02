@@ -255,6 +255,10 @@ button {
     background-color: lightgrey;
 }
 
+.header > p {
+  font-size: 25px;
+}
+
 .contactInfoCard {
     margin-bottom: 2%;
 }
