@@ -31,7 +31,7 @@ export default class Favorites extends React.Component {
     const cardCreator = this.state.favorites.map((data, index) => {
       return (
         <Card key={index} className="mt-3 shadow" body inverse style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }}>
-          <CardTitle className="cardTitle">{data.name}</CardTitle>
+          <CardTitle className="cardTitle text-center">{data.program}<br/>{data.name}</CardTitle>
           <Row className="flexCentering favoritesText mt-1">
             <Col xs={{ size: 4 }} md={{ size: 3, offset: 2 }}>
               {data.day}
@@ -44,16 +44,13 @@ export default class Favorites extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col className="mt-1">
+            <Col className="mt-3 text-center">
               {data.address}
             </Col>
           </Row>
           <Row>
-            <Col xs={{ size: 6 }} md={{ size: 4, offset: 0 }}>
+            <Col xs={{ size: 6, offset: 3 }} md={{ size: 4, offset: 5 }}>
               <Button className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
-            </Col>
-            <Col xs={{ size: 6 }} md={{ size: 4, offset: 0 }}>
-              <Button className="btn btn-primary shadow favoritesCardButton favoritesDeleteButtonRightPos" size="sm">Delete</Button>
             </Col>
           </Row>
         </Card>
@@ -70,7 +67,7 @@ export default class Favorites extends React.Component {
         <Container>
           <Row className="mt-4">
             <Col xs={{ size: 10, offset: 1 }}>
-              <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorited Meetings</h3>
+              <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorite Meetings</h3>
             </Col>
           </Row>
           {this.favoritesCards()}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 01, 2019 at 11:39 PM
+-- Generation Time: Aug 02, 2019 at 04:50 PM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -171,7 +171,37 @@ INSERT INTO `AA` (`id`, `day`, `city`, `time`, `type`, `name`, `address`, `zip`,
 (156, 'THURSDAY', 'NEWPORT BEACH', '7:30 PM', '(O,SP)', 'BALBOA SPEAKER GROUP', '414 E. 32nd St.', 92663, 'AA'),
 (157, 'THURSDAY', 'NEWPORT BEACH', '8:00 PM', '(O,Y)', 'MOOREHEAD PODIUM CALL-UP', '2401 Irvine Ave. c/s Santa Isabel (Harbor Christian Church)', 92627, 'AA'),
 (158, 'MONDAY', 'NEWPORT BEACH', '7:30 PM', '(W)', 'St Mark\'s Presbyterian Church', '2200 San Joaquin Hills Drive\r\n(Gay and Lesbian, others welcome, parking in rear, fireplace room)', 92660, 'Al-Anon'),
-(159, 'WEDNESDAY', 'RANCHO SANTA MARGARITA', '7:30 PM', '(O)', 'Spoken Word Christian Church', 'Church\r\n30151 Avenida de Las Banderas\r\nSuite 100', 92688, 'Al-Anon');
+(159, 'WEDNESDAY', 'RANCHO SANTA MARGARITA', '7:30 PM', '(O)', 'Spoken Word Christian Church', 'Church\r\n30151 Avenida de Las Banderas\r\nSuite 100', 92688, 'Al-Anon'),
+(160, 'SUNDAY', 'DANA POINT', '7:00 PM', '(W)', 'How Al-Anon Works Book Study', 'Gloria Dei Lutheran Church \r\n33501 Stonehill Dr', 92629, 'Al-Anon'),
+(161, 'SUNDAY', 'IRVINE', '7:30 PM', '(A, Y, W)', 'Mariners Church', '5001 Newport Coast Drive\r\nRm 200', 92603, 'Al-Anon'),
+(162, 'SUNDAY', 'LAGUNA BEACH', '4:00 PM', '(O)', 'Candlelight Literature Circle', 'Laguna Canyon Club\r\n20456 Laguna Canyon Rd\r\n(Women\'s Stag, No Babysitting, 1 hour)', 92651, 'Al-Anon'),
+(163, 'SUNDAY', 'NEWPORT BEACH', '8:15 AM', '(O)', '\"Sea-renity\" Al-Anon Group', '414 32nd Street\r\n(Upstairs)', 92663, 'Al-Anon'),
+(164, 'MONDAY', 'COSTA MESA', '6:30 PM', '(O)', 'Step Study', 'Grange Hall\r\n2144 Thurin Street / Victoria', 92627, 'Al-Anon'),
+(165, 'MONDAY', 'COSTA MESA', '6:30 PM', '(W)', 'Step Study', '3186 Pullman St', 92626, 'Al-Anon'),
+(166, 'MONDAY', 'COSTA MESA', '7:00 PM', '(W, Y)', 'Mesa Verde United Methodist', '1701 W. Baker / Mesa Verde East\r\n(Babysitting)', 92626, 'Al-Anon'),
+(167, 'MONDAY', 'DANA POINT', '7:00 PM', '(O)', 'Gloria Dei Lutheran Church', '33501 Stonehill Dr.', 92629, 'Al-Anon'),
+(168, 'MONDAY', 'IRVINE', '6:15 PM', '(O)', 'United Methodist Church', '18422 Culver Drive / University\r\nFirst Building (Farsi / Iranian Speaking)\r\n9', 92604, 'Al-Anon'),
+(169, 'MONDAY', 'IRVINE', '7:00 PM', '(O)', 'St Andrews Church Step Study', '4400 Barranca / West Yale Loop', 92604, 'Al-Anon'),
+(170, 'MONDAY', 'IRVINE', '7:30 PM', '(O)', 'Beginner\'s Meeting', '5001 Newport Coast Dr\r\nRoom 206', 92603, 'Al-Anon'),
+(171, 'MONDAY', 'LAGUNA WOODS', '12:00 PM', '(O, W)', 'Geneva Presbyterian', '24301 El Toro Road', 92637, 'Al-Anon'),
+(172, 'MONDAY	', 'MISSION VIEJO', '7:30 PM', '(O)	', 'Shepherd of the Hills Church', '26001 Muirlands / La Paz', 92691, 'Al-Anon'),
+(173, 'MONDAY', 'NEWPORT BEACH', '10:00 AM', '(O)	', 'Alano Club', '414 E 32nd Street', 92663, 'Al-Anon'),
+(174, 'MONDAY', 'NEWPORT BEACH', '7:30 PM', '(W)', 'St Mark\'s Presbyterian Church', '(Gay and Lesbian, others welcome, parking in rear, fireplace room)', 92660, 'Al-Anon'),
+(175, 'MONDAY	', 'RANCHO SANTA MARGARITA	', '9:00 AM', '(O)', 'Bell Tower', '22232 El Paseo', 92688, 'Al-Anon'),
+(176, 'MONDAY', 'SAN JUAN CAPISTRANO', '10:30 AM', '(O)', 'Mission Basilica Pastoral Center', '31520 Camino Capistrano\r\nUpstairs in Room B\r\n(Enter through office when open; otherwise use school gate. No food or drink in room)', 92675, 'Al-Anon'),
+(177, 'TUESDAY', 'ALISO VIEJO', '7:00 PM', '(ADULTS)', 'Literature Study / Sharing', 'Temple Beth El\r\n2A Liberty, Room 205', 92656, 'Al-Anon'),
+(178, 'TUESDAY', 'COSTA MESA', '11:00 AM', '(O)', 'Alano Club', '2040 Placentia Ave.\r\nParking in rear of building', 92627, 'Al-Anon'),
+(179, 'TUESDAY', 'COSTA MESA', '12:00 PM', '(O)', 'Presbyterian Church', '2850 Fairview / Adams\r\nNorth Bldg, Second Floor, Room 3', 92626, 'Al-Anon'),
+(180, 'TUESDAY', 'DANA POINT', '7:00 PM', '(O, W)', 'St Edward\'s School', '33926 Calle la Primavera / Selva\r\nFar end of parking lot, parish room 220', 92629, 'Al-Anon'),
+(181, 'TUESDAY', 'IRVINE', '7:30 PM', '(O)', 'Latter Day Saints Church', '23 Lake Rd\r\nRoom 20\r\n(enter from Greg Cops Place)', 92604, 'Al-Anon'),
+(182, 'TUESDAY', 'LAGUNA BEACH', '7:30 PM', '(M)', 'United Methodist Church', '21632 Wesley Dr / PCH\r\n(Men\'s Stag)', 92651, 'Al-Anon'),
+(183, 'TUESDAY', 'LAGUNA HILLS', '10:00 AM', '(O)', 'St George\'s Episcopal Church', 'Hospitality Room\r\n23802 Avenida de la Carlota\r\n(Beginner\'s Meeting)', 92653, 'Al-Anon'),
+(184, 'TUESDAY', 'LAGUNA HILLS', '7:30 PM', '(O)', 'St George\'s Episcopal Church', '23802 Avenida de la Carlota\r\nRoom 108', 92653, 'Al-Anon'),
+(185, 'TUESDAY', 'LAGUNA NIGUEL', '9:30 AM', '(O)', 'Laguna Niguel Presbyterian Church', '30071 Ivy Glenn Drive\r\nGard Hall\r\n(Literature Study - Babysitting)', 92677, 'Al-Anon'),
+(186, 'TUESDAY', 'LAGUNA WOODS', '10:00 AM', '(W)', 'LW Village Town Centre', '24351 El Toro Rd / Moulton\r\nPine Room in Community Center, First Floor\r\n(No children)', 92637, 'Al-Anon'),
+(187, 'TUESDAY', 'RANCHO SANTA MARGARITA', '6:3O AM', '(W)', 'Bell Tower', '22232 El Paseo\r\n(Parents of Alcoholics)', 92688, 'Al-Anon'),
+(188, 'THURSDAY', 'COSTA MESA', '12:00 PM', '(O)', 'Presbyterian Church', '2850 Fairview Rd\r\n(Upstairs)', 92626, 'Al-Anon'),
+(189, 'THURSDAY', 'DANA POINT', '7:00 PM', '(A, O, W)', 'Dana Point Youth & Group Facility', '34451 Ensenada Pl / Dana Point Harbor Dr\r\nBehind Main Building', 92629, 'Al-Anon');
 
 --
 -- Indexes for dumped tables
@@ -191,7 +221,7 @@ ALTER TABLE `AA`
 -- AUTO_INCREMENT for table `AA`
 --
 ALTER TABLE `AA`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -34,6 +34,24 @@ if ($method == 'POST') {
     }
 
     print(json_encode($data));
+} else if ($method == 'DELETE'){
+  http_response_code(204);
+  $itemConverted = json_decode($item);
+  $query = "DELETE FROM `Favorites` WHERE `program_id` = '$itemConverted->id'";
+  
+
+  $return_value = mysqli_query($conn, $query);
+
+  if(!$return_value) {
+    throw new Exception('Error: no deletion occured: '. mysqli_error($conn));
+}
+
+  print(json_encode([
+      'success' => $return_value
+  ]));
+
+
+
 } else {
   http_response_code(404);
   print(json_encode([

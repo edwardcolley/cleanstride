@@ -40,6 +40,7 @@ export default class DetailsPage extends React.Component {
     super(props);
     this.state = {
       activeIndex: 0,
+      didRun: 0
       reviews: null,
       details: null
     };
@@ -50,6 +51,8 @@ export default class DetailsPage extends React.Component {
     this.onExited = this.onExited.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.carouselPhotos = this.carouselPhotos.bind(this);
+    this.getBusinessID = this.getBusinessID.bind(this);
+    this.getDetails = this.getDetails.bind(this);
   }
 
   onExiting() {
@@ -128,6 +131,7 @@ export default class DetailsPage extends React.Component {
       });
   }
 
+
   getBusinessReviews(id) {
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
     let targetURL2 = `https://api.yelp.com/v3/businesses/${id}/reviews`;
@@ -136,6 +140,7 @@ export default class DetailsPage extends React.Component {
         'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
       }
     }).then(res => res.json());
+
 
   }
   getBusinessDetails(id) {
@@ -155,6 +160,7 @@ export default class DetailsPage extends React.Component {
   render() {
 
     if (this.state.details && this.state.yelpReviews) {
+
       return (
         <Container>
           <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
