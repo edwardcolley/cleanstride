@@ -37,7 +37,6 @@ export default class DetailsPage extends React.Component {
     super(props);
     this.state = {
       activeIndex: 0,
-      didRun: 0,
       reviews: null,
       details: null
     };
@@ -138,8 +137,6 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
-    // eslint-disable-next-line no-console
-    console.log(this.state.details);
     if (this.state.details) {
       return (
         <Container>
@@ -168,7 +165,6 @@ export default class DetailsPage extends React.Component {
               <Card className="descriptionCard">
                 <CardBody className="description">
                   <h1>Reviews</h1>
-                  <p>{this.state.reviews.text}</p>
                 </CardBody>
               </Card>
             </Col>
