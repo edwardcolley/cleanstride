@@ -138,7 +138,9 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
-    if (this.state.details && this.state.yelpReviews) {
+    // eslint-disable-next-line no-console
+    console.log(this.state.details);
+    if (this.state.details) {
       return (
         <Container>
           <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
@@ -152,21 +154,21 @@ export default class DetailsPage extends React.Component {
               <Card className="headerCard">
                 <CardBody className="header">
                   <h1></h1>
-                  <p>Name: {this.state.details.businesses[0].name}</p>
-                  <p>Rating: {this.state.details.businesses[0].rating}/5</p>
+                  <p>Name: {this.state.details.name}</p>
+                  <p>Rating: {this.state.details.rating}/5</p>
                 </CardBody>
               </Card>
               <Card className="contactInfoCard">
                 <CardBody className="contactInfo">
                   <h1>Contact Information</h1>
-                  <p>Address: {this.state.details.businesses[0].location.display_address}</p>
-                  <p>Phone: {this.state.details.businesses[0].display_phone}</p>
+                  <p>Address: {this.state.details.location.display_address}</p>
+                  <p>Phone: {this.state.details.display_phone}</p>
                 </CardBody>
               </Card>
               <Card className="descriptionCard">
                 <CardBody className="description">
                   <h1>Reviews</h1>
-                  <p>{this.state.reviews[0].text}</p>
+                  <p>{this.state.reviews.text}</p>
                 </CardBody>
               </Card>
             </Col>
