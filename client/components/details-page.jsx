@@ -39,7 +39,8 @@ export default class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0
+      activeIndex: 0,
+      didRun: 0
     };
 
     this.goToIndex = this.goToIndex.bind(this);
@@ -48,6 +49,8 @@ export default class DetailsPage extends React.Component {
     this.onExited = this.onExited.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.carouselPhotos = this.carouselPhotos.bind(this);
+    this.getBusinessID = this.getBusinessID.bind(this);
+    this.getDetails = this.getDetails.bind(this);
   }
 
   onExiting() {
@@ -120,16 +123,21 @@ export default class DetailsPage extends React.Component {
   }
 
   getBusinessID() {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses[0].id}/reviews`;
-    fetch(proxyURL + targetURL2, {
-      headers: {
-        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-      }
-    }).then(res => res.json())
-      .then(result => {
-        this.setState({ yelpReviews: result });
+    if (this.state.didRun === 0) {
+      let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+      let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses[0].id}/reviews`;
+      fetch(proxyURL + targetURL2, {
+        headers: {
+          'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+        }
+      }).then(res => res.json())
+        .then(result => {
+          this.setState({ yelpReviews: result });
+        });
+      this.setState({
+        didRun: 1
       });
+    }
   }
 
   componentDidMount() {
@@ -137,11 +145,15 @@ export default class DetailsPage extends React.Component {
   }
 
   componentDidUpdate() {
-    this.getBusinessID();
+    if (this.state.yelpReviews !== null) {
+      this.getBusinessID();
+    }
   }
 
   render() {
+
     if (this.state.details && this.state.yelpReviews) {
+
       return (
         <Container>
           <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
