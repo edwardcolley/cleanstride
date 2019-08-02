@@ -37,6 +37,7 @@ export default class DetailsPage extends React.Component {
     super(props);
     this.state = {
       activeIndex: 0,
+      didRun: 0,
       reviews: null,
       details: null
     };
@@ -122,6 +123,7 @@ export default class DetailsPage extends React.Component {
       }
     }).then(res => res.json());
   }
+
   getBusinessDetails(id) {
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
     let targetURL2 = `https://api.yelp.com/v3/businesses/${id}`;
@@ -134,6 +136,7 @@ export default class DetailsPage extends React.Component {
   componentDidMount() {
     this.getDetails();
   }
+
   render() {
     if (this.state.details && this.state.yelpReviews) {
       return (
