@@ -12,13 +12,11 @@ import {
   CarouselCaption,
   Button
 } from 'reactstrap';
-
 const items = [
   {
     // src: '{this.state.centers.items[0].pagemap.cse_image[0].src}',
     // altText: 'photo1',
     // caption: 'photo1',
-
     src: 'https://cdn0.sussexdirectories.com/rms/rms_photos/sized/24/49/364924-1126760-1_1500x1500.jpg?pu=1511989191',
     altText: 'photo1',
     caption: 'photo1'
@@ -34,53 +32,43 @@ const items = [
     caption: 'photo3'
   }
 ];
-
 export default class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       activeIndex: 0,
-      didRun: 0
+      reviews: null,
+      details: null
     };
-
     this.goToIndex = this.goToIndex.bind(this);
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
     this.onExited = this.onExited.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.carouselPhotos = this.carouselPhotos.bind(this);
-    this.getBusinessID = this.getBusinessID.bind(this);
-    this.getDetails = this.getDetails.bind(this);
   }
-
   onExiting() {
     this.animating = true;
   }
-
   onExited() {
     this.animating = false;
   }
-
   next() {
     if (this.animating) { return; }
     const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
-
   previous() {
     if (this.animating) { return; }
     const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
-
   goToIndex(newIndex) {
     if (this.animating) { return; }
     this.setState({ activeIndex: newIndex });
   }
-
   carouselPhotos() {
     const { activeIndex } = this.state;
-
     const slides = items.map(item => {
       return (
         <CarouselItem
@@ -89,11 +77,10 @@ export default class DetailsPage extends React.Component {
           key={item.src}
         >
           <img src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption}/>
+          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
       );
     });
-
     return (
       <Carousel
         activeIndex={activeIndex}
@@ -107,53 +94,48 @@ export default class DetailsPage extends React.Component {
       </Carousel>
     );
   }
-
   getDetails() {
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
     let targetURL1 = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos`;
-
     fetch(proxyURL + targetURL1, {
       headers: {
         'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
       }
     }).then(res => res.json())
       .then(result => {
-        this.setState({ details: result });
-      });
-  }
-
-  getBusinessID() {
-    if (this.state.didRun === 0) {
-      let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-      let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses[0].id}/reviews`;
-      fetch(proxyURL + targetURL2, {
-        headers: {
-          'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-        }
-      }).then(res => res.json())
-        .then(result => {
-          this.setState({ yelpReviews: result });
+        let id = result.businesses[0].id;
+        let promises = [this.getBusinessReviews(id), this.getBusinessDetails(id)];
+        Promise.all(promises).then(allResults => {
+          this.setState({
+            reviews: allResults[0],
+            details: allResults[1]
+          });
         });
-      this.setState({
-        didRun: 1
       });
-    }
   }
-
+  getBusinessReviews(id) {
+    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    let targetURL2 = `https://api.yelp.com/v3/businesses/${id}/reviews`;
+    return fetch(proxyURL + targetURL2, {
+      headers: {
+        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+      }
+    }).then(res => res.json());
+  }
+  getBusinessDetails(id) {
+    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    let targetURL2 = `https://api.yelp.com/v3/businesses/${id}`;
+    return fetch(proxyURL + targetURL2, {
+      headers: {
+        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+      }
+    }).then(res => res.json());
+  }
   componentDidMount() {
     this.getDetails();
   }
-
-  componentDidUpdate() {
-    if (this.state.yelpReviews !== null) {
-      this.getBusinessID();
-    }
-  }
-
   render() {
-
     if (this.state.details && this.state.yelpReviews) {
-
       return (
         <Container>
           <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
@@ -181,7 +163,7 @@ export default class DetailsPage extends React.Component {
               <Card className="descriptionCard">
                 <CardBody className="description">
                   <h1>Reviews</h1>
-                  <p>{this.state.yelpReviews.reviews[0].text}</p>
+                  <p>{this.state.reviews[0].text}</p>
                 </CardBody>
               </Card>
             </Col>
@@ -200,12 +182,10 @@ export default class DetailsPage extends React.Component {
     }
   }
 }
-
 // getDetails() {
 //   let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses.id}/reviews`;
 //   let targetURL1 = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos`;
 //   let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses.id}/reviews`;
-
 //   Promise.all([
 //     fetch(proxyURL + targetURL1, {
 //       headers: {
