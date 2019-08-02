@@ -22,14 +22,12 @@ function RecoveryResultsCard(props) {
           <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
           <CardSubtitle className='ratingsResults'>{props.input.formatted_address}</CardSubtitle>
           <CardText className="mt-3 text">
-            <div>
-              <StarRatingComponent
-                name="Rate"
-                starCount={5}
-                value={props.input.rating}
-                starColor={'#04ecf0'}
-              />
-            </div>
+            <StarRatingComponent
+              name="Rate"
+              starCount={5}
+              value={props.input.rating}
+              starColor={'#04ecf0'}
+            />
             <br/>
             {props.input.user_ratings_total} reviews
           </CardText>
