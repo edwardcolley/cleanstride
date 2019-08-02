@@ -10,9 +10,10 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
-  Button
+  CarouselCaption
+  // Button
 } from 'reactstrap';
+
 export default class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
@@ -86,8 +87,9 @@ export default class DetailsPage extends React.Component {
   }
 
   getDetails() {
+    const { match: { params } } = this.props;
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL1 = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${this.props.data.name}&photos`;
+    let targetURL1 = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${params.name}&photos`;
     fetch(proxyURL + targetURL1, {
       headers: {
         'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
@@ -132,48 +134,40 @@ export default class DetailsPage extends React.Component {
   render() {
     if (this.state.details) {
       return (
-        <Container>
-          <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
-          <Row>
-            <Col>
-              <Card className="carouselCard">
-                <CardBody className="carousel">
-                  {this.carouselPhotos()}
-                </CardBody>
-              </Card>
-              <Card className="headerCard">
-                <CardBody className="header">
-                  <p>{this.state.details.name}</p>
-                  <StarRatingComponent
-                    name="Rate"
-                    starCount={5}
-                    value={this.state.details.rating}
-                    starColor={'#04ecf0'}
-                  />
-                </CardBody>
-              </Card>
-              <Card className="contactInfoCard">
-                <CardBody className="contactInfo">
-                  <h1>Contact Information</h1>
-                  <p>Address: {this.state.details.location.display_address}</p>
-                  <p>Phone: {this.state.details.display_phone}</p>
-                  <p>Website: {this.state.details.url}</p>
-                </CardBody>
-              </Card>
-              <Card className="descriptionCard">
-                <CardBody className="description">
-                  <h1>Reviews</h1>
-                  <p>{this.state.reviews.reviews[0].user.name}</p>
-                  <p>{this.state.reviews.reviews[0].text}</p>
-                  <p>{this.state.reviews.reviews[1].user.name}</p>
-                  <p>{this.state.reviews.reviews[1].text}</p>
-                  <p>{this.state.reviews.reviews[2].user.name}</p>
-                  <p>{this.state.reviews.reviews[2].text}</p>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
+        <React.Fragment>
+          <NavBar />
+          <Container>
+            <Row>
+              <Col>
+                <Card className="carouselCard">
+                  <CardBody className="carousel">
+                    {this.carouselPhotos()}
+                  </CardBody>
+                </Card>
+                <Card className="headerCard">
+                  <CardBody className="header">
+                    <h1></h1>
+                    <p>Name: {this.state.details.name}</p>
+                    <p>Rating: {this.state.details.rating}/5</p>
+                  </CardBody>
+                </Card>
+                <Card className="contactInfoCard">
+                  <CardBody className="contactInfo">
+                    <h1>Contact Information</h1>
+                    <p>Address: {this.state.details.location.display_address}</p>
+                    <p>Phone: {this.state.details.display_phone}</p>
+                  </CardBody>
+                </Card>
+                <Card className="descriptionCard">
+                  <CardBody className="description">
+                    <h1>Reviews</h1>
+                    {/* <p>{this.state.reviews[0].text}</p> */}
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        </React.Fragment>
       );
     } else {
       return (
@@ -187,17 +181,3 @@ export default class DetailsPage extends React.Component {
     }
   }
 }
-
-//   src: 'https://cdn0.sussexdirectories.com/rms/rms_photos/sized/24/49/364924-1126760-1_1500x1500.jpg?pu=1511989191',
-//   altText: 'photo1',
-//   caption: 'photo1'
-// },
-// {
-//   src: 'https://cdn4.sussexdirectories.com/rms/rms_photos/sized/24/49/364924-1126761-1_1500x1500.jpg?pu=1511989209',
-//   altText: 'photo2',
-//   caption: 'photo2'
-// },
-// {
-//   src: 'https://cdn2.sussexdirectories.com/rms/rms_photos/sized/24/49/364924-1126758-1_1500x1500.jpg?pu=1511989182',
-//   altText: 'photo3',
-//   caption: 'photo3'

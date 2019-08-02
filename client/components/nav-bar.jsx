@@ -7,6 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -29,23 +30,34 @@ export default class NavBar extends React.Component {
     return (
       <React.Fragment>
         <Navbar style={{ backgroundColor: '#A9A9A9' }} light expand="md" className="text-white">
-          <NavbarBrand className="navButton" onClick={() => this.props.setView('landing', {})}>
-            <img src="./images/transparentLogo.png" style={{ width: 40 }} />Clean Stride
+          <NavbarBrand className="navButton">
+            <Link to="/">
+              <img src="./images/transparentLogo.png" style={{ width: 45 }} />
+            </Link>Clean Stride
           </NavbarBrand>
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto text-white" navbar>
               <NavItem>
-                <NavLink className="navButton text-white" onClick={() => this.props.setView('landing', {})}>Search Recovery</NavLink>
+                <Link to="/">
+                  <NavLink className="navButton text-white">Search Recovery</NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink className="navButton text-white" onClick={() => this.props.setView('meetings', {})}>Meeting Directory</NavLink>
+                <Link to="/meetings">
+                  <NavLink className="navButton text-white" >Meeting Directory</NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink className="navButton text-white" onClick={() => this.props.setView('favorites', {})}>Favorite Meetings</NavLink>
+                <Link to="/favorites">
+                  <NavLink className="navButton text-white">Favorite Meetings</NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink className="navButton text-white" onClick={() => this.props.setView('calendar', {})} >Calendar</NavLink>
+                <Link to="/calendar">
+                  <NavLink className="navButton text-white" >Calendar</NavLink>
+                </Link>
               </NavItem>
             </Nav>
           </Collapse>
