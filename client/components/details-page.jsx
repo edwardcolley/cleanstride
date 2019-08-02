@@ -39,7 +39,9 @@ export default class DetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0
+      activeIndex: 0,
+      reviews: null,
+      details: null
     };
 
     this.goToIndex = this.goToIndex.bind(this);
@@ -86,7 +88,7 @@ export default class DetailsPage extends React.Component {
           key={item.src}
         >
           <img src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption}/>
+          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
       );
     });
@@ -115,32 +117,43 @@ export default class DetailsPage extends React.Component {
       }
     }).then(res => res.json())
       .then(result => {
-        this.setState({ details: result });
+        let id = result.businesses[0].id;
+        let promises = [this.getBusinessReviews(id), this.getBusinessDetails(id)];
+        Promise.all(promises).then(allResults => {
+          this.setState({
+            reviews: allResults[0],
+            details: allResults[1]
+          });
+        });
       });
   }
 
-  getBusinessID() {
+  getBusinessReviews(id) {
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL2 = `https://api.yelp.com/v3/businesses/${this.state.details.businesses[0].id}/reviews`;
-    fetch(proxyURL + targetURL2, {
+    let targetURL2 = `https://api.yelp.com/v3/businesses/${id}/reviews`;
+    return fetch(proxyURL + targetURL2, {
       headers: {
         'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
       }
-    }).then(res => res.json())
-      .then(result => {
-        this.setState({ yelpReviews: result });
-      });
-  }
+    }).then(res => res.json());
 
+  }
+  getBusinessDetails(id) {
+    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    let targetURL2 = `https://api.yelp.com/v3/businesses/${id}`;
+    return fetch(proxyURL + targetURL2, {
+      headers: {
+        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
+      }
+    }).then(res => res.json());
+
+  }
   componentDidMount() {
     this.getDetails();
   }
 
-  componentDidUpdate() {
-    this.getBusinessID();
-  }
-
   render() {
+
     if (this.state.details && this.state.yelpReviews) {
       return (
         <Container>
@@ -169,7 +182,7 @@ export default class DetailsPage extends React.Component {
               <Card className="descriptionCard">
                 <CardBody className="description">
                   <h1>Reviews</h1>
-                  <p>{this.state.yelpReviews.reviews[0].text}</p>
+                  <p>{this.state.reviews[0].text}</p>
                 </CardBody>
               </Card>
             </Col>
