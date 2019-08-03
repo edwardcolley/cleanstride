@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardTitle } from 'reactstrap';
+import { Container, Row, Col, Card, Button, CardTitle } from 'reactstrap';
 import NavBar from './nav-bar';
 
 export default class Favorites extends React.Component {
@@ -10,7 +10,7 @@ export default class Favorites extends React.Component {
     };
 
     this.getFavorites = this.getFavorites.bind(this);
-    // this.addToCalendar = this.addToCalendar.bind(this);
+    this.addToCalendarBackEnd = this.addToCalendarBackEnd.bind(this);
   }
 
   getFavorites() {
@@ -29,16 +29,16 @@ export default class Favorites extends React.Component {
     this.getFavorites();
   }
 
-  // addToCalendarBackEnd(selectedCard){
-  //   fetch(/*'/api/favorites.php'*/, {
-  //     method: 'POST',
-  //     body: JSON.stringify(newMeeting),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //     .then(response => response.json());
-  // }
+  addToCalendarBackEnd(id) {
+    fetch('/api/calendar.php', {
+      method: 'POST',
+      body: JSON.stringify(id),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json());
+  }
 
   favoritesCards() {
     const cardCreator = this.state.favorites.map((data, index) => {
@@ -63,7 +63,7 @@ export default class Favorites extends React.Component {
           </Row>
           <Row>
             <Col xs={{ size: 6, offset: 3 }} md={{ size: 4, offset: 5 }}>
-              {/* <Button onClick=this.addToCalendarBackEnd(data) className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button> */}
+              <Button onClick={() => this.addToCalendarBackEnd(data)} className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
             </Col>
           </Row>
         </Card>

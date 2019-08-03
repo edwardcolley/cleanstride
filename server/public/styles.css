@@ -117,9 +117,10 @@ main {
  .calendar {
   display: block;
   position: relative;
-  width: 100%;
+  width: 99%;
   background: var(--neutral-color);
   border: 1px solid var(--border-color);
+  /* overflow: hidden; */
 }
 
 .calendar .header {
@@ -231,10 +232,31 @@ main {
 
 .calendarDots {
   position: absolute;
-  top: 2.5rem;
-  left: 1.325rem;
+  left: .35rem;
   color: blue;
 }
+.position0 {
+  top: 1.3rem;
+}
+
+.position1 {
+  top: 3.0rem;
+}
+
+.position2 {
+  top: 3.7rem;
+}
+
+.Al-Anon {
+  color: red;
+}
+.NA {
+  color: purple;
+}
+.OA {
+  color: green;
+}
+/* END OF CALENDER CSS */
 
 .navButton,
 button {

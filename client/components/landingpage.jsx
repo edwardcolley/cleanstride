@@ -26,6 +26,17 @@ export default class LandingPage extends React.Component {
     });
   }
 
+  // getUserLocation() {
+  //   navigator.geolocation.getCurrentPosition(this.showPosition);
+  // }
+
+  // showPosition(position) {
+  //   this.setState({
+  //     latitude: position.coords.latitude,
+  //     longitude: position.coords.longitude
+  //   });
+  // }
+
   render() {
     return (
       <React.Fragment>
@@ -48,7 +59,9 @@ export default class LandingPage extends React.Component {
                   </div>
                   <Row className="mt-1">
                     <Col xs={{ size: 10, offset: 2 }} md={{ size: 10, offset: 3 }} lg={{ size: 10, offset: 4 }}>
-                      <Button className="shadow" onClick={() => this.props.setView('loading', {})} type="submit" color="primary">Use My Location</Button>{' '}
+                      <Link to="/loadingpage">
+                        <Button className="shadow" type="submit" color="primary">Use My Location</Button>{' '}
+                      </Link>
                     </Col>
                   </Row>
                   <Row className="mt-1 mr-2">
