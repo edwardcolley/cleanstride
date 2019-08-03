@@ -230,10 +230,11 @@ main {
   width: calc(100%/7);
 } 
 
-.calendarDots {
+.calendarInfo {
   position: absolute;
   left: .35rem;
   color: blue;
+  font-size: .6rem;
 }
 .position0 {
   top: 1.3rem;
@@ -243,9 +244,9 @@ main {
   top: 3.0rem;
 }
 
-.position2 {
+/* .position2 {
   top: 3.7rem;
-}
+} */
 
 .Al-Anon {
   color: red;

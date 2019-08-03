@@ -55,20 +55,6 @@ export default class Calendar extends React.Component {
     return <div className="days row rowStyle">{days}</div>;
   }
 
-  // renderDays() {
-  //   const dateFormat = "dddd";
-  //   const days = [];
-  //   let startDate = dateFns.startOfWeek(this.state.currentMonth);
-  //   for (let i = 0; i < 7; i++) {
-  //     days.push(
-  //       <div className="col col-center" key={i}>
-  //         {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
-  //       </div>
-  //     );
-  //   }
-  //   return <div className="days row">{days}</div>;
-  // }
-
   renderCells() {
     const { currentMonth, selectedDate } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
@@ -183,7 +169,7 @@ export default class Calendar extends React.Component {
   }
 
   renderDots(i) {
-    let numberOfIcons = this.state.sortedMeetings[i].map((meeting, input) => <i key={meeting.id} className={`fas fa-circle calendarDots position${input} fa-xs ${meeting.program}`}>{meeting.program}</i>);
+    let numberOfIcons = this.state.sortedMeetings[i].map((meeting, input) => <p key={meeting.id} className={`calendarInfo position${input} ${meeting.program} font-weight-bold`}>{meeting.program}<br/>{meeting.time}</p>);
     return numberOfIcons;
   }
 
