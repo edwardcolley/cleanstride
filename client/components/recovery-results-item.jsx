@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Card, CardText, CardBody, CardTitle, CardSubtitle, CardImg, Container } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, CardImg, Container } from 'reactstrap';
 import StarRatingComponent from 'react-star-rating-component';
 
 function RecoveryResultsPhoto(props) {
@@ -21,14 +21,12 @@ function RecoveryResultsCard(props) {
         <CardBody className="cardBody">
           <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
           <CardSubtitle className='ratingsResults'>{props.input.formatted_address}</CardSubtitle>
-          <CardText className="mt-3 text">
-            <StarRatingComponent
-              name="Rate"
-              starCount={5}
-              value={props.input.rating}
-              starColor={'#04ecf0'}
-            />
-          </CardText>
+          <StarRatingComponent
+            name="Rate"
+            starCount={5}
+            value={props.input.rating}
+            starColor={'#04ecf0'}
+          />
         </CardBody>
       </Card>
     </Container >
