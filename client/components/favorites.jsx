@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardTitle, Button } from 'reactstrap';
+import { Container, Row, Col, Card, CardTitle } from 'reactstrap';
 import NavBar from './nav-bar';
 
 export default class Favorites extends React.Component {
@@ -63,7 +63,7 @@ export default class Favorites extends React.Component {
           </Row>
           <Row>
             <Col xs={{ size: 6, offset: 3 }} md={{ size: 4, offset: 5 }}>
-              <Button onClick={/*this.addToCalendarBackEnd(data)*/} className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
+              {/* <Button onClick=this.addToCalendarBackEnd(data) className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button> */}
             </Col>
           </Row>
         </Card>
@@ -76,8 +76,6 @@ export default class Favorites extends React.Component {
 
   render() {
     if (this.state.favorites !== null) {
-      console.log("favorites page state: ", this.state);
-      console.log("favorites page props: ", this.props);
       return (
         <React.Fragment>
           <NavBar />
