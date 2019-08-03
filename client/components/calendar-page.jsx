@@ -8,16 +8,14 @@ export default class Calendar extends React.Component {
     this.state = {
       currentMonth: new Date(),
       selectedDate: new Date(),
-      favoritedList: undefined
+      calendarList: undefined,
+      sortedMeetings: null
     };
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.onDateClick = this.onDateClick.bind(this);
-    this.renderDots = this.renderDots.bind(this);
-    this.getFavoritedList = this.getFavoritedList.bind(this);
+    this.getCalendarList = this.getCalendarList.bind(this);
   }
-
-
 
   renderHeader() {
     const dateFormat = 'MMMM YYYY';
@@ -49,7 +47,7 @@ export default class Calendar extends React.Component {
 
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col col-center col-style" key={i}>
+        <div className="col col-center col-style colStyle" key={i}>
           {daysOfWeek[i]}
         </div>
       );
@@ -57,140 +55,19 @@ export default class Calendar extends React.Component {
     return <div className="days row rowStyle">{days}</div>;
   }
 
-  getFavoritedList(){
-    fetch(/**/)
-      .then(response => {
-        return response.json();
-      })
-      .then(myJson => {
-        this.setState({
-          favoritedList: myJson
-        });
-      });
-  }
-
-  renderDots(calendarDay){
-    // this.getFavoritedList();
-    const dummyData = [
-      {
-        "id": "3",
-        "day": "MONDAY",
-        "city": "LAGUNA HILLS",
-        "time": "7:30 AM",
-        "type": "(O)",
-        "name": "SOBRIETY - 12 X 12 STEP STUDY",
-        "address": "23802 Avenida de la Carlota @ Valencia (St. George's Church)",
-        "zip": "92653",
-        "program": "AA",
-        "favorite": "1"
-      },
-      {
-        "id": "4",
-        "day": "MONDAY",
-        "city": "LAGUNA HILLS",
-        "time": "6:00 PM",
-        "type": "(C,W)",
-        "name": "WOMEN'S DISCUSSION",
-        "address": "23802 Avenida de la Carlota @ Valencia (St. George's Church)",
-        "zip": "92653",
-        "program": "AA",
-        "favorite": "1"
-      },
-      {
-        "id": "5",
-        "day": "MONDAY",
-        "city": "LAGUNA HILLS",
-        "time": "7:30 PM",
-        "type": "(O)",
-        "name": "FISH BOWL OPEN DISCUSSION",
-        "address": "23541-B Calle de la Louisa (Upstairs inside gym, same bldg. as Nordstrom Rack)",
-        "zip": "92653",
-        "program": "AA",
-        "favorite": "1"
-      },
-      {
-        "id": "1",
-        "day": "SUNDAY",
-        "city": "LAGUNA HILLS",
-        "time": "5:00 PM",
-        "type": "(O,TA)",
-        "name": "11TH STEP MEDITATION MEETING",
-        "address": "23802 Avenida de la Carlota @ Valencia (St. George's Church-Sanctuary)",
-        "zip": "92653",
-        "program": "AA",
-        "favorite": "1"
-      },
-      {
-        "id": "1",
-        "day": "FRIDAY",
-        "city": "LAGUNA HILLS",
-        "time": "5:00 PM",
-        "type": "(O,TA)",
-        "name": "11TH STEP MEDITATION MEETING",
-        "address": "23802 Avenida de la Carlota @ Valencia (St. George's Church-Sanctuary)",
-        "zip": "92653",
-        "program": "AA",
-        "favorite": "1"
-      }
-    ];
-    
-    const newDummyData = {
-        "0": undefined,
-        "1": undefined,
-        "2": undefined,
-        "3": undefined,
-        "4": undefined,
-        "5": undefined,
-        "6": undefined
-    };
-    
-    dummyData.map(favorites => {
-      if(favorites.day === "SUNDAY"){
-        return(newDummyData["0"] = [favorites])
-      }
-      if(favorites.day === "MONDAY"){
-        return(newDummyData["1"] = [favorites])
-      }
-      if(favorites.day === "TUESDAY"){
-        return(newDummyData["2"] = [favorites])
-      }
-      if(favorites.day === "WEDNESDAY"){
-        return(newDummyData["3"] = [favorites])
-      }
-      if(favorites.day === "THRUSDAY"){
-        return(newDummyData["4"] = [favorites])
-      }
-      if(favorites.day === "FRIDAY"){
-        return(newDummyData["5"] = [favorites])
-      }
-      if(favorites.day === "SATURDAY"){
-        return(newDummyData["6"] = [favorites])
-      }
-    })
-    
-
-    if(calendarDay === 0 && newDummyData["0"]){
-      return(<i className="fas fa-circle calendarDots"></i>)
-    }
-    if(calendarDay === 1 && newDummyData["1"]){
-      return(<i className="fas fa-circle calendarDots"></i>)
-    }
-    if(calendarDay === 2 && newDummyData["2"]){
-      return(<i className="fas fa-circle calendarDots"></i>)
-    }
-    if(calendarDay === 3 && newDummyData["3"]){
-      return(<i className="fas fa-circle calendarDots"></i>)
-    }
-    if(calendarDay === 4 && newDummyData["4"]){
-      return(<i className="fas fa-circle calendarDots"></i>)
-    }
-    if(calendarDay === 5 && newDummyData["5"]){
-      return(<i className="fas fa-circle calendarDots"></i>)
-    }
-    if(calendarDay === 6 && newDummyData["6"]){
-      return(<i className="fas fa-circle calendarDots"></i>)
-    }
-  }
+  // renderDays() {
+  //   const dateFormat = "dddd";
+  //   const days = [];
+  //   let startDate = dateFns.startOfWeek(this.state.currentMonth);
+  //   for (let i = 0; i < 7; i++) {
+  //     days.push(
+  //       <div className="col col-center" key={i}>
+  //         {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+  //       </div>
+  //     );
+  //   }
+  //   return <div className="days row">{days}</div>;
+  // }
 
   renderCells() {
     const { currentMonth, selectedDate } = this.state;
@@ -206,7 +83,7 @@ export default class Calendar extends React.Component {
     let formattedDate = '';
 
     while (day <= endDate) {
-      for (let i = 0; i < 7; i++) { //when i = 0-7 check if my favoritesList obj has corresponding number keys
+      for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
         days.push(
@@ -252,17 +129,82 @@ export default class Calendar extends React.Component {
     });
   }
 
-  render() {
-    return (
+  getCalendarList() {
+    fetch('/api/calendar.php')
+      .then(response => {
+        return response.json();
+      })
+      .then(myJson => {
+        this.setState({
+          calendarList: myJson,
+          sortedMeetings: this.sortMeetings(myJson)
+        });
+      });
+  }
 
-      <React.Fragment>
-        <NavBar />
-        <div className="calendar calendarStyle mt-3">
-          {this.renderHeader()}
-          {this.renderDays()}
-          {this.renderCells()}
-        </div>
-      </React.Fragment>
-    );
+  sortMeetings(array) {
+    let sortedMeetings = {
+      '0': [],
+      '1': [],
+      '2': [],
+      '3': [],
+      '4': [],
+      '5': [],
+      '6': []
+    };
+    for (let i = 0; i < array.length; i++) {
+      switch (array[i].day) {
+        case 'SUNDAY':
+          sortedMeetings[0].push(array[i]);
+          break;
+        case 'MONDAY':
+          sortedMeetings[1].push(array[i]);
+          break;
+        case 'TUESDAY':
+          sortedMeetings[2].push(array[i]);
+          break;
+        case 'WEDNESDAY':
+          sortedMeetings[3].push(array[i]);
+          break;
+        case 'THURSDAY':
+          sortedMeetings[4].push(array[i]);
+          break;
+        case 'FRIDAY':
+          sortedMeetings[5].push(array[i]);
+          break;
+        case 'SATURDAY':
+          sortedMeetings[6].push(array[i]);
+          break;
+        default:
+          break;
+      }
+    }
+    return sortedMeetings;
+  }
+
+  renderDots(i) {
+    let numberOfIcons = this.state.sortedMeetings[i].map((meeting, input) => <i key={meeting.id} className={`fas fa-circle calendarDots position${input} fa-xs ${meeting.program}`}>{meeting.program}</i>);
+    return numberOfIcons;
+  }
+
+  componentDidMount() {
+    this.getCalendarList();
+  }
+
+  render() {
+    if (this.state.calendarList !== undefined) {
+      return (
+        <React.Fragment>
+          <NavBar />
+          <div className="calendar mt-3">
+            {this.renderHeader()}
+            {this.renderDays()}
+            {this.renderCells()}
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return <div>loading...</div>;
+    }
   }
 }

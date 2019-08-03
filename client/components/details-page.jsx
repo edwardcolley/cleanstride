@@ -10,8 +10,8 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
-  Button
+  CarouselCaption
+  // Button
 } from 'reactstrap';
 import NavBar from './nav-bar';
 
@@ -138,15 +138,15 @@ export default class DetailsPage extends React.Component {
         <React.Fragment>
           <NavBar/>
           <Container>
-            <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button>
+            {/* <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button> */}
             <Row>
               <Col>
-                <Card className="carouselCard">
+                <Card className="carouselCard shadow">
                   <CardBody className="carousel">
                     {this.carouselPhotos()}
                   </CardBody>
                 </Card>
-                <Card className="headerCard">
+                <Card className="headerCard shadow">
                   <CardBody className="header">
                     <p>{this.state.details.name}</p>
                     {/* <StarRatingComponent
@@ -157,7 +157,7 @@ export default class DetailsPage extends React.Component {
                     /> */}
                   </CardBody>
                 </Card>
-                <Card className="contactInfoCard">
+                <Card className="contactInfoCard shadow">
                   <CardBody className="contactInfo">
                     <h1>Contact Information</h1>
                     <p>Address: {this.state.details.location.display_address}</p>
@@ -165,7 +165,7 @@ export default class DetailsPage extends React.Component {
                     <p>Website: {this.state.details.url}</p>
                   </CardBody>
                 </Card>
-                <Card className="descriptionCard">
+                <Card className="descriptionCard shadow">
                   <CardBody className="description">
                     <h1>Reviews</h1>
                     <p>{this.state.reviews.reviews[0].user.name}</p>

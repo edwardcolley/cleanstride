@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, Row, Col, Form, FormGroup, Input, Button, Card, CardText, InputGroup, CardTitle } from 'reactstrap';
 import Meetingcard from './meeting-card';
 import NavBar from './nav-bar';
+import { Link } from 'react-router-dom';
 
 export default class Meetings extends React.Component {
   constructor(props) {
@@ -162,7 +163,9 @@ export default class Meetings extends React.Component {
                     <Button className="shadow" onClick={this.getMeetings} color="info" size="sm">Search</Button>
                   </Col>
                   <Col xs={{ size: 4 }} md={{ size: 3, offset: 1 }}>
-                    <Button className="shadow" onClick={() => this.props.setView('favorites', {})} color="secondary" size="sm">Favorites</Button>
+                    <Link to="/favorites">
+                      <Button className="shadow" color="secondary" size="sm">Favorites</Button>
+                    </Link>
                   </Col>
                 </Row>
               </Form>
@@ -197,7 +200,7 @@ export default class Meetings extends React.Component {
           {this.state.program === 'Al-Anon' &&
         <Row className="mt-2">
           <Col md={{ size: 6, offset: 3 }}>
-            <Card body inverse color="danger">
+            <Card body inverse color="danger" className="shadow">
               <CardTitle className="text-center">Al-Anon</CardTitle>
               <CardText>
                 <ul>

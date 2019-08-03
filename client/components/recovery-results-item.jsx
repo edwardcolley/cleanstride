@@ -16,7 +16,7 @@ function RecoveryResultsPhoto(props) {
 function RecoveryResultsCard(props) {
   return (
     <Container className='Main mt-3'>
-      <Card onClick={() => props.onClick('details', { details: props.input })}>
+      <Card className="shadow" onClick={() => props.onClick('details', { details: props.input })}>
         <RecoveryResultsPhoto photos= {props.input.photos}/>
         <CardBody className="cardBody">
           <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
