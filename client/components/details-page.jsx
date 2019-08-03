@@ -1,5 +1,5 @@
 import React from 'react';
-// import StarRatingComponent from 'react-star-rating-component';
+import StarRatingComponent from 'react-star-rating-component';
 import {
   Col,
   Row,
@@ -9,9 +9,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
-  // Button
+  CarouselIndicators
 } from 'reactstrap';
 import NavBar from './nav-bar';
 
@@ -69,7 +67,7 @@ export default class DetailsPage extends React.Component {
           key={index}
         >
           <img src={item} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
         </CarouselItem>
       );
     });
@@ -149,12 +147,12 @@ export default class DetailsPage extends React.Component {
                 <Card className="headerCard shadow">
                   <CardBody className="header">
                     <p>{this.state.details.name}</p>
-                    {/* <StarRatingComponent
+                    <StarRatingComponent
                       name="Rate"
                       starCount={5}
-                      value={this.props.input.rating}
+                      value={this.state.details.rating}
                       starColor={'#04ecf0'}
-                    /> */}
+                    />
                   </CardBody>
                 </Card>
                 <Card className="contactInfoCard shadow">
