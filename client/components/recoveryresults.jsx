@@ -1,6 +1,6 @@
 import React from 'react';
 import RecoveryResultsCard from './recovery-results-item';
-import { Container } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import NavBar from './nav-bar';
 
@@ -14,7 +14,10 @@ class RecoveryResults extends React.Component {
       longitude: undefined
     };
     this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
+    this.handleDescendingRating = this.handleDescendingRating.bind(this);
+    this.handleAscendingRating = this.handleAscendingRating.bind(this);
     this.getGooglePlacesListFromCoords = this.getGooglePlacesListFromCoords.bind(this);
+
   }
 
   getGooglePlacesList(userInput) {
@@ -53,6 +56,21 @@ class RecoveryResults extends React.Component {
       this.getGooglePlacesListFromCoords(params.id);
     }
   }
+  handleDescendingRating() {
+    let currentList = this.state.googleResult;
+    this.setState({
+      googleResult: currentList.sort((a, b) => a.rating - b.rating)
+    });
+  }
+  handleAscendingRating() {
+    let currentList = this.state.googleResult;
+    let AscendingSortedList = currentList.sort((a, b) => a.rating - b.rating);
+    if (currentList || AscendingSortedList) {
+      this.setState({
+        googleResult: AscendingSortedList.sort((a, b) => b.rating - a.rating)
+      });
+    }
+  }
 
   renderRecoveryCard() {
     if (this.state.googleResult) {
@@ -72,6 +90,8 @@ class RecoveryResults extends React.Component {
         <div>
           <NavBar />
           <Container>
+            <button onClick={this.handleDescendingRating}>Sort</button>
+            <Button outline color="secondary" onClick = {this.handleAscendingRating}>Descending</Button>{' '}
             {this.renderRecoveryCard()}
           </Container>
         </div>
