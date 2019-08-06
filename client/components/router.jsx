@@ -12,12 +12,12 @@ const routing = (
   <Router>
     <div>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/recoveryresults/:id" component={RecoveryResults} />
+      <Route path="/recoveryresults/:id" render={(props)=><RecoveryResults {...props} />} />
       <Route path="/detailspage/:name" component={DetailsPage} />
       <Route path="/meetings" component={Meetings} />
       <Route path="/favorites" component={Favorites} />
       <Route path="/calendar" component={Calendar} />
-      <Route path="/loadingpage" component={LoadingPage} />
+      <Route path="/loadingpage/:geoLocation" component={LoadingPage} />
     </div>
   </Router>
 );
