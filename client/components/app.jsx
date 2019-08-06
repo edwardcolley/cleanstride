@@ -17,8 +17,7 @@ export default class App extends React.Component {
         name: 'landing',
         params: {}
       },
-      favorites: {
-      }
+      favorites: {}
     };
     this.setState = this.setState.bind(this);
     this.setView = this.setView.bind(this);

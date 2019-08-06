@@ -117,9 +117,10 @@ main {
  .calendar {
   display: block;
   position: relative;
-  width: 100%;
+  width: 99%;
   background: var(--neutral-color);
   border: 1px solid var(--border-color);
+  /* overflow: hidden; */
 }
 
 .calendar .header {
@@ -175,7 +176,7 @@ main {
 
 .calendar .body .selected {
   border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #1a8fff 0%,#53cbf1 40%);
+  border-image: linear-gradient(45deg, #91e3ec 0%,#53f1d4 40%);
   border-image-slice: 1;
 }
 
@@ -229,6 +230,35 @@ main {
   width: calc(100%/7);
 } 
 
+.calendarInfo {
+  position: absolute;
+  left: .35rem;
+  color: blue;
+  font-size: .6rem;
+}
+.position0 {
+  top: 1.3rem;
+}
+
+.position1 {
+  top: 3.0rem;
+}
+
+/* .position2 {
+  top: 3.7rem;
+} */
+
+.Al-Anon {
+  color: red;
+}
+.NA {
+  color: purple;
+}
+.OA {
+  color: green;
+}
+/* END OF CALENDER CSS */
+
 .navButton,
 button {
     cursor: pointer;
@@ -253,6 +283,10 @@ button {
 
 .header {
     background-color: lightgrey;
+}
+
+.header > p {
+  font-size: 25px;
 }
 
 .contactInfoCard {

@@ -1,6 +1,8 @@
 import React from 'react';
 import RecoveryResultsCard from './recovery-results-item';
-import { Container } from 'reactstrap';
+import Button, { Container } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import NavBar from './nav-bar';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
@@ -10,7 +12,7 @@ class RecoveryResults extends React.Component {
       searchZone: ''
     };
     this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
-
+    this.handleDescendingRating = this.handleDescendingRating.bind(this);
   }
 
   getGooglePlacesList(userInput) {
@@ -29,13 +31,29 @@ class RecoveryResults extends React.Component {
   }
 
   componentDidMount() {
-    this.getGooglePlacesList(this.props.params.searchZone);
+    const { match: { params } } = this.props;
+    this.getGooglePlacesList(params.id);
+  }
+  handleDescendingRating() {
+    let descendingStarRatings = this.state.googleResult;
+    console.log(descendingStarRatings);
+    descendingStarRatings.sort(function (a, b) {
+      return a.rating - b.rating;
+    })
+      .then(descendingResult => {
+        console.log(descendingResult);
+        this.setState({
+          googleResult: descendingResult.ratings
+        });
+      });
   }
 
   renderRecoveryCard() {
     return this.state.googleResult.map(input => {
       return (
-        <RecoveryResultsCard onClick={this.props.setView} key={input.id} input={input}/>
+        <Link to={'/detailspage/' + input.name} key={input.id}>
+          <RecoveryResultsCard input={input}/>
+        </Link>
       );
     });
   }
@@ -44,7 +62,9 @@ class RecoveryResults extends React.Component {
     if (this.state.googleResult) {
       return (
         <div>
+          <NavBar />
           <Container>
+            <button>Sort</button>
             {this.renderRecoveryCard()}
           </Container>
         </div>

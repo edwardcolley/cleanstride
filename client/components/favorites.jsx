@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardTitle, Button } from 'reactstrap';
+import { Container, Row, Col, Card, Button, CardTitle } from 'reactstrap';
+import NavBar from './nav-bar';
 
 export default class Favorites extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class Favorites extends React.Component {
     };
 
     this.getFavorites = this.getFavorites.bind(this);
+    this.addToCalendarBackEnd = this.addToCalendarBackEnd.bind(this);
   }
 
   getFavorites() {
@@ -25,6 +27,17 @@ export default class Favorites extends React.Component {
 
   componentDidMount() {
     this.getFavorites();
+  }
+
+  addToCalendarBackEnd(id) {
+    fetch('/api/calendar.php', {
+      method: 'POST',
+      body: JSON.stringify(id),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json());
   }
 
   favoritesCards() {
@@ -50,7 +63,7 @@ export default class Favorites extends React.Component {
           </Row>
           <Row>
             <Col xs={{ size: 6, offset: 3 }} md={{ size: 4, offset: 5 }}>
-              <Button className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
+              <Button onClick={() => this.addToCalendarBackEnd(data)} className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
             </Col>
           </Row>
         </Card>
@@ -64,14 +77,17 @@ export default class Favorites extends React.Component {
   render() {
     if (this.state.favorites !== null) {
       return (
-        <Container>
-          <Row className="mt-4">
-            <Col xs={{ size: 10, offset: 1 }}>
-              <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorite Meetings</h3>
-            </Col>
-          </Row>
-          {this.favoritesCards()}
-        </Container>
+        <React.Fragment>
+          <NavBar />
+          <Container>
+            <Row className="mt-4">
+              <Col xs={{ size: 10, offset: 1 }}>
+                <h3 className="text-center text-secondary"><span><i className="fas fa-star"/></span> Favorite Meetings</h3>
+              </Col>
+            </Row>
+            {this.favoritesCards()}
+          </Container>
+        </React.Fragment>
       );
     } else {
       return (

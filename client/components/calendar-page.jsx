@@ -1,16 +1,20 @@
 import React from 'react';
 import dateFns from 'date-fns';
+import NavBar from './nav-bar';
 
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentMonth: new Date(),
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      calendarList: undefined,
+      sortedMeetings: null
     };
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.onDateClick = this.onDateClick.bind(this);
+    this.getCalendarList = this.getCalendarList.bind(this);
   }
 
   renderHeader() {
@@ -38,12 +42,12 @@ export default class Calendar extends React.Component {
   }
 
   renderDays() {
-    const daysOfWeek = ["SUN", "MON", "TUES", "WED", "THURS", "FRI", "SAT"];
+    const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
     const days = [];
 
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col col-center col-style" key={i}>
+        <div className="col col-center col-style colStyle" key={i}>
           {daysOfWeek[i]}
         </div>
       );
@@ -77,6 +81,7 @@ export default class Calendar extends React.Component {
           onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
           >
             <span className="number">{formattedDate}</span>
+            <span>{this.renderDots(i)}</span>
             <span className="bg">{formattedDate}</span>
           </div>
         );
@@ -110,13 +115,82 @@ export default class Calendar extends React.Component {
     });
   }
 
+  getCalendarList() {
+    fetch('/api/calendar.php')
+      .then(response => {
+        return response.json();
+      })
+      .then(myJson => {
+        this.setState({
+          calendarList: myJson,
+          sortedMeetings: this.sortMeetings(myJson)
+        });
+      });
+  }
+
+  sortMeetings(array) {
+    let sortedMeetings = {
+      '0': [],
+      '1': [],
+      '2': [],
+      '3': [],
+      '4': [],
+      '5': [],
+      '6': []
+    };
+    for (let i = 0; i < array.length; i++) {
+      switch (array[i].day) {
+        case 'SUNDAY':
+          sortedMeetings[0].push(array[i]);
+          break;
+        case 'MONDAY':
+          sortedMeetings[1].push(array[i]);
+          break;
+        case 'TUESDAY':
+          sortedMeetings[2].push(array[i]);
+          break;
+        case 'WEDNESDAY':
+          sortedMeetings[3].push(array[i]);
+          break;
+        case 'THURSDAY':
+          sortedMeetings[4].push(array[i]);
+          break;
+        case 'FRIDAY':
+          sortedMeetings[5].push(array[i]);
+          break;
+        case 'SATURDAY':
+          sortedMeetings[6].push(array[i]);
+          break;
+        default:
+          break;
+      }
+    }
+    return sortedMeetings;
+  }
+
+  renderDots(i) {
+    let numberOfIcons = this.state.sortedMeetings[i].map((meeting, input) => <p key={meeting.id} className={`calendarInfo position${input} ${meeting.program} font-weight-bold`}>{meeting.program}<br/>{meeting.time}</p>);
+    return numberOfIcons;
+  }
+
+  componentDidMount() {
+    this.getCalendarList();
+  }
+
   render() {
-    return (
-      <div className="calendar calendarStyle mt-3">
-        {this.renderHeader()}
-        {this.renderDays()}
-        {this.renderCells()}
-      </div>
-    );
+    if (this.state.calendarList !== undefined) {
+      return (
+        <React.Fragment>
+          <NavBar />
+          <div className="calendar mt-3">
+            {this.renderHeader()}
+            {this.renderDays()}
+            {this.renderCells()}
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return <div>loading...</div>;
+    }
   }
 }

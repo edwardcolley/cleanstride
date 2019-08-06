@@ -2,6 +2,8 @@
 import React from 'react';
 import { Container, Row, Col, Form, FormGroup, Input, Button, Card, CardText, InputGroup, CardTitle } from 'reactstrap';
 import Meetingcard from './meeting-card';
+import NavBar from './nav-bar';
+import { Link } from 'react-router-dom';
 
 export default class Meetings extends React.Component {
   constructor(props) {
@@ -39,19 +41,6 @@ export default class Meetings extends React.Component {
         });
       });
   }
-
-  // getFavoriteMeetings() {
-  //   fetch('/api/favorites.php')
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(myJson => {
-  //       this.setState({
-  //         meetings: myJson,
-  //         search: true
-  //       });
-  //     });
-  // }
 
   addFavorite(newMeeting) {
     fetch('/api/favorites.php', {
@@ -105,67 +94,71 @@ export default class Meetings extends React.Component {
 
   render() {
     return (
-      <Container className="meetingContainer" xs={{ fluid: true }}>
-        <Row className="mt-4">
-          <Col xs={{ size: 10, offset: 1 }}>
-            <h3 className="text-center text-secondary"><span><i className="far fa-handshake"></i></span> Meeting Directory</h3>
-          </Col>
-        </Row>
-        <Row className="mt-4">
-          <Col xs={{ size: 10, offset: 1 }}>
-            <Form>
-              <FormGroup>
-                <InputGroup>
-                  <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeProgram}>
-                    <option>PROGRAM</option>
-                    <option>AA</option>
-                    <option>Al-Anon</option>
-                    <option>NA</option>
-                    <option>OA</option>
+      <React.Fragment>
+        <NavBar />
+        <Container className="meetingContainer" xs={{ fluid: true }}>
+          <Row className="mt-4">
+            <Col xs={{ size: 10, offset: 1 }}>
+              <h3 className="text-center text-secondary"><span><i className="far fa-handshake"></i></span> Meeting Directory</h3>
+            </Col>
+          </Row>
+          <Row className="mt-4">
+            <Col xs={{ size: 10, offset: 1 }}>
+              <Form>
+                <FormGroup>
+                  <InputGroup>
+                    <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeProgram}>
+                      <option>PROGRAM</option>
+                      <option>AA</option>
+                      <option>Al-Anon</option>
+                      <option>NA</option>
+                      <option>OA</option>
+                    </Input>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeCity}>
+                    <option>CITY</option>
+                    <option>ALISO VIEJO</option>
+                    <option>COSTA MESA</option>
+                    <option>DANA POINT</option>
+                    <option>IRVINE</option>
+                    <option>LAGUNA BEACH</option>
+                    <option>LAGUNA WOODS</option>
+                    <option>LAGUNA HILLS</option>
+                    <option>LAKE FOREST</option>
+                    <option>MISSION VIEJO</option>
+                    <option>NEWPORT BEACH</option>
+                    <option>RANCHO SANTA MARGARITA</option>
+                    <option>SAN JUAN CAPISTRANO</option>
                   </Input>
-                </InputGroup>
-              </FormGroup>
-              <FormGroup>
-                <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeCity}>
-                  <option>CITY</option>
-                  <option>ALISO VIEJO</option>
-                  <option>COSTA MESA</option>
-                  <option>DANA POINT</option>
-                  <option>IRVINE</option>
-                  <option>LAGUNA BEACH</option>
-                  <option>LAGUNA WOODS</option>
-                  <option>LAGUNA HILLS</option>
-                  <option>LAKE FOREST</option>
-                  <option>MISSION VIEJO</option>
-                  <option>NEWPORT BEACH</option>
-                  <option>RANCHO SANTA MARGARITA</option>
-                  <option>SAN JUAN CAPISTRANO</option>
-                </Input>
-              </FormGroup>
-              <FormGroup>
-                <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeDay}>
-                  <option>DAY</option>
-                  <option>SUNDAY</option>
-                  <option>MONDAY</option>
-                  <option>TUESDAY</option>
-                  <option>WEDNESDAY</option>
-                  <option>THURSDAY</option>
-                  <option>FRIDAY</option>
-                  <option>SATURDAY</option>
-                </Input>
-              </FormGroup>
-              <Row>
-                <Col xs={{ size: 4, offset: 2 }} md={{ size: 3, offset: 3 }}>
-                  <Button className="shadow" onClick={this.getMeetings} color="info" size="sm">Search</Button>
-                </Col>
-                <Col xs={{ size: 4 }} md={{ size: 3, offset: 1 }}>
-                  <Button className="shadow" onClick={() => this.props.setView('favorites', {})} color="secondary" size="sm">Favorites</Button>
-                </Col>
-              </Row>
-            </Form>
-          </Col>
-        </Row>
-        {this.state.program === 'AA' &&
+                </FormGroup>
+                <FormGroup>
+                  <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeDay}>
+                    <option>DAY</option>
+                    <option>SUNDAY</option>
+                    <option>MONDAY</option>
+                    <option>TUESDAY</option>
+                    <option>WEDNESDAY</option>
+                    <option>THURSDAY</option>
+                    <option>FRIDAY</option>
+                    <option>SATURDAY</option>
+                  </Input>
+                </FormGroup>
+                <Row>
+                  <Col xs={{ size: 4, offset: 2 }} md={{ size: 3, offset: 3 }}>
+                    <Button className="shadow" onClick={this.getMeetings} color="info" size="sm">Search</Button>
+                  </Col>
+                  <Col xs={{ size: 4 }} md={{ size: 3, offset: 1 }}>
+                    <Link to="/favorites">
+                      <Button className="shadow" color="secondary" size="sm">Favorites</Button>
+                    </Link>
+                  </Col>
+                </Row>
+              </Form>
+            </Col>
+          </Row>
+          {this.state.program === 'AA' &&
         <Row className="mt-2">
           <Col md={{ size: 6, offset: 3 }}>
             <Card body inverse color="info">
@@ -190,11 +183,11 @@ export default class Meetings extends React.Component {
             </Card>
           </Col>
         </Row>
-        }
-        {this.state.program === 'Al-Anon' &&
+          }
+          {this.state.program === 'Al-Anon' &&
         <Row className="mt-2">
           <Col md={{ size: 6, offset: 3 }}>
-            <Card body inverse color="danger">
+            <Card body inverse color="danger" className="shadow">
               <CardTitle className="text-center">Al-Anon</CardTitle>
               <CardText>
                 <ul>
@@ -208,11 +201,12 @@ export default class Meetings extends React.Component {
             </Card>
           </Col>
         </Row>
-        }
-        {this.state.search === true &&
+          }
+          {this.state.search === true &&
           this.renderMeetingcards()
-        }
-      </Container>
+          }
+        </Container>
+      </React.Fragment>
     );
   }
 }

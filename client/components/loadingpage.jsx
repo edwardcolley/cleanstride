@@ -18,7 +18,7 @@ export default class LoadingPage extends React.Component {
     this.getUserLocation();
   }
 
-  GoToReusltsPage() {
+  goToResultsPage() {
 
     this.props.setView('recoveryresults', {
       latitude: this.state.latitude,
@@ -38,7 +38,7 @@ export default class LoadingPage extends React.Component {
   }
 
   componentDidUpdate() {
-    this.GoToReusltsPage();
+    this.goToResultsPage();
   }
 
   render() {
