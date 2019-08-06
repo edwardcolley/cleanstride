@@ -272,42 +272,39 @@ button {
     margin-top: 30vh;
 }
 
+/*Details-Page*/
 .carouselCard {
     margin-top: 5%;
 }
-
 .headerCard {
     margin-top: 5%;
     margin-bottom: 2%;
 }
-
 .header {
     background-color: lightgrey;
 }
-
 .header > p {
   font-size: 25px;
 }
-
 .contactInfoCard {
     margin-bottom: 2%;
 }
-
 .contactInfo {
     background-color: lightgrey;
 }
-
 .contactInfo > h1 {
     font-size: 25px;
 }
-
 .description {
     background-color: lightgrey;
 }
-
 .description > h1 {
     font-size: 25px;
 }
+.review-count {
+  font-size: 5px;
+}
+/*End of Details-Page CSS*/
 
 .favoritesCardBody{
     width: 100%;
