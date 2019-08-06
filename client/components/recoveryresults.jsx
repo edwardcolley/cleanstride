@@ -17,7 +17,6 @@ class RecoveryResults extends React.Component {
     this.handleDescendingRating = this.handleDescendingRating.bind(this);
     this.handleAscendingRating = this.handleAscendingRating.bind(this);
     this.getGooglePlacesListFromCoords = this.getGooglePlacesListFromCoords.bind(this);
-
   }
 
   getGooglePlacesList(userInput) {
@@ -50,6 +49,7 @@ class RecoveryResults extends React.Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
+    console.log("recoveryresults id value: ", params.id, typeof(params.id));
     if (params.id.length < 20) {
       this.getGooglePlacesList(params.id);
     } else {
