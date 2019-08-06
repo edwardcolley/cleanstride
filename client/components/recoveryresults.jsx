@@ -18,9 +18,9 @@ class RecoveryResults extends React.Component {
   }
 
   getGooglePlacesList(userInput) {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000`;
-    fetch(proxyURL + targetURL)
+    // let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    // let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000`;
+    fetch(`/api/googletextsearch_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000`)
       .then(response => {
         return response.json();
       })
@@ -32,9 +32,9 @@ class RecoveryResults extends React.Component {
   }
 
   getGooglePlacesListFromCoords(coords) {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`;
-    fetch(proxyURL + targetURL)
+    // let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    // let targetURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`;
+    fetch(`/api/googlenearbysearch_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`)
       .then(response => {
         return response.json();
       })
