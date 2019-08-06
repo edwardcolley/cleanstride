@@ -90,8 +90,8 @@ class RecoveryResults extends React.Component {
         <div>
           <NavBar />
           <Container>
-            <button onClick={this.handleDescendingRating}>Sort</button>
-            <Button outline color="secondary" onClick = {this.handleAscendingRating}>Descending</Button>{' '}
+            <Button outline color="secondary" onClick={this.handleDescendingRating}>Ascending</Button>
+            <Button outline color="secondary" onClick = {this.handleAscendingRating}>Descending</Button>
             {this.renderRecoveryCard()}
           </Container>
         </div>

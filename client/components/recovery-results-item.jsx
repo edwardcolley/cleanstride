@@ -16,30 +16,36 @@ function RecoveryResultsPhoto(props) {
   const urlFormat = `https://maps.googleapis.com/maps/api/place/photo?photoreference=${photoreference}&maxwidth=500&key=${API_KEY}`;
   return <CardImg className='resultsImg col-sm-6' top width="100%" src={urlFormat} alt="Card img" />;
 }
-// function SortingRecoveryResults(props) {
-//   var sortedStarList = () => (
-//     <ul>
-//       {props.input.rating
-//         .sort(function (a, b) {
-//           return b.rating - a.rating;
-//         })
-//         .map(number => {
-//           return (<li>{number.rating}</li>);
-//         })}
-//     </ul>
-//   )
-// }
 
 function RecoveryResultsCard(props) {
-  if(props.input.formatted_address){
-  return (
-    <Container className='Main mt-3'>
-      <Link to={'/detailspage/' + props.input.name}>
-        <Card className="shadow">
+  if (props.input.formatted_address) {
+    return (
+      <Container className='Main mt-3'>
+        <Link to={'/detailspage/' + props.input.name}>
+          <Card className="shadow">
+            <RecoveryResultsPhoto photos= {props.input.photos}/>
+            <CardBody className="cardBody">
+              <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
+              <CardSubtitle className='ratingsResults'>{props.input.formatted_address}</CardSubtitle>
+              <StarRatingComponent
+                name="Rate"
+                starCount={5}
+                value={props.input.rating}
+                starColor={'#04ecf0'}
+              />
+            </CardBody>
+          </Card>
+        </Link>
+      </Container >
+    );
+  } else {
+    return (
+      <Container className='Main mt-3'>
+        <Card className="shadow" onClick={() => props.onClick('details', { details: props.input })}>
           <RecoveryResultsPhoto photos= {props.input.photos}/>
           <CardBody className="cardBody">
             <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
-            <CardSubtitle className='ratingsResults'>{props.input.formatted_address}</CardSubtitle>
+            <CardSubtitle className='ratingsResults'>{props.input.vicinity}</CardSubtitle>
             <StarRatingComponent
               name="Rate"
               starCount={5}
@@ -48,27 +54,8 @@ function RecoveryResultsCard(props) {
             />
           </CardBody>
         </Card>
-      </Link>
-    </Container >
-  );
-} else {
-  return(
-  <Container className='Main mt-3'>
-      <Card className="shadow" onClick={() => props.onClick('details', { details: props.input })}>
-        <RecoveryResultsPhoto photos= {props.input.photos}/>
-        <CardBody className="cardBody">
-          <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
-          <CardSubtitle className='ratingsResults'>{props.input.vicinity}</CardSubtitle>
-          <StarRatingComponent
-            name="Rate"
-            starCount={5}
-            value={props.input.rating}
-            starColor={'#04ecf0'}
-          />
-        </CardBody>
-      </Card>
-    </Container >
-  );
-}
+      </Container >
+    );
+  }
 }
 export default RecoveryResultsCard;
