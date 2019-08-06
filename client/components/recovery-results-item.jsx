@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, CardImg, Container } from 'reactstrap';
 import StarRatingComponent from 'react-star-rating-component';
+import { Link } from 'react-router-dom';
 
 // Reconfigure this list page to pass props through functions and then create an if/else statement
 // The if statement will render each version of the sorting method applied per the click chosen
@@ -30,13 +31,34 @@ function RecoveryResultsPhoto(props) {
 // }
 
 function RecoveryResultsCard(props) {
+  if(props.input.formatted_address){
   return (
     <Container className='Main mt-3'>
+      <Link to={'/detailspage/' + props.input.name}>
+        <Card className="shadow">
+          <RecoveryResultsPhoto photos= {props.input.photos}/>
+          <CardBody className="cardBody">
+            <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
+            <CardSubtitle className='ratingsResults'>{props.input.formatted_address}</CardSubtitle>
+            <StarRatingComponent
+              name="Rate"
+              starCount={5}
+              value={props.input.rating}
+              starColor={'#04ecf0'}
+            />
+          </CardBody>
+        </Card>
+      </Link>
+    </Container >
+  );
+} else {
+  return(
+  <Container className='Main mt-3'>
       <Card className="shadow" onClick={() => props.onClick('details', { details: props.input })}>
         <RecoveryResultsPhoto photos= {props.input.photos}/>
         <CardBody className="cardBody">
           <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
-          <CardSubtitle className='ratingsResults'>{props.input.formatted_address}</CardSubtitle>
+          <CardSubtitle className='ratingsResults'>{props.input.vicinity}</CardSubtitle>
           <StarRatingComponent
             name="Rate"
             starCount={5}
@@ -48,5 +70,5 @@ function RecoveryResultsCard(props) {
     </Container >
   );
 }
-
+}
 export default RecoveryResultsCard;

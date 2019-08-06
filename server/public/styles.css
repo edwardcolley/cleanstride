@@ -236,6 +236,10 @@ main {
   color: blue;
   font-size: .6rem;
 }
+
+.calNumberZindex {
+  z-index: -1;
+}
 .position0 {
   top: 1.3rem;
 }
@@ -272,42 +276,39 @@ button {
     margin-top: 30vh;
 }
 
+/*Details-Page*/
 .carouselCard {
     margin-top: 5%;
 }
-
 .headerCard {
     margin-top: 5%;
     margin-bottom: 2%;
 }
-
 .header {
     background-color: lightgrey;
 }
-
 .header > p {
   font-size: 25px;
 }
-
 .contactInfoCard {
     margin-bottom: 2%;
 }
-
 .contactInfo {
     background-color: lightgrey;
 }
-
 .contactInfo > h1 {
     font-size: 25px;
 }
-
 .description {
     background-color: lightgrey;
 }
-
 .description > h1 {
     font-size: 25px;
 }
+.review-count {
+  font-size: 5px;
+}
+/*End of Details-Page CSS*/
 
 .favoritesCardBody{
     width: 100%;
@@ -331,18 +332,27 @@ button {
   right: 1rem;
 }
 
+.favoritedImg2,
 .favoritedImg{
   background-image: url("./images/favoritedIcon.png");
   background-repeat: no-repeat;
   background-size: contain;
-  height: 100px;
-  width: 100px;
   background-color: transparent;
   margin: 0;
   z-index: 1;
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.favoritedImg {
+  height: 100px;
+  width: 100px;
+}
+
+.favoritedImg2 {
+  height: 50px;
+  width: 50px;
 }
 
 .flexCentering{

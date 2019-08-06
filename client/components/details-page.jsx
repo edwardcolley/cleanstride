@@ -67,7 +67,6 @@ export default class DetailsPage extends React.Component {
           key={index}
         >
           <img src={item} alt={item.altText} />
-          {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
         </CarouselItem>
       );
     });
@@ -87,13 +86,8 @@ export default class DetailsPage extends React.Component {
 
   getDetails() {
     const { match: { params } } = this.props;
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL1 = `https://api.yelp.com/v3/businesses/search?location=newport beach&categories=recoveryrehabilitation&term=${params.name}&photos`;
-    fetch(proxyURL + targetURL1, {
-      headers: {
-        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-      }
-    }).then(res => res.json())
+    fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${params.name}&photos`)
+      .then(res => res.json())
       .then(result => {
         let id = result.businesses[0].id;
         let promises = [this.getBusinessReviews(id), this.getBusinessDetails(id)];
@@ -107,23 +101,13 @@ export default class DetailsPage extends React.Component {
   }
 
   getBusinessReviews(id) {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL2 = `https://api.yelp.com/v3/businesses/${id}/reviews`;
-    return fetch(proxyURL + targetURL2, {
-      headers: {
-        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-      }
-    }).then(res => res.json());
+    return fetch(`/api/yelp_proxyreviews.php?id=${id}`)
+      .then(res => res.json());
   }
 
   getBusinessDetails(id) {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL2 = `https://api.yelp.com/v3/businesses/${id}`;
-    return fetch(proxyURL + targetURL2, {
-      headers: {
-        'Authorization': 'Bearer _l5FHh7iIt2b-IZHeQEvb3L8pmRoIy2pE40et_6aEdVdk8_aDYhvj7ql2RGIW1PDOfOBSDoeRW5pdSzRzKGbSybMdC3wNVY0o-bA0TRfRSO2A9P6lWW1gfRwBNhAXXYx'
-      }
-    }).then(res => res.json());
+    return fetch(`/api/yelp_proxyID.php?id=${id}`)
+      .then(res => res.json());
   }
 
   componentDidMount() {
@@ -153,6 +137,7 @@ export default class DetailsPage extends React.Component {
                       value={this.state.details.rating}
                       starColor={'#04ecf0'}
                     />
+                    <p className="review-count">{this.state.details.review_count} Reviews</p>
                   </CardBody>
                 </Card>
                 <Card className="contactInfoCard shadow">
