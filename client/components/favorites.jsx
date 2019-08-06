@@ -66,6 +66,9 @@ export default class Favorites extends React.Component {
             <Col xs={{ size: 6, offset: 3 }} md={{ size: 4, offset: 5 }}>
               <Button onClick={() => this.addToCalendarBackEnd(data)} className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
             </Col>
+            <Col>
+              <i className="fas fa-calendar-plus fa-2x mt-3 ml-3"></i>
+            </Col>
           </Row>
         </Card>
       )

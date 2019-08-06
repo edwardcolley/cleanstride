@@ -47,7 +47,7 @@ class RecoveryResults extends React.Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    if(params.id.length < 20){
+    if (params.id.length < 20) {
       this.getGooglePlacesList(params.id);
     } else {
       this.getGooglePlacesListFromCoords(params.id);
@@ -55,21 +55,19 @@ class RecoveryResults extends React.Component {
   }
 
   renderRecoveryCard() {
-    if(this.state.googleResult){
-    return this.state.googleResult.map(input => {
-      return (
-        <Link to={'/detailspage/' + input.name} key={input.id}>
-          <RecoveryResultsCard input={input}/>
-        </Link>
-      );
-    });
+    if (this.state.googleResult) {
+      return this.state.googleResult.map(input => {
+        return (
+          <Link to={'/detailspage/' + input.name} key={input.id}>
+            <RecoveryResultsCard input={input}/>
+          </Link>
+        );
+      });
     }
   }
 
   render() {
     if (this.state.googleResult || this.state.latitude) {
-      console.log("recoveryresults state: ", this.state);
-      console.log("recoveryresults props: ", this.props);
       return (
         <div>
           <NavBar />
