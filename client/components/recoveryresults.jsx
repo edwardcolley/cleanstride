@@ -18,9 +18,9 @@ class RecoveryResults extends React.Component {
   }
 
   getGooglePlacesList(userInput) {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000`;
-    fetch(proxyURL + targetURL)
+    // let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    // let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000`;
+    fetch(`/api/googletextsearch_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000`)
       .then(response => {
         return response.json();
       })
@@ -32,9 +32,9 @@ class RecoveryResults extends React.Component {
   }
 
   getGooglePlacesListFromCoords(coords) {
-    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`;
-    fetch(proxyURL + targetURL)
+    // let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    // let targetURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`;
+    fetch(`/api/googlenearbysearch_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`)
       .then(response => {
         return response.json();
       })
@@ -47,7 +47,7 @@ class RecoveryResults extends React.Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    if(params.id.length < 20){
+    if (params.id.length < 20) {
       this.getGooglePlacesList(params.id);
     } else {
       this.getGooglePlacesListFromCoords(params.id);
@@ -55,21 +55,19 @@ class RecoveryResults extends React.Component {
   }
 
   renderRecoveryCard() {
-    if(this.state.googleResult){
-    return this.state.googleResult.map(input => {
-      return (
-        <Link to={'/detailspage/' + input.name} key={input.id}>
-          <RecoveryResultsCard input={input}/>
-        </Link>
-      );
-    });
+    if (this.state.googleResult) {
+      return this.state.googleResult.map(input => {
+        return (
+          <Link to={'/detailspage/' + input.name} key={input.id}>
+            <RecoveryResultsCard input={input}/>
+          </Link>
+        );
+      });
     }
   }
 
   render() {
     if (this.state.googleResult || this.state.latitude) {
-      console.log("recoveryresults state: ", this.state);
-      console.log("recoveryresults props: ", this.props);
       return (
         <div>
           <NavBar />
