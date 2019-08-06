@@ -14,6 +14,7 @@ function RecoveryResultsPhoto(props) {
 }
 
 function RecoveryResultsCard(props) {
+  if(props.input.formatted_address){
   return (
     <Container className='Main mt-3'>
       <Card className="shadow" onClick={() => props.onClick('details', { details: props.input })}>
@@ -31,6 +32,24 @@ function RecoveryResultsCard(props) {
       </Card>
     </Container >
   );
+} else {
+  return(
+  <Container className='Main mt-3'>
+      <Card className="shadow" onClick={() => props.onClick('details', { details: props.input })}>
+        <RecoveryResultsPhoto photos= {props.input.photos}/>
+        <CardBody className="cardBody">
+          <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
+          <CardSubtitle className='ratingsResults'>{props.input.vicinity}</CardSubtitle>
+          <StarRatingComponent
+            name="Rate"
+            starCount={5}
+            value={props.input.rating}
+            starColor={'#04ecf0'}
+          />
+        </CardBody>
+      </Card>
+    </Container >
+  );
 }
-
+}
 export default RecoveryResultsCard;

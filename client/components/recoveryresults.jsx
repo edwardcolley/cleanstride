@@ -9,15 +9,17 @@ class RecoveryResults extends React.Component {
     super(props);
     this.state = {
       googleResult: null,
-      searchZone: ''
+      searchZone: '',
+      latitude: undefined,
+      longitude: undefined
     };
     this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
-
+    this.getGooglePlacesListFromCoords = this.getGooglePlacesListFromCoords.bind(this);
   }
 
   getGooglePlacesList(userInput) {
     let proxyURL = 'https://cors-anywhere.herokuapp.com/';
-    let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000@40.0150,105.2705`;
+    let targetURL = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&inputtype=textquery&input=recovery centers in ${userInput}&fields=formatted_address,url,website,geometry,icon,name,photos,opening_hours,price_level,place_id,plus_code,types&circle=50000`;
     fetch(proxyURL + targetURL)
       .then(response => {
         return response.json();
@@ -27,15 +29,33 @@ class RecoveryResults extends React.Component {
           googleResult: myJson.results
         });
       });
+  }
 
+  getGooglePlacesListFromCoords(coords) {
+    let proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    let targetURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`;
+    fetch(proxyURL + targetURL)
+      .then(response => {
+        return response.json();
+      })
+      .then(myJson => {
+        this.setState({
+          googleResult: myJson.results
+        });
+      });
   }
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    this.getGooglePlacesList(params.id);
+    if(params.id.length < 20){
+      this.getGooglePlacesList(params.id);
+    } else {
+      this.getGooglePlacesListFromCoords(params.id);
+    }
   }
 
   renderRecoveryCard() {
+    if(this.state.googleResult){
     return this.state.googleResult.map(input => {
       return (
         <Link to={'/detailspage/' + input.name} key={input.id}>
@@ -43,10 +63,13 @@ class RecoveryResults extends React.Component {
         </Link>
       );
     });
+    }
   }
 
   render() {
-    if (this.state.googleResult) {
+    if (this.state.googleResult || this.state.latitude) {
+      console.log("recoveryresults state: ", this.state);
+      console.log("recoveryresults props: ", this.props);
       return (
         <div>
           <NavBar />
@@ -65,7 +88,6 @@ class RecoveryResults extends React.Component {
         </div>
       );
     }
-
   }
 }
 export default RecoveryResults;

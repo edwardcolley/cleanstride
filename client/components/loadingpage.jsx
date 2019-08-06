@@ -26,16 +26,16 @@ export default class LoadingPage extends React.Component {
     });
   }
 
-  getUserLocation() {
-    navigator.geolocation.getCurrentPosition(this.showPosition);
-  }
+  // getUserLocation() {
+  //   navigator.geolocation.getCurrentPosition(this.showPosition);
+  // }
 
-  showPosition(position) {
-    this.setState({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    });
-  }
+  // showPosition(position) {
+  //   this.setState({
+  //     latitude: position.coords.latitude,
+  //     longitude: position.coords.longitude
+  //   });
+  // }
 
   componentDidUpdate() {
     this.goToResultsPage();
