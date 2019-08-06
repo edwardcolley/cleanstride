@@ -86,7 +86,7 @@ export default class DetailsPage extends React.Component {
 
   getDetails() {
     const { match: { params } } = this.props;
-    fetch(`/api/yelp_proxy.php?location=orange county&categories=recoverycenter&term=${params.name}&photos`)
+    fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${params.name}&photos`)
       .then(res => res.json())
       .then(result => {
         let id = result.businesses[0].id;
