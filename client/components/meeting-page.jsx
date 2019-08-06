@@ -26,7 +26,6 @@ export default class Meetings extends React.Component {
     this.renderMeetingcards = this.renderMeetingcards.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.deleteFavorite = this.deleteFavorite.bind(this);
-    // this.getFavoriteMeetings();
   }
 
   getMeetings() {

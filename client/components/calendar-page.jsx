@@ -1,6 +1,7 @@
 import React from 'react';
 import dateFns from 'date-fns';
 import NavBar from './nav-bar';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -9,12 +10,18 @@ export default class Calendar extends React.Component {
       currentMonth: new Date(),
       selectedDate: new Date(),
       calendarList: undefined,
-      sortedMeetings: null
+      sortedMeetings: null,
+      clickedMeeting: {
+        modal: false,
+        info: null
+      }
     };
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.onDateClick = this.onDateClick.bind(this);
     this.getCalendarList = this.getCalendarList.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.deleteFromCalendarBackEnd = this.deleteFromCalendarBackEnd.bind(this);
   }
 
   renderHeader() {
@@ -81,8 +88,8 @@ export default class Calendar extends React.Component {
           onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
           >
             <span className="number">{formattedDate}</span>
-            <span>{this.renderDots(i)}</span>
-            <span className="bg">{formattedDate}</span>
+            <span>{this.renderMeetings(i)}</span>
+            <span className="bg calNumberZindex">{formattedDate}</span>
           </div>
         );
         day = dateFns.addDays(day, 1);
@@ -128,6 +135,20 @@ export default class Calendar extends React.Component {
       });
   }
 
+  deleteFromCalendarBackEnd(id) {
+    fetch('/api/calendar.php', {
+      method: 'DELETE',
+      body: JSON.stringify(id),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(() => {
+        this.getCalendarList();
+        this.toggle();
+      });
+  }
+
   sortMeetings(array) {
     let sortedMeetings = {
       '0': [],
@@ -168,8 +189,20 @@ export default class Calendar extends React.Component {
     return sortedMeetings;
   }
 
-  renderDots(i) {
-    let numberOfIcons = this.state.sortedMeetings[i].map((meeting, input) => <p key={meeting.id} className={`calendarInfo position${input} ${meeting.program} font-weight-bold`}>{meeting.program}<br/>{meeting.time}</p>);
+  toggle() {
+    this.setState(prevState => ({
+      clickedMeeting: {
+        modal: !prevState.modal
+      }
+    }));
+  }
+
+  renderMeetings(i) {
+    let numberOfIcons = this.state.sortedMeetings[i].map((meeting, input) => {
+      return (
+        <p key={meeting.id} onClick={() => this.setState({ clickedMeeting: { modal: true, info: meeting } })} className={`calendarInfo position${input} ${meeting.program} font-weight-bold`}>{meeting.program}<br/>{meeting.time}</p>
+      );
+    });
     return numberOfIcons;
   }
 
@@ -187,6 +220,20 @@ export default class Calendar extends React.Component {
             {this.renderDays()}
             {this.renderCells()}
           </div>
+          {this.state.clickedMeeting.info !== null && this.state.clickedMeeting.info !== undefined &&
+          <Modal isOpen={this.state.clickedMeeting.modal} toggle={() => this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>{this.state.clickedMeeting.info.program}<br/>{this.state.clickedMeeting.info.name}</ModalHeader>
+            <ModalBody>
+              <p>{this.state.clickedMeeting.info.time}</p>
+              <p>{this.state.clickedMeeting.info.day}</p>
+              <p>{this.state.clickedMeeting.info.address}</p>
+              <p>{this.state.clickedMeeting.info.zip}</p>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={() => this.deleteFromCalendarBackEnd(this.state.clickedMeeting.info)}>Remove from Calendar</Button>
+            </ModalFooter>
+          </Modal>
+          }
         </React.Fragment>
       );
     } else {

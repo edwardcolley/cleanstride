@@ -44,6 +44,7 @@ export default class Favorites extends React.Component {
     const cardCreator = this.state.favorites.map((data, index) => {
       return (
         <Card key={index} className="mt-3 shadow" body inverse style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }}>
+          <div className="favoritedImg2"></div>
           <CardTitle className="cardTitle text-center">{data.program}<br/>{data.name}</CardTitle>
           <Row className="flexCentering favoritesText mt-1">
             <Col xs={{ size: 4 }} md={{ size: 3, offset: 2 }}>
