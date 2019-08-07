@@ -7,15 +7,11 @@ export default class LandingPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchZone: '',
-      latitude: undefined,
-      longitude: undefined
+      searchZone: ''
     };
 
     this.handleSearchZoneChange = this.handleSearchZoneChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getUserLocation = this.getUserLocation.bind(this);
-    this.useCoords = this.useCoords.bind(this);
   }
 
   handleSearchZoneChange(event) {
@@ -24,28 +20,13 @@ export default class LandingPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.goToResultsPage();
     this.setState({
       searchZone: ''
     });
   }
 
-  componentDidMount(){
-    this.getUserLocation();
-  }
-
-  getUserLocation() {
-    navigator.geolocation.getCurrentPosition(this.useCoords);
-  }
-
-  useCoords(position){
-    this.setState({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    });
-  }
-
   render() {
+    console.log("landingpage props: ", this.props)
     return (
       <React.Fragment>
         <NavBar />
@@ -58,16 +39,16 @@ export default class LandingPage extends React.Component {
               <Form onSubmit={this.handleSubmit} action="">
                 <FormGroup>
                   <div className="input-group mb-3">
-                    <input type="text" className="form-control shadow" max="20" placeholder="City or Zipcode" aria-label="Recipient's username" aria-describedby="basic-addon2" value={this.state.searchZone} onChange={this.handleSearchZoneChange}/>
+                    <input type="text" className="form-control shadow" maxLength="19" placeholder="City or Zipcode" aria-label="Recipient's username" aria-describedby="basic-addon2" value={this.state.searchZone} onChange={this.handleSearchZoneChange}/>
                     <div className="input-group-append">
-                      <Link to={'/recoveryresults/' + this.state.searchZone}>
+                      <Link to={'/recoveryresults/?locale=' + this.state.searchZone}>
                         <button className="btn btn-pirmary btn-outline-primary shadow" color="primary" type="button">Search</button>
                       </Link>
                     </div>
                   </div>
                   <Row className="mt-1">
                     <Col xs={{ size: 10, offset: 2 }} md={{ size: 10, offset: 3 }} lg={{ size: 10, offset: 4 }}>
-                      <Link to={"/recoveryresults/" + this.state.latitude + "," + this.state.longitude} latitude={this.state.latitude} longitude={this.state.longitude}>
+                      <Link to='/loadingpage'>
                         <Button className="shadow" type="submit" color="primary">Use My Location</Button>{' '}
                       </Link>
                     </Col>

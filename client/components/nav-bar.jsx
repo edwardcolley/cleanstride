@@ -32,10 +32,9 @@ export default class NavBar extends React.Component {
         <Navbar style={{ backgroundColor: '#A9A9A9' }} light expand="md" className="text-white">
           <NavbarBrand className="navButton">
             <Link to="/">
-              <img src="/images/transparentLogo.png" style={{ width: 45 }} />
-            </Link>Clean Stride
+              <img src="/images/croppedTransparentLogo.png" style={{ width: 45, marginRight: 10}} />
+            </Link> Clean Stride
           </NavbarBrand>
-
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto text-white" navbar>

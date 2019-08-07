@@ -41,6 +41,19 @@ export default class Meetings extends React.Component {
       });
   }
 
+  // getFavoriteMeetings() {
+  //   fetch('/api/favorites.php')
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(myJson => {
+  //       this.setState({
+  //         meetings: myJson,
+  //         search: true
+  //       });
+  //     });
+  // }
+
   addFavorite(newMeeting) {
     fetch('/api/favorites.php', {
       method: 'POST',

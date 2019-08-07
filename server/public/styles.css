@@ -43,7 +43,7 @@ body {
     font-size: 1em;
     font-weight: 300;
     line-height: 1.5;
-    color: var(--text-color);
+    color: #757575;
     background: var(--bg-color);
     position: relative;
     background-color: lightcyan;
@@ -263,6 +263,7 @@ main {
 }
 /* END OF CALENDER CSS */
 
+.buttonStyle,
 .navButton,
 button {
     cursor: pointer;
@@ -323,10 +324,6 @@ button {
     margin: 0.5rem auto;
 }
 
-.favoritesCardButton{
-    margin-top: 1rem !important;
-}
-
 .favoritesDeleteButtonRightPos{
   position: absolute;
   right: 1rem;
@@ -343,6 +340,14 @@ button {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.favoriteDayStyle {
+  font-size: 13px
+}
+
+.addressStyle {
+  text-transform: capitalize;
 }
 
 .favoritedImg {

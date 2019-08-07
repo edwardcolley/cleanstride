@@ -40,17 +40,29 @@ export default class Favorites extends React.Component {
       .then(response => response.json());
   }
 
+  titleCase(text) {
+    let newWord = text.toLowerCase()
+      .split(' ')
+      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
+    return newWord;
+  }
+
   favoritesCards() {
     const cardCreator = this.state.favorites.map((data, index) => {
       return (
-        <Card key={index} className="mt-3 shadow" body inverse style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }}>
-          <div className="favoritedImg2"></div>
-          <CardTitle className="cardTitle text-center">{data.program}<br/>{data.name}</CardTitle>
+        <Card key={index} className="my-3 shadow" body style={{ borderColor: 'rgb(218, 218, 218' }}>
+          <Row>
+            <Col>
+              <div className="favoritedImg2"></div>
+            </Col>
+          </Row>
+          <CardTitle className="cardTitle text-center mt-3">{data.program}<br/>{data.name}</CardTitle>
           <Row className="flexCentering favoritesText mt-1">
-            <Col xs={{ size: 4 }} md={{ size: 3, offset: 2 }}>
+            <Col className="favoriteDayStyle" xs={{ size: 4 }} md={{ size: 3, offset: 2 }}>
               {data.day}
             </Col>
-            <Col xs={{ size: 5 }} md={{ size: 3, offset: 0 }}>
+            <Col xs={{ size: 4 }} md={{ size: 3, offset: 0 }}>
               {data.city}
             </Col>
             <Col xs={{ size: 3 }} md={{ size: 4, offset: 0 }}>
@@ -59,12 +71,15 @@ export default class Favorites extends React.Component {
           </Row>
           <Row>
             <Col className="mt-3 text-center">
-              {data.address}
+              {data.address}, {this.titleCase(data.city)} {data.zip}
             </Col>
           </Row>
           <Row>
-            <Col xs={{ size: 6, offset: 3 }} md={{ size: 4, offset: 5 }}>
-              <Button onClick={() => this.addToCalendarBackEnd(data)} className="btn btn-primary shadow favoritesCardButton" size="sm">Add To Calendar</Button>
+            {
+
+            }
+            <Col xs={{ size: 8, offset: 3 }} md={{ size: 4, offset: 5 }}>
+              <Button onClick={() => this.addToCalendarBackEnd(data)} className="buttonStyle font-weight-bold mt-2" color="primary" size="sm">ADD TO CALENDAR</Button>
             </Col>
           </Row>
         </Card>
