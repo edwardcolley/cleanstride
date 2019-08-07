@@ -1,6 +1,7 @@
 import React from 'react';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Container } from 'reactstrap';
 import RecoveryResultsCard from './recovery-results-item';
-import { Container, Button } from 'reactstrap';
+
 import { Link } from 'react-router-dom';
 import NavBar from './nav-bar';
 
@@ -11,13 +12,21 @@ class RecoveryResults extends React.Component {
       googleResult: null,
       searchZone: '',
       latitude: undefined,
-      longitude: undefined
+      longitude: undefined,
+      dropdownOpen: false
     };
     this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
     this.handleDescendingRating = this.handleDescendingRating.bind(this);
     this.handleAscendingRating = this.handleAscendingRating.bind(this);
+    // this.handleResetRating = this.handleResetRating.bind(this);
     this.getGooglePlacesListFromCoords = this.getGooglePlacesListFromCoords.bind(this);
+    this.toggle = this.toggle.bind(this);
 
+  }
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
   }
 
   getGooglePlacesList(userInput) {
@@ -56,6 +65,12 @@ class RecoveryResults extends React.Component {
       this.getGooglePlacesListFromCoords(params.id);
     }
   }
+  // handleResetRating() {
+  //   let currentList = this.state.googleResult;
+  //   this.setState({
+  //     googleResult: currentList
+  //   });
+  // }
   handleDescendingRating() {
     let currentList = this.state.googleResult;
     this.setState({
@@ -64,10 +79,9 @@ class RecoveryResults extends React.Component {
   }
   handleAscendingRating() {
     let currentList = this.state.googleResult;
-    let AscendingSortedList = currentList.sort((a, b) => a.rating - b.rating);
-    if (currentList || AscendingSortedList) {
+    if (currentList) {
       this.setState({
-        googleResult: AscendingSortedList.sort((a, b) => b.rating - a.rating)
+        googleResult: currentList.sort((a, b) => b.rating - a.rating)
       });
     }
   }
@@ -90,8 +104,19 @@ class RecoveryResults extends React.Component {
         <div>
           <NavBar />
           <Container>
-            <Button outline color="secondary" onClick={this.handleDescendingRating}>Ascending</Button>
-            <Button outline color="secondary" onClick = {this.handleAscendingRating}>Descending</Button>
+            <Dropdown className= 'mt-3 d-flex flex-row-reverse bd-highlight ' isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <DropdownToggle caret >
+                SORT LIST
+              </DropdownToggle>
+              <DropdownMenu >
+                <DropdownItem header>Features</DropdownItem>
+                <DropdownItem onClick={this.handleDescendingRating} >Rating: Low to High</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick = {this.handleAscendingRating} >Rating: High to Low</DropdownItem>
+                <DropdownItem divider />
+
+              </DropdownMenu>
+            </Dropdown>
             {this.renderRecoveryCard()}
           </Container>
         </div>
