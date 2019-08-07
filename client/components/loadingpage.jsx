@@ -1,5 +1,6 @@
 import React from 'react';
-import RecoveryResults from './recoveryresults';
+import NavBar from './nav-bar';
+import { Redirect } from 'react-router-dom';
 
 export default class LoadingPage extends React.Component {
   constructor(props) {
@@ -12,42 +13,39 @@ export default class LoadingPage extends React.Component {
     };
 
     this.showPosition = this.showPosition.bind(this);
+    this.getUserLocation = this.getUserLocation.bind(this);
   }
 
   componentDidMount() {
     this.getUserLocation();
   }
 
-  goToResultsPage() {
+  getUserLocation() {
+    navigator.geolocation.getCurrentPosition(this.showPosition);
+  }
 
-    this.props.setView('recoveryresults', {
-      latitude: this.state.latitude,
-      longitude: this.state.longitude
+  showPosition(position) {
+    this.setState({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
     });
   }
 
-  // getUserLocation() {
-  //   navigator.geolocation.getCurrentPosition(this.showPosition);
-  // }
-
-  // showPosition(position) {
-  //   this.setState({
-  //     latitude: position.coords.latitude,
-  //     longitude: position.coords.longitude
-  //   });
-  // }
-
-  componentDidUpdate() {
-    this.goToResultsPage();
-  }
-
   render() {
-    return (
-      <div className="flexCentering loaderContainer">
-        <RecoveryResults data={this.state} />
-        <div className="loader"></div>
-
-      </div>
-    );
+    if (this.state.latitude) {
+      return (
+        <Redirect to={'/recoveryresults?latitude=' + this.state.latitude + '&longitude=' + this.state.longitude}/>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <NavBar/>
+          <div className="flexCentering loaderContainer">
+            <div className="loader"></div>
+          </div>
+          <div className="flexCentering loaderText">Loading Results...</div>
+        </React.Fragment>
+      );
+    }
   }
 }
