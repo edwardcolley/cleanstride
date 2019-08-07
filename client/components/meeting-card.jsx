@@ -52,6 +52,14 @@ class Meetingcard extends React.Component {
     }
   }
 
+  titleCase(text) {
+    let newWord = text.toLowerCase()
+      .split(' ')
+      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
+    return newWord;
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -66,7 +74,7 @@ class Meetingcard extends React.Component {
                   <h6 className="font-weight-bold">{this.props.input.time}</h6>
                 </CardTitle>
                 <h6 className="mt-1 font-weight-light">{this.props.input.name} {this.props.input.type}</h6>
-                <h6 className="mt-2 font-weight-light">{this.props.input.address}, {this.props.input.zip}</h6>
+                <h6 className="mt-2 font-weight-light">{this.props.input.address}, {this.titleCase(this.props.input.city)} {this.props.input.zip}</h6>
                 {this.buttonConditional()}
               </CardBody>
             </Card>
