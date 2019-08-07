@@ -29,7 +29,7 @@ export default class Calendar extends React.Component {
 
     return (
       <div className="header row flex-middle rowStyle">
-        <div className="col col-start colStyle">
+        <div className="col-4 col-start colStyle">
           <div className = "icon" onClick={this.prevMonth}>
             chevron_left
           </div>
@@ -49,7 +49,7 @@ export default class Calendar extends React.Component {
   }
 
   renderDays() {
-    const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
+    const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     const days = [];
 
     for (let i = 0; i < 7; i++) {
@@ -95,7 +95,7 @@ export default class Calendar extends React.Component {
         day = dateFns.addDays(day, 1);
       }
       rows.push(
-        <div className="row rowStyle" key={day}>
+        <div className="row mr-0 rowStyle" key={day}>
           {days}
         </div>
       );
@@ -215,7 +215,7 @@ export default class Calendar extends React.Component {
       return (
         <React.Fragment>
           <NavBar />
-          <div className="calendar mt-3">
+          <div className="calendar mt-3 mr-4">
             {this.renderHeader()}
             {this.renderDays()}
             {this.renderCells()}

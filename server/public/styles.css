@@ -1,3 +1,5 @@
+/* FONT IMPORTS */
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
@@ -17,7 +19,7 @@
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga';
-} 
+}
 
 
 /* VARIABLES */
@@ -43,10 +45,10 @@ body {
     font-size: 1em;
     font-weight: 300;
     line-height: 1.5;
-    color: #757575;
-    background: var(--bg-color);
+    color: var(--text-color);
+    background: lightcyan;
     position: relative;
-    background-color: lightcyan;
+
 }
 
 header {
@@ -73,7 +75,7 @@ main {
   margin: 0 auto;
   margin-top: 5em;
   max-width: 50em;
-} */
+}
 
 
 /* GRID */
@@ -114,20 +116,20 @@ main {
 
 
 /* Calendar */
- .calendar {
+
+.calendar {
   display: block;
   position: relative;
-  width: 99%;
+  width: 100%;
   background: var(--neutral-color);
   border: 1px solid var(--border-color);
-  /* overflow: hidden; */
 }
 
 .calendar .header {
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 115%;
-  padding: 1.5em 0;
+  font-size: 95%;
+  /* padding: 1.5em 0; */
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -176,11 +178,11 @@ main {
 
 .calendar .body .selected {
   border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #91e3ec 0%,#53f1d4 40%);
+  border-image: linear-gradient(45deg, #1a8fff 0%,#53cbf1 40%);
   border-image-slice: 1;
 }
 
-.calendar .body .rowStyle {
+.calendar .body .row {
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -228,7 +230,7 @@ main {
   flex-grow: 0;
   flex-basis: calc(100%/7);
   width: calc(100%/7);
-} 
+}
 
 .calendarInfo {
   position: absolute;
@@ -399,20 +401,16 @@ button {
   }
 
 .cardContents {
-    border-radius: 1rem;
-    border: 1px solid #B6EAFF;
-    margin: 1rem;
+    border-radius: 2rem;
+    border: 2px solid #B6EAFF;
     transform: scale(1.05, 1.05);
-    box-shadow: 2px 2px rgba(108, 118, 255, 0.322), 
-    5px 5px rgba(39, 72, 102, 0.22);
+    box-shadow: 2px 2px rgba(218, 218, 218), 
+    5px 5px rgba(218, 218, 218);
     cursor: pointer;
     transition: 0.4s;
-
-    
 }
 .resultsBody {
     background-color: #DCF5FF;
-    height: 100%;
 }
 .cardTitle {
     font-weight: bold;
@@ -427,4 +425,6 @@ button {
   .carousel-item > img { 
     width: 100%; 
   }
-
+.text-dark {
+  color: #474747
+}

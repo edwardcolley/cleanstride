@@ -18,8 +18,9 @@ export default class DetailsPage extends React.Component {
     super(props);
     this.state = {
       activeIndex: 0,
-      reviews: null,
-      details: null
+      yelpReviews: null,
+      details: null,
+      googleReviews: null
     };
     this.goToIndex = this.goToIndex.bind(this);
     this.previous = this.previous.bind(this);
@@ -86,16 +87,16 @@ export default class DetailsPage extends React.Component {
 
   getDetails() {
     const { match: { params } } = this.props;
-    console.log('googleProps: ', this.props)
     fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${params.name}&photos`)
       .then(res => res.json())
       .then(result => {
         let id = result.businesses[0].id;
-        let promises = [this.getBusinessReviews(id), this.getBusinessDetails(id)];
+        let promises = [this.getYelpReviews(id), this.getBusinessDetails(id), this.getGoogleReviews(id)];
         Promise.all(promises).then(allResults => {
           this.setState({
-            reviews: allResults[0],
-            details: allResults[1]
+            yelpReviews: allResults[0],
+            details: allResults[1],
+            googleReviews: allResults[2]
           });
         });
       });
@@ -106,7 +107,12 @@ export default class DetailsPage extends React.Component {
   //     .then(res => res.json());
   // }
 
-  getBusinessReviews(id) {
+  getGoogleReviews(id) {
+    return fetch(`/api/googletextsearch_proxy.php?id=${id}`)
+      .then(res => res.json());
+  }
+
+  getYelpReviews(id) {
     return fetch(`/api/yelp_proxyreviews.php?id=${id}`)
       .then(res => res.json());
   }
@@ -122,7 +128,7 @@ export default class DetailsPage extends React.Component {
 
   render() {
     if (this.state.details) {
-      return ( 
+      return (
         <React.Fragment>
           <NavBar/>
           <Container>
@@ -154,12 +160,12 @@ export default class DetailsPage extends React.Component {
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
                     <h1>Reviews</h1>
-                    <p>{this.state.reviews.reviews[0].text}</p>
-                    <p>-{this.state.reviews.reviews[0].user.name}</p>
-                    <p>{this.state.reviews.reviews[1].text}</p>
-                    <p>-{this.state.reviews.reviews[1].user.name}</p>
-                    <p>{this.state.reviews.reviews[2].text}</p>
-                    <p>-{this.state.reviews.reviews[2].user.name}</p>
+                    <p>{this.state.yelpReviews.reviews[0].text}</p>
+                    <p>-{this.state.yelpReviews.reviews[0].user.name}</p>
+                    <p>{this.state.yelpReviews.reviews[1].text}</p>
+                    <p>-{this.state.yelpReviews.reviews[1].user.name}</p>
+                    <p>{this.state.yelpReviews.reviews[2].text}</p>
+                    <p>-{this.state.yelpReviews.reviews[2].user.name}</p>
                     <a href={this.state.details.url}>Link to Yelp</a>
                   </CardBody>
                 </Card>
