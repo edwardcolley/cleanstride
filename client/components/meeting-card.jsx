@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Row, Col, Card, CardBody, CardTitle, Button } from 'reactstrap';
 
 class Meetingcard extends React.Component {
   constructor(props) {
@@ -35,11 +35,11 @@ class Meetingcard extends React.Component {
 
   buttonConditional() {
     if (this.props.input.favorite === '1' && this.state.favorited === true) {
-      return <Button onClick={() => this.removeIcon()} className="mt-2" color="primary">Remove</Button>;
+      return <Button onClick={() => this.removeIcon()} className="mt-2 buttonStyle" size="sm" color="primary">REMOVE</Button>;
     } else if (this.state.favorited === true) {
-      return <Button onClick={() => this.removeIcon()} className="mt-2" color="primary">Remove</Button>;
+      return <Button onClick={() => this.removeIcon()} className="mt-2 buttonStyle" size="sm" color="primary">REMOVE</Button>;
     } else {
-      return <Button onClick={() => this.renderIcon()} className="mt-2" color="primary">Favorite</Button>;
+      return <Button onClick={() => this.renderIcon()} className="mt-2 buttonStyle" size="sm" color="primary">FAVORITE</Button>;
 
     }
   }
@@ -55,18 +55,18 @@ class Meetingcard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Row className="mt-5">
+        <Row className="my-3">
           <Col md={{ size: 6, offset: 3 }}>
-            <Card className="shadow" body inverse style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }}>
+            <Card className="shadow" style={{ borderColor: 'rgb(218, 218, 218' }}>
               <CardBody>
                 {this.iconConditional()}
-                <CardTitle>{this.props.input.day}</CardTitle>
-                <CardSubtitle >{this.props.input.city}</CardSubtitle>
-                <CardSubtitle className="mt-1">{this.props.input.type}</CardSubtitle>
-                <CardSubtitle>{this.props.input.name}</CardSubtitle>
-                <CardSubtitle className="mt-1">{this.props.input.time}</CardSubtitle>
-                <CardText className="mt-2">{this.props.input.address}</CardText>
-                <CardSubtitle>{this.props.input.zip}</CardSubtitle>
+                <CardTitle>
+                  <h5 className="font-weight-bold">{this.props.input.day}</h5>
+                  <h6 className="font-weight-bold">{this.props.input.city}</h6>
+                  <h6 className="font-weight-bold">{this.props.input.time}</h6>
+                </CardTitle>
+                <h6 className="mt-1 font-weight-light">{this.props.input.name} {this.props.input.type}</h6>
+                <h6 className="mt-2 font-weight-light">{this.props.input.address}, {this.props.input.zip}</h6>
                 {this.buttonConditional()}
               </CardBody>
             </Card>
