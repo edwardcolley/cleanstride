@@ -3,6 +3,7 @@ import RecoveryResultsCard from './recovery-results-item';
 import { Container, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import NavBar from './nav-bar';
+import queryString from 'query-string';
 
 class RecoveryResults extends React.Component {
   constructor(props) {
@@ -31,8 +32,8 @@ class RecoveryResults extends React.Component {
       });
   }
 
-  getGooglePlacesListFromCoords(coords) {
-    fetch(`/api/googlenearbysearch_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${coords}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`)
+  getGooglePlacesListFromCoords(latitude, longitude) {
+    fetch(`/api/googlenearbysearch_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&radius=50000&location=${latitude},${longitude}&type=rehab, recovery, addiction&keyword=rehab, recovery, addiction`)
       .then(response => {
         return response.json();
       })
@@ -44,14 +45,18 @@ class RecoveryResults extends React.Component {
   }
 
   componentDidMount() {
-    const { match: { params } } = this.props;
-    console.log("recoveryresults id value: ", params.id, typeof(params.id));
-    if (params.id.length < 20) {
-      this.getGooglePlacesList(params.id);
+    const paramsString = this.props.location.search;
+    const params = queryString.parse(paramsString);
+    const locale = params.locale;
+    const latitude = params.latitude;
+    const longitude = params.longitude;
+    if (locale) {
+      this.getGooglePlacesList(locale);
     } else {
-      this.getGooglePlacesListFromCoords(params.id);
+      this.getGooglePlacesListFromCoords(latitude, longitude);
     }
   }
+
   handleDescendingRating() {
     let currentList = this.state.googleResult;
     this.setState({
@@ -95,6 +100,7 @@ class RecoveryResults extends React.Component {
     } else {
       return (
         <div>
+          <NavBar />
           <div className="flexCentering loaderContainer">
             <div className="loader"></div>
           </div>
