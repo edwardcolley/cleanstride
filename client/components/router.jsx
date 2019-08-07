@@ -17,7 +17,7 @@ const routing = (
       <Route path="/meetings" component={Meetings} />
       <Route path="/favorites" component={Favorites} />
       <Route path="/calendar" component={Calendar} />
-      <Route path="/loadingpage/:geoLocation" component={LoadingPage} />
+      <Route path="/loadingpage" component={LoadingPage} />
     </div>
   </Router>
 );
