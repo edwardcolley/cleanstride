@@ -18,7 +18,6 @@ class RecoveryResults extends React.Component {
     this.renderRecoveryCard = this.renderRecoveryCard.bind(this);
     this.handleDescendingRating = this.handleDescendingRating.bind(this);
     this.handleAscendingRating = this.handleAscendingRating.bind(this);
-    // this.handleResetRating = this.handleResetRating.bind(this);
     this.getGooglePlacesListFromCoords = this.getGooglePlacesListFromCoords.bind(this);
     this.toggle = this.toggle.bind(this);
 
@@ -65,12 +64,6 @@ class RecoveryResults extends React.Component {
       this.getGooglePlacesListFromCoords(params.id);
     }
   }
-  // handleResetRating() {
-  //   let currentList = this.state.googleResult;
-  //   this.setState({
-  //     googleResult: currentList
-  //   });
-  // }
   handleDescendingRating() {
     let currentList = this.state.googleResult;
     this.setState({
