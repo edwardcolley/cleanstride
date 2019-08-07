@@ -32,9 +32,9 @@ export default class LoadingPage extends React.Component {
   }
 
   render() {
-    if (this.state.latitude) {
-      return (
-        <Redirect to={'/recoveryresults/' + this.state.latitude + ',' + this.state.longitude}/>
+    if(this.state.latitude){
+      return(
+        <Redirect to={"/recoveryresults?latitude=" + this.state.latitude + "&longitude=" + this.state.longitude}/>
       );
     } else {
       return (

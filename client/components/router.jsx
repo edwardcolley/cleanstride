@@ -12,8 +12,8 @@ const routing = (
   <Router>
     <div>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/recoveryresults/:id" render={props => <RecoveryResults {...props} />} />
-      <Route path="/detailspage/:name/:id" component={DetailsPage} />
+      <Route path="/recoveryresults" render={props => <RecoveryResults {...props} />} />
+      <Route path="/detailspage/:name" component={DetailsPage} />
       <Route path="/meetings" component={Meetings} />
       <Route path="/favorites" component={Favorites} />
       <Route path="/calendar" component={Calendar} />
