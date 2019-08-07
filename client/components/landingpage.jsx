@@ -25,6 +25,21 @@ export default class LandingPage extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.getUserLocation();
+  }
+
+  getUserLocation() {
+    navigator.geolocation.getCurrentPosition(this.useCoords);
+  }
+
+  useCoords(position) {
+    this.setState({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -47,7 +62,7 @@ export default class LandingPage extends React.Component {
                   </div>
                   <Row className="mt-1">
                     <Col xs={{ size: 10, offset: 2 }} md={{ size: 10, offset: 3 }} lg={{ size: 10, offset: 4 }}>
-                      <Link to="/loadingpage">
+                      <Link to={'/recoveryresults/' + this.state.latitude + ',' + this.state.longitude} latitude={this.state.latitude} longitude={this.state.longitude}>
                         <Button className="shadow" type="submit" color="primary">Use My Location</Button>{' '}
                       </Link>
                     </Col>

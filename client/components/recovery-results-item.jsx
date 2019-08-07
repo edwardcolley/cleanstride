@@ -4,9 +4,6 @@ import { Card, CardBody, CardTitle, CardSubtitle, CardImg, Container } from 'rea
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
 
-// Reconfigure this list page to pass props through functions and then create an if/else statement
-// The if statement will render each version of the sorting method applied per the click chosen
-
 function RecoveryResultsPhoto(props) {
   if (props.photos === undefined) {
     return <CardImg className='resultsImg col-sm-6' top width="100%" src="https://lh3.googleusercontent.com/p/AF1QipPjl0ozxg85HqM7_yGSNYPntRrjCfnO15mU3id1=s1600-w500" alt="Card img" />;
