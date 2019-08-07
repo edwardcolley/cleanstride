@@ -77,7 +77,7 @@ class RecoveryResults extends React.Component {
     if (this.state.googleResult) {
       return this.state.googleResult.map(input => {
         return (
-          <Link to={'/detailspage/' + input.name} key={input.id}>
+          <Link to={'/detailspage/' + input.place_id} key={input.id}>
             <RecoveryResultsCard input={input}/>
           </Link>
         );
