@@ -40,6 +40,14 @@ export default class Favorites extends React.Component {
       .then(response => response.json());
   }
 
+  titleCase(text) {
+    let newWord = text.toLowerCase()
+      .split(' ')
+      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
+    return newWord;
+  }
+
   favoritesCards() {
     const cardCreator = this.state.favorites.map((data, index) => {
       return (
@@ -63,7 +71,7 @@ export default class Favorites extends React.Component {
           </Row>
           <Row>
             <Col className="mt-3 text-center">
-              {data.address}, {data.zip}
+              {data.address}, {this.titleCase(data.city)} {data.zip}
             </Col>
           </Row>
           <Row>
