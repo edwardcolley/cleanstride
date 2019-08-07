@@ -86,6 +86,7 @@ export default class DetailsPage extends React.Component {
 
   getDetails() {
     const { match: { params } } = this.props;
+    console.log('googleProps: ', this.props)
     fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${params.name}&photos`)
       .then(res => res.json())
       .then(result => {
@@ -99,6 +100,11 @@ export default class DetailsPage extends React.Component {
         });
       });
   }
+
+  // getGoogleReviews(){
+  //   return fetch(`/api/googletextsearch_proxy.php?id=${input.id}`)
+  //     .then(res => res.json());
+  // }
 
   getBusinessReviews(id) {
     return fetch(`/api/yelp_proxyreviews.php?id=${id}`)
@@ -116,47 +122,45 @@ export default class DetailsPage extends React.Component {
 
   render() {
     if (this.state.details) {
-      return (
+      return ( 
         <React.Fragment>
           <NavBar/>
           <Container>
-            {/* <Button color="primary" className="detailsPageBackButton" onClick={() => this.props.setView('recoveryresults', {})}>Back</Button> */}
             <Row>
               <Col>
-                <Card className="carouselCard shadow">
+                <Card className="carouselCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="carousel">
                     {this.carouselPhotos()}
                   </CardBody>
                 </Card>
-                <Card className="headerCard shadow">
+                <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
                     <p>{this.state.details.name}</p>
-                    <StarRatingComponent
-                      name="Rate"
-                      starCount={5}
-                      value={this.state.details.rating}
-                      starColor={'#04ecf0'}
-                    />
+                    <p>Yelp: </p>
+                    <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
                     <p className="review-count">{this.state.details.review_count} Reviews</p>
+                    <p>Google: </p>
+                    {/* <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.props.googleResult} starColor={'orange'}/> */}
+                    {/* <p className="review-count">{this.state.details.review_count} Reviews</p> */}
                   </CardBody>
                 </Card>
-                <Card className="contactInfoCard shadow">
+                <Card className="contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="contactInfo">
                     <h1>Contact Information</h1>
-                    <p>Address: {this.state.details.location.display_address}</p>
+                    <p>Address: {this.state.details.location.display_address[0]}, {this.state.details.location.display_address[1]}, {this.state.details.location.display_address[2]}</p>
                     <p>Phone: {this.state.details.display_phone}</p>
-                    <p>Website: {this.state.details.url}</p>
                   </CardBody>
                 </Card>
-                <Card className="descriptionCard shadow">
-                  <CardBody className="description">
+                <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
+                  <CardBody className="reviews">
                     <h1>Reviews</h1>
-                    <p>{this.state.reviews.reviews[0].user.name}</p>
                     <p>{this.state.reviews.reviews[0].text}</p>
-                    <p>{this.state.reviews.reviews[1].user.name}</p>
+                    <p>-{this.state.reviews.reviews[0].user.name}</p>
                     <p>{this.state.reviews.reviews[1].text}</p>
-                    <p>{this.state.reviews.reviews[2].user.name}</p>
+                    <p>-{this.state.reviews.reviews[1].user.name}</p>
                     <p>{this.state.reviews.reviews[2].text}</p>
+                    <p>-{this.state.reviews.reviews[2].user.name}</p>
+                    <a href={this.state.details.url}>Link to Yelp</a>
                   </CardBody>
                 </Card>
               </Col>

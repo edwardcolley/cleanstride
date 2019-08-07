@@ -13,7 +13,7 @@ const routing = (
     <div>
       <Route exact path="/" component={LandingPage} />
       <Route path="/recoveryresults/:id" render={(props)=><RecoveryResults {...props} />} />
-      <Route path="/detailspage/:name" component={DetailsPage} />
+      <Route path="/detailspage/:name/:placeid" render={(props)=><DetailsPage {...props} />} />
       <Route path="/meetings" component={Meetings} />
       <Route path="/favorites" component={Favorites} />
       <Route path="/calendar" component={Calendar} />
