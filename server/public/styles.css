@@ -304,9 +304,25 @@ button {
 .description > h1 {
     font-size: 25px;
 }
+.yelpRatings {
+  height: 1rem;
+}
 .yelpStars {
-  left: 60px;
-  bottom: 45px;
+  right: 3.5rem;
+  bottom: 3rem;
+}
+.googleStars {
+  right: 2.3rem;
+  bottom: 3rem;
+}
+.googleRatings {
+  right: 2.3rem;
+  bottom: 50rem;
+  height: 1rem;
+}
+.googleRatings > p {
+  right: 2.3rem;
+  bottom: 10rem;
 }
 .review-count {
   font-size: 5px;
