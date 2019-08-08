@@ -423,6 +423,12 @@ button {
     background-color: #DCF5FF;
     height: 100%;
 }
+.resultsImg{
+  border-radius: 0.25rem !important;
+  margin: 1rem 1rem 0 1rem !important;
+  padding: 0 !important;
+  max-width: 90%;
+}
 .cardTitle {
     font-weight: bold;
 }
