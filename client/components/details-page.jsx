@@ -166,12 +166,24 @@ export default class DetailsPage extends React.Component {
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
                     <h1>Reviews</h1>
-                    <p>{this.state.yelpReviews.reviews[0].text}</p>
-                    <p>-{this.state.yelpReviews.reviews[0].user.name}</p>
-                    <p>{this.state.yelpReviews.reviews[1].text}</p>
-                    <p>-{this.state.yelpReviews.reviews[1].user.name}</p>
-                    <p>{this.state.yelpReviews.reviews[2].text}</p>
-                    <p>-{this.state.yelpReviews.reviews[2].user.name}</p>
+                    {this.state.yelpReviews.reviews[0] &&
+                     <React.Fragment>
+                       <p>{this.state.yelpReviews.reviews[0].text}</p>
+                       <p>-{this.state.yelpReviews.reviews[0].user.name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.yelpReviews.reviews[1] &&
+                     <React.Fragment>
+                       <p>{this.state.yelpReviews.reviews[1].text}</p>
+                       <p>-{this.state.yelpReviews.reviews[1].user.name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.yelpReviews.reviews[2] &&
+                     <React.Fragment>
+                       <p>{this.state.yelpReviews.reviews[2].text}</p>
+                       <p>-{this.state.yelpReviews.reviews[2].user.name}</p>
+                     </React.Fragment>
+                    }
                     <a href={this.state.details.url}>Link to Yelp</a>
                   </CardBody>
                 </Card>
