@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, Button, Container, Row, Col } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavBar from './nav-bar';
 
 export default class LandingPage extends React.Component {
