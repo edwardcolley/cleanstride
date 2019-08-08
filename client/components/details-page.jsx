@@ -94,7 +94,7 @@ export default class DetailsPage extends React.Component {
     const { match: { params } } = this.props;
     let str = params.name;
     if (str.length > 30) {
-      let name = str.slice(0, 25);
+      let name = str.slice(0, 25).replace(/ /g, '+');
       return name;
     } else {
       return str;
@@ -102,7 +102,7 @@ export default class DetailsPage extends React.Component {
   }
 
   getDetails() {
-    fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${this.getBusinessName()}&photos`)
+    fetch(`/api/yelp_proxy_details.php?location=orange+county&categories=recoverycenter&term=${this.getBusinessName()}&photos`)
       .then(res => res.json())
       .then(result => {
         let id = result.businesses[0].id;
@@ -157,6 +157,7 @@ export default class DetailsPage extends React.Component {
 
   render() {
     if (this.state.details) {
+      const ratingCount = this.state.googleReviews.result.user_ratings_total;
       return (
         <React.Fragment>
           <NavBar/>
@@ -173,7 +174,7 @@ export default class DetailsPage extends React.Component {
                     <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
-                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
+                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{ratingCount ? ratingCount : 0} reviews, {ratingCount ? ratingCount : 0}/5</span></p>
                         <p className="yelpRatingsFont font-weight-bold">Yelp: <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
                       </Col>
                       <Col xs={{ size: 4 }} className="mt-5">
