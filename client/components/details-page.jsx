@@ -71,17 +71,18 @@ export default class DetailsPage extends React.Component {
           onExited={this.onExited}
           key={index}
         >
-          <img src={item} alt={item.altText} />
+          <img src={item} />
         </CarouselItem>
       );
     });
     return (
       <Carousel
         activeIndex={activeIndex}
+        interval={3000}
         next={this.next}
         previous={this.previous}
       >
-        <CarouselIndicators items={this.state.details.photos} activeIndex={activeIndex} interval={1000} onClickHandler={this.goToIndex} />
+        <CarouselIndicators items={this.state.details.photos} activeIndex={activeIndex} interval={3000} onClickHandler={this.goToIndex} />
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
@@ -172,8 +173,8 @@ export default class DetailsPage extends React.Component {
                     <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
-                        <p className="yelpRatingsFont font-weight-bold">Yelp: <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
                         <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
+                        <p className="yelpRatingsFont font-weight-bold">Yelp: <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
                       </Col>
                       <Col xs={{ size: 4 }} className="mt-5">
                         <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
