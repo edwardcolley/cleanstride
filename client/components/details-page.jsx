@@ -137,11 +137,13 @@ export default class DetailsPage extends React.Component {
   }
 
   renderGoogleReviews() {
-    return this.state.googleReviews.result.reviews.map((input, index) => {
-      return (
-        <GoogleReview key={index} input={input} />
-      );
-    });
+    return (
+      this.state.googleReviews.result.reviews.map((input, index) => {
+        return (
+          <GoogleReview key={index} input={input} />
+        );
+      })
+    );
   }
 
   renderYelpReviews() {
@@ -190,14 +192,17 @@ export default class DetailsPage extends React.Component {
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
                     <h1>Google Reviews</h1>
-                    {this.renderGoogleReviews()}
+                    {this.state.googleReviews.result.reviews &&
+                      this.renderGoogleReviews()}
+                    {!this.state.googleReviews.result.reviews &&
+                    <p> At this moment this location has no reviews. Thank You <br/> </p> }
                     <a href={this.state.googleReviews.result.url}>Link to Google</a>
                   </CardBody>
                 </Card>
                 <Card className=" mt-2 descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
                     <h6 className="display-4">Yelp Reviews</h6>
-                    {this.renderYelpReviews()};
+                    {this.renderYelpReviews()}
                     <a href={this.state.details.url}>Link to Yelp</a>
                   </CardBody>
                 </Card>

@@ -19,7 +19,7 @@ function RecoveryResultsCard(props) {
   return (
     <Container className='Main my-3'>
       <Link to={'/detailspage/' + props.input.name + '/' + props.input.place_id}>
-        <Card className="shadow border border-border-secondary rounded-lg text-dark">
+        <Card className="shadow border border-border-secondary rounded-lg text-dark style={{ borderColor: ‘rgb(218, 218, 218’ }}">
           <RecoveryResultsPhoto photos= {props.input.photos}/>
           <CardBody className="cardBody">
             <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
