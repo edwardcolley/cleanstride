@@ -156,6 +156,7 @@ export default class DetailsPage extends React.Component {
 
   render() {
     if (this.state.details) {
+      const ratingCount = this.state.googleReviews.result.user_ratings_total;
       return (
         <React.Fragment>
           <NavBar/>
@@ -173,7 +174,7 @@ export default class DetailsPage extends React.Component {
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
                         <p className="yelpRatingsFont font-weight-bold">Yelp: <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
-                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
+                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{ratingCount ? ratingCount : 0} reviews, {ratingCount ? ratingCount : 0}/5</span></p>
                       </Col>
                       <Col xs={{ size: 4 }} className="mt-5">
                         <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
