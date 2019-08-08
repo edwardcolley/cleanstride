@@ -39,7 +39,7 @@ export default class LoadingPage extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <NavBar/>
+          <NavBar />
           <div className="flexCentering loaderContainer">
             <div className="loader"></div>
           </div>
