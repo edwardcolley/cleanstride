@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, Button, Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import NavBar from './nav-bar';
 
 export default class LandingPage extends React.Component {
@@ -41,21 +41,21 @@ export default class LandingPage extends React.Component {
                     <input type="text" className="form-control shadow" maxLength="19" placeholder="City or Zipcode" aria-label="Recipient's username" aria-describedby="basic-addon2" value={this.state.searchZone} onChange={this.handleSearchZoneChange}/>
                     <div className="input-group-append">
                       <Link to={'/recoveryresults/?locale=' + this.state.searchZone}>
-                        <button className="btn btn-pirmary btn-outline-primary shadow" color="primary" type="button">Search</button>
+                        <button className="btn btn-pirmary btn-outline-primary shadow" color="primary" type="Submit">Search</button>
                       </Link>
                     </div>
                   </div>
                   <Row className="mt-1">
                     <Col xs={{ size: 10, offset: 2 }} md={{ size: 10, offset: 3 }} lg={{ size: 10, offset: 4 }}>
                       <Link to='/loadingpage'>
-                        <Button className="shadow" type="submit" color="primary">Use My Location</Button>{' '}
+                        <Button className="shadow" type="button" color="primary">Use My Location</Button>{' '}
                       </Link>
                     </Col>
                   </Row>
                   <Row className="mt-1 mr-2">
                     <Col xs={{ size: 10, offset: 2 }} md={{ size: 10, offset: 3 }} lg={{ size: 10, offset: 4 }}>
                       <Link to="/meetings">
-                        <Button className="shadow" color="secondary">Meeting Directory</Button>{' '}
+                        <Button className="shadow" type="button" color="secondary">Meeting Directory</Button>{' '}
                       </Link>
                     </Col>
                   </Row>
