@@ -310,6 +310,12 @@ button {
 .review-count {
   font-size: 5px;
 }
+.reviewCount {
+  font-size: 20px;
+}
+.googleResults {
+  font-size: 15px;
+}
 /*End of Details-Page CSS*/
 
 .favoritesCardBody{

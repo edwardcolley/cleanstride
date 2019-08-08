@@ -1,8 +1,6 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Container } from 'reactstrap';
 import RecoveryResultsCard from './recovery-results-item';
-
-import { Link } from 'react-router-dom';
 import NavBar from './nav-bar';
 import queryString from 'query-string';
 
@@ -84,9 +82,7 @@ class RecoveryResults extends React.Component {
     if (this.state.googleResult) {
       return this.state.googleResult.map(input => {
         return (
-          <Link to={'/detailspage/' + input.place_id} key={input.id}>
-            <RecoveryResultsCard input={input}/>
-          </Link>
+          <RecoveryResultsCard input={input} key={input.id}/>
         );
       });
     }

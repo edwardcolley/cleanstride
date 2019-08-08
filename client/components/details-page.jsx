@@ -91,29 +91,25 @@ export default class DetailsPage extends React.Component {
       .then(res => res.json())
       .then(result => {
         let id = result.businesses[0].id;
-        let promises = [this.getYelpReviews(id), this.getBusinessDetails(id), this.getGoogleReviews(id)];
+        let promises = [this.getYelpReviews(id), this.getGoogleReviews(), this.getBusinessDetails(id)];
         Promise.all(promises).then(allResults => {
           this.setState({
             yelpReviews: allResults[0],
-            details: allResults[1],
-            googleReviews: allResults[2]
+            googleReviews: allResults[1],
+            details: allResults[2]
           });
         });
       });
   }
 
-  // getGoogleReviews(){
-  //   return fetch(`/api/googletextsearch_proxy.php?id=${input.id}`)
-  //     .then(res => res.json());
-  // }
-
-  getGoogleReviews(id) {
-    return fetch(`/api/googletextsearch_proxy.php?id=${id}`)
+  getYelpReviews(id) {
+    return fetch(`/api/yelp_proxyreviews.php?id=${id}`)
       .then(res => res.json());
   }
 
-  getYelpReviews(id) {
-    return fetch(`/api/yelp_proxyreviews.php?id=${id}`)
+  getGoogleReviews() {
+    const { match: { params } } = this.props;
+    return fetch(`/api/googlereviews_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&place_id=${params.place_id}`)
       .then(res => res.json());
   }
 
@@ -142,12 +138,22 @@ export default class DetailsPage extends React.Component {
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
                     <p>{this.state.details.name}</p>
-                    <p>Yelp: </p>
-                    <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
-                    <p className="review-count">{this.state.details.review_count} Reviews</p>
-                    <p>Google: </p>
-                    {/* <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.props.googleResult} starColor={'orange'}/> */}
-                    {/* <p className="review-count">{this.state.details.review_count} Reviews</p> */}
+                    <Row>
+                      <Col xs={{ size: 6 }}>
+                        <p>Yelp: </p>
+                      </Col>
+                      <Col xs={{ size: 6 }} className="mt-5 mr-6">
+                        <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={{ size: 6 }}>
+                        < p>Google: </p>
+                      </Col>
+                      <Col xs={{ size: 6 }} className="mt-5">
+                        <StarRatingComponent className="googleStars" name="Rate" starCount={5} value={this.state.googleReviews.result.rating} starColor={'gold'}/>
+                      </Col>
+                    </Row>
                   </CardBody>
                 </Card>
                 <Card className="contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
