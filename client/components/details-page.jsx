@@ -93,7 +93,7 @@ export default class DetailsPage extends React.Component {
     const { match: { params } } = this.props;
     let str = params.name;
     if (str.length > 30) {
-      let name = str.slice(0, 25);
+      let name = str.slice(0, 25).replace(/ /g, '+');
       return name;
     } else {
       return str;
@@ -101,7 +101,7 @@ export default class DetailsPage extends React.Component {
   }
 
   getDetails() {
-    fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${this.getBusinessName()}&photos`)
+    fetch(`/api/yelp_proxy_details.php?location=orange+county&categories=recoverycenter&term=${this.getBusinessName()}&photos`)
       .then(res => res.json())
       .then(result => {
         let id = result.businesses[0].id;
