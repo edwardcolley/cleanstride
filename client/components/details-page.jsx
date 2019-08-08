@@ -169,11 +169,11 @@ export default class DetailsPage extends React.Component {
                 </Card>
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
-                    <p>{this.state.googleReviews.result.name}</p>
+                    <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
-                        <p className="font-weight-bold ratingsFont">Yelp:      <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
-                        <p className="font-weight-bold ratingsFont mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
+                        <p className="yelpRatingsFont font-weight-bold">Yelp:        <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
+                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
                       </Col>
                       <Col xs={{ size: 4 }} className="mt-5">
                         <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
@@ -185,13 +185,14 @@ export default class DetailsPage extends React.Component {
                 <Card className="contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="contactInfo">
                     <h1>Contact Information</h1>
-                    <p>Address:{this.state.googleReviews.result.formatted_address}</p>
-                    <p>Phone: {this.state.googleReviews.result.formatted_phone_number}</p>
+                    <p><span className="font-weight-bold">Address: </span>{this.state.googleReviews.result.formatted_address}</p>
+                    <p><span className="font-weight-bold">Phone: </span>{this.state.googleReviews.result.formatted_phone_number}</p>
+
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
-                    <h1>Google Reviews</h1>
+                    <h1 className="googleReviewTitle">Google Reviews</h1>
                     {this.state.googleReviews.result.reviews &&
                       this.renderGoogleReviews()}
                     {!this.state.googleReviews.result.reviews &&
@@ -201,7 +202,7 @@ export default class DetailsPage extends React.Component {
                 </Card>
                 <Card className=" mt-2 descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
-                    <h6 className="display-4">Yelp Reviews</h6>
+                    <h1 className="yelpReviewTitle">Yelp Reviews</h1>
                     {this.renderYelpReviews()}
                     <a href={this.state.details.url}>Link to Yelp</a>
                   </CardBody>
