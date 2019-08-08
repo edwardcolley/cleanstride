@@ -31,7 +31,7 @@ export default class NavBar extends React.Component {
     return (
       <Navbar style={{ backgroundColor: '#A9A9A9' }} light expand="md" className="text-white">
         <NavbarBrand tag={Link} to='/'className="navButton text-white" >
-          <img src="/images/croppedTransparentLogo.png" style={{ width: 45, marginRight: 10 }} />
+          <img src="/images/croppedTransparentLogoOnly.png" style={{ width: 45, marginRight: 10 }} />
           Clean Stride
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />

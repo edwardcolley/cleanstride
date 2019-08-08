@@ -138,17 +138,17 @@ export default class DetailsPage extends React.Component {
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
                     <p>{this.state.details.name}</p>
-                    <Row>
-                      <Col xs={{ size: 6 }}>
+                    <Row classname="yelpRatings">
+                      <Col xs={{ size: 3 }}>
                         <p>Yelp: </p>
                       </Col>
-                      <Col xs={{ size: 6 }} className="mt-5 mr-6">
+                      <Col xs={{ size: 6 }} className="mt-5">
                         <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col xs={{ size: 6 }}>
-                        < p>Google: </p>
+                    <Row className="googleRatings mb-1">
+                      <Col xs={{ size: 3 }}>
+                        <p>Google: </p>
                       </Col>
                       <Col xs={{ size: 6 }} className="mt-5">
                         <StarRatingComponent className="googleStars" name="Rate" starCount={5} value={this.state.googleReviews.result.rating} starColor={'gold'}/>
@@ -166,12 +166,24 @@ export default class DetailsPage extends React.Component {
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
                     <h1>Reviews</h1>
-                    <p>{this.state.yelpReviews.reviews[0].text}</p>
-                    <p>-{this.state.yelpReviews.reviews[0].user.name}</p>
-                    <p>{this.state.yelpReviews.reviews[1].text}</p>
-                    <p>-{this.state.yelpReviews.reviews[1].user.name}</p>
-                    <p>{this.state.yelpReviews.reviews[2].text}</p>
-                    <p>-{this.state.yelpReviews.reviews[2].user.name}</p>
+                    {this.state.yelpReviews.reviews[0] &&
+                     <React.Fragment>
+                       <p>{this.state.yelpReviews.reviews[0].text}</p>
+                       <p>-{this.state.yelpReviews.reviews[0].user.name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.yelpReviews.reviews[1] &&
+                     <React.Fragment>
+                       <p>{this.state.yelpReviews.reviews[1].text}</p>
+                       <p>-{this.state.yelpReviews.reviews[1].user.name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.yelpReviews.reviews[2] &&
+                     <React.Fragment>
+                       <p>{this.state.yelpReviews.reviews[2].text}</p>
+                       <p>-{this.state.yelpReviews.reviews[2].user.name}</p>
+                     </React.Fragment>
+                    }
                     <a href={this.state.details.url}>Link to Yelp</a>
                   </CardBody>
                 </Card>
@@ -183,6 +195,7 @@ export default class DetailsPage extends React.Component {
     } else {
       return (
         <div>
+          <NavBar/>
           <div className="flexCentering loaderContainer">
             <div className="loader"></div>
           </div>

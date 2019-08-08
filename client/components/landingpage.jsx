@@ -31,10 +31,10 @@ export default class LandingPage extends React.Component {
         <NavBar />
         <Container className="landingPage">
           <Row className="ml-2">
-            <Col xs={{ size: 6 }} sm={{ size: 4 }} lg={{ size: 6, offset: 4 }}>
+            <Col xs={{ size: 6 }} sm={{ size: 3 }} lg={{ size: 6, offset: 4 }}>
               <img src="./images/transparentLogo.png" height="300" alt="App Logo"/>
             </Col>
-            <Col className="landingForm" xs={{ size: 10, offset: 1 }} sm={{ size: 6, offset: 1 }} lg={{ size: 6, offset: 3 }}>
+            <Col className="landingForm" xs={{ size: 10, offset: 1 }} sm={{ size: 6, offset: 3 }} lg={{ size: 6, offset: 3 }}>
               <Form onSubmit={this.handleSubmit} action="">
                 <FormGroup>
                   <div className="input-group mb-3">
