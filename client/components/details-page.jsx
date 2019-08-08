@@ -12,6 +12,8 @@ import {
   CarouselIndicators
 } from 'reactstrap';
 import NavBar from './nav-bar';
+import GoogleReview from './google-review';
+import YelpReview from './yelp-review';
 
 export default class DetailsPage extends React.Component {
   constructor(props) {
@@ -29,6 +31,7 @@ export default class DetailsPage extends React.Component {
     this.onExiting = this.onExiting.bind(this);
     this.carouselPhotos = this.carouselPhotos.bind(this);
     this.getBusinessName = this.getBusinessName.bind(this);
+    this.renderGoogleReviews = this.renderGoogleReviews.bind(this);
   }
 
   onExiting() {
@@ -98,7 +101,6 @@ export default class DetailsPage extends React.Component {
   }
 
   getDetails() {
-    // const { match: { params } } = this.props;
     fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${this.getBusinessName()}&photos`)
       .then(res => res.json())
       .then(result => {
@@ -134,6 +136,22 @@ export default class DetailsPage extends React.Component {
     this.getDetails();
   }
 
+  renderGoogleReviews() {
+    return this.state.googleReviews.result.reviews.map((input, index) => {
+      return (
+        <GoogleReview key={index} input={input} />
+      );
+    });
+  }
+
+  renderYelpReviews() {
+    return this.state.yelpReviews.reviews.map(input => {
+      return (
+        <YelpReview key={input.id} input={input} />
+      );
+    });
+  }
+
   render() {
     if (this.state.details) {
       return (
@@ -152,8 +170,8 @@ export default class DetailsPage extends React.Component {
                     <p className="font-weight-bold">{this.state.details.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
-                        <p className="font-weight-bold ratingsFont">Yelp:      <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
-                        <p className="font-weight-bold ratingsFont mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
+                        <p className="yelpRatingsFont font-weight-bold">Yelp:        <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
+                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
                       </Col>
                       <Col xs={{ size: 4 }} className="mt-5">
                         <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
@@ -165,67 +183,21 @@ export default class DetailsPage extends React.Component {
                 <Card className="contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="contactInfo">
                     <h1>Contact Information</h1>
-                    <p>Address: {this.state.details.location.display_address[0]}, {this.state.details.location.display_address[1]}, {this.state.details.location.display_address[2]}</p>
-                    <p>Phone: {this.state.details.display_phone}</p>
+                    <p><span className="font-weight-bold">Address: </span>{this.state.details.location.display_address[0]}, {this.state.details.location.display_address[1]}, {this.state.details.location.display_address[2]}</p>
+                    <p><span className="font-weight-bold">Phone: </span>{this.state.details.display_phone}</p>
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
-                    <h6 className="googleReviewTitle">Google Reviews</h6>
-                    {this.state.googleReviews.result.reviews[0] &&
-                     <React.Fragment>
-                       <p className="googleReviewText">{this.state.googleReviews.result.reviews[0].text}</p>
-                       <p>-{this.state.googleReviews.result.reviews[0].author_name}</p>
-                     </React.Fragment>
-                    }
-                    {this.state.googleReviews.result.reviews[1] &&
-                     <React.Fragment>
-                       <p>{this.state.googleReviews.result.reviews[1].text}</p>
-                       <p>-{this.state.googleReviews.result.reviews[1].author_name}</p>
-                     </React.Fragment>
-                    }
-                    {this.state.googleReviews.result.reviews[2] &&
-                     <React.Fragment>
-                       <p>{this.state.googleReviews.result.reviews[2].text}</p>
-                       <p>-{this.state.googleReviews.result.reviews[2].author_name}</p>
-                     </React.Fragment>
-                    }
-                    {this.state.googleReviews.result.reviews[3] &&
-                     <React.Fragment>
-                       <p>{this.state.googleReviews.result.reviews[3].text}</p>
-                       <p>-{this.state.googleReviews.result.reviews[3].author_name}</p>
-                     </React.Fragment>
-                    }
-                    {this.state.googleReviews.result.reviews[4] &&
-                     <React.Fragment>
-                       <p>{this.state.googleReviews.result.reviews[4].text}</p>
-                       <p>-{this.state.googleReviews.result.reviews[4].author_name}</p>
-                     </React.Fragment>
-                    }
+                    <h1 className="googleReviewTitle">Google Reviews</h1>
+                    {this.renderGoogleReviews()}
                     <a href={this.state.googleReviews.result.url}>Link to Google</a>
                   </CardBody>
                 </Card>
                 <Card className=" mt-2 descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
-                    <h6 className="display-4">Yelp Reviews</h6>
-                    {this.state.yelpReviews.reviews[0] &&
-                     <React.Fragment>
-                       <p>{this.state.yelpReviews.reviews[0].text}</p>
-                       <p>-{this.state.yelpReviews.reviews[0].user.name}</p>
-                     </React.Fragment>
-                    }
-                    {this.state.yelpReviews.reviews[1] &&
-                     <React.Fragment>
-                       <p>{this.state.yelpReviews.reviews[1].text}</p>
-                       <p>-{this.state.yelpReviews.reviews[1].user.name}</p>
-                     </React.Fragment>
-                    }
-                    {this.state.yelpReviews.reviews[2] &&
-                     <React.Fragment>
-                       <p>{this.state.yelpReviews.reviews[2].text}</p>
-                       <p>-{this.state.yelpReviews.reviews[2].user.name}</p>
-                     </React.Fragment>
-                    }
+                    <h1 className="yelpReviewTitle">Yelp Reviews</h1>
+                    {this.renderYelpReviews()}
                     <a href={this.state.details.url}>Link to Yelp</a>
                   </CardBody>
                 </Card>

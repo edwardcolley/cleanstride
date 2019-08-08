@@ -292,53 +292,42 @@ button {
 .header > p {
   font-size: 25px;
 }
-.header :nth-child(4) {
-  bottom: 50%;
-  font-size: 15px;
-}
 .contactInfoCard {
     margin-bottom: 2%;
 }
 .contactInfo > h1 {
     font-size: 25px;
 }
-.description > h1 {
-    font-size: 25px;
+.contactInfo > p {
+  font-size: 18px;
 }
-/* .yelpRatings {
-  height: 1rem;
-} */
 .yelpStars {
-  right: 3.5rem;
-  bottom: 3rem;
+  right: 2.5rem;
+  bottom: 2.8rem;
 }
 .googleStars {
   right: 2.3rem;
-  bottom: 3rem;
+  bottom: 2.5rem;
 }
-.googleRatings {
-  right: 2.3rem;
-  bottom: 50rem;
-  height: 1rem;
+.yelpRatingsFont {
+  font-size:18px;
 }
-.googleRatings > p {
-  right: 2.3rem;
-  bottom: 10rem;
-}
-.review-count {
-  font-size: 5px;
-}
-.reviewCount {
-  font-size: 20px;
-}
-.googleResults {
-  font-size: 15px;
+.googleRatingsFont {
+  font-size:18px;
 }
 .googleReviewTitle {
   font-size: 25px;
 }
 .googleReviewText {
   font-style: italic;
+  font-size: 18px;
+}
+.yelpReviewTitle {
+  font-size: 25px;
+}
+.yelpReviewText {
+  font-style: italic;
+  font-size: 18px;
 }
 /*End of Details-Page CSS*/
 
