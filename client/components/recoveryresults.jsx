@@ -95,7 +95,7 @@ class RecoveryResults extends React.Component {
           <NavBar />
           <Container>
             <Dropdown className= 'mt-3 d-flex flex-row-reverse bd-highlight ' isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret >
+              <DropdownToggle className="sortButton" caret >
                 SORT LIST
               </DropdownToggle>
               <DropdownMenu >

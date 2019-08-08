@@ -41,14 +41,13 @@
 }
 
 body {
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-size: 1em;
-    font-weight: 300;
-    line-height: 1.5;
-    color: var(--text-color);
-    background: lightcyan;
-    position: relative;
-
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  background: lightcyan;
+  position: relative;
 }
 
 header {
@@ -271,13 +270,18 @@ main {
 button {
     cursor: pointer;
 }
-
 .landingPage {
     overflow: hidden;
 }
-
 .landingForm {
     margin-top: 25%;
+}
+.sortButton{
+  white-space: nowrap;
+  height: 1.75rem;
+  width: 5.5rem;
+  padding: 0.25rem;
+  font-size: small;
 }
 
 /*Details-Page*/
@@ -433,14 +437,14 @@ button {
     5px 5px rgba(39, 72, 102, 0.22);
     cursor: pointer;
     transition: 0.4s;
-
-    
 }
 .resultsBody {
     background-color: #DCF5FF;
     height: 100%;
 }
-
+.resultsImg{
+  max-width: 90%;
+}
 .cardTitle {
     font-weight: bold;
 }
@@ -457,11 +461,3 @@ button {
 .ratingsFont {
   font-size:14px;
 }
-
-/* 
-  .resultsImg{
-    border-radius: 0.25rem;
-    margin: 1rem 1rem 0 1rem;
-    padding: 0;
-    max-width: 90%;
-  } */
