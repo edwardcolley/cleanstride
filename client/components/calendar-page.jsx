@@ -215,7 +215,7 @@ export default class Calendar extends React.Component {
       return (
         <React.Fragment>
           <NavBar />
-          <div className="calendar mt-3 mr-4">
+          <div className="calendar mr-4">
             {this.renderHeader()}
             {this.renderDays()}
             {this.renderCells()}
