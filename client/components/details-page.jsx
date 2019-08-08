@@ -149,7 +149,7 @@ export default class DetailsPage extends React.Component {
                 </Card>
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
-                    <p>{this.state.details.name}</p>
+                    <p>{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
                         <p className="font-weight-bold ratingsFont">Yelp:      <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
@@ -165,8 +165,8 @@ export default class DetailsPage extends React.Component {
                 <Card className="contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="contactInfo">
                     <h1>Contact Information</h1>
-                    <p>Address: {this.state.details.location.display_address[0]}, {this.state.details.location.display_address[1]}, {this.state.details.location.display_address[2]}</p>
-                    <p>Phone: {this.state.details.display_phone}</p>
+                    <p>Address:{this.state.googleReviews.result.formatted_address}</p>
+                    <p>Phone: {this.state.googleReviews.result.formatted_phone_number}</p>
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
