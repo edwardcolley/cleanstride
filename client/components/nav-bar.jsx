@@ -6,7 +6,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  DropdownItem
+  DropdownItem,
+  NavLink
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -37,20 +38,20 @@ export default class NavBar extends React.Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto text-white" navbar>
-            <NavItem tag={Link} to='/' className="navButton text-white">
-              Search Recovery
+            <NavItem >
+              <NavLink tag={Link} to='/' className="navButton text-white">Search Recovery</NavLink>
             </NavItem>
             <DropdownItem divider />
-            <NavItem tag={Link} to='/meetings' className="navButton text-white">
-              Meeting Directory
+            <NavItem >
+              <NavLink tag={Link} to='/meetings' className="navButton text-white">Meeting Directory</NavLink>
             </NavItem>
             <DropdownItem divider />
-            <NavItem tag={Link} to='/favorites' className="navButton text-white">
-              Favorite Meetings
+            <NavItem >
+              <NavLink tag={Link} to='/favorites' className="navButton text-white">Favorite Meetings</NavLink>
             </NavItem>
             <DropdownItem divider />
-            <NavItem tag={Link} to='/calendar' className="navButton text-white">
-              Calendar
+            <NavItem>
+              <NavLink tag={Link} to='/calendar' className="navButton text-white">Calendar</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

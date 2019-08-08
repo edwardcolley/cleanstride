@@ -206,6 +206,14 @@ export default class Calendar extends React.Component {
     return numberOfIcons;
   }
 
+  titleCase(text) {
+    let newWord = text.toLowerCase()
+      .split(' ')
+      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
+    return newWord;
+  }
+
   componentDidMount() {
     this.getCalendarList();
   }
@@ -222,12 +230,11 @@ export default class Calendar extends React.Component {
           </div>
           {this.state.clickedMeeting.info !== null && this.state.clickedMeeting.info !== undefined &&
           <Modal isOpen={this.state.clickedMeeting.modal} toggle={() => this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>{this.state.clickedMeeting.info.program}<br/>{this.state.clickedMeeting.info.name}</ModalHeader>
-            <ModalBody>
+            <ModalHeader toggle={this.toggle} className="text-center">{this.state.clickedMeeting.info.program}<br/>{this.state.clickedMeeting.info.name}</ModalHeader>
+            <ModalBody className="text-center">
               <p>{this.state.clickedMeeting.info.time}</p>
               <p>{this.state.clickedMeeting.info.day}</p>
-              <p>{this.state.clickedMeeting.info.address}</p>
-              <p>{this.state.clickedMeeting.info.zip}</p>
+              <p>{this.state.clickedMeeting.info.address}, {this.titleCase(this.state.clickedMeeting.info.city)} {this.state.clickedMeeting.info.zip}</p>
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={() => this.deleteFromCalendarBackEnd(this.state.clickedMeeting.info)}>Remove from Calendar</Button>
