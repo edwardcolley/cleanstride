@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 02, 2019 at 04:50 PM
+-- Generation Time: Aug 08, 2019 at 09:37 PM
 -- Server version: 5.7.26-0ubuntu0.18.04.1
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -201,7 +201,54 @@ INSERT INTO `AA` (`id`, `day`, `city`, `time`, `type`, `name`, `address`, `zip`,
 (186, 'TUESDAY', 'LAGUNA WOODS', '10:00 AM', '(W)', 'LW Village Town Centre', '24351 El Toro Rd / Moulton\r\nPine Room in Community Center, First Floor\r\n(No children)', 92637, 'Al-Anon'),
 (187, 'TUESDAY', 'RANCHO SANTA MARGARITA', '6:3O AM', '(W)', 'Bell Tower', '22232 El Paseo\r\n(Parents of Alcoholics)', 92688, 'Al-Anon'),
 (188, 'THURSDAY', 'COSTA MESA', '12:00 PM', '(O)', 'Presbyterian Church', '2850 Fairview Rd\r\n(Upstairs)', 92626, 'Al-Anon'),
-(189, 'THURSDAY', 'DANA POINT', '7:00 PM', '(A, O, W)', 'Dana Point Youth & Group Facility', '34451 Ensenada Pl / Dana Point Harbor Dr\r\nBehind Main Building', 92629, 'Al-Anon');
+(189, 'THURSDAY', 'DANA POINT', '7:00 PM', '(A, O, W)', 'Dana Point Youth & Group Facility', '34451 Ensenada Pl / Dana Point Harbor Dr\r\nBehind Main Building', 92629, 'Al-Anon'),
+(190, 'WEDNESDAY', 'COSTA MESA', '11:30 AM', '(O)', 'Esplanade at Red Hill', '3001 Red Hill Avenue / Kalmus Dr\r\nBuilding 4, Suite 109', 92626, 'Al-Anon'),
+(191, 'WEDNESDAY', 'COSTA MESA', '6:30 PM', '(O)', 'Mesa Verde United Methodist Church', '1701 W. Baker / Mesa Verde East\r\n(1 hour Adult-Child focus)', 92626, 'Al-Anon'),
+(192, 'WEDNESDAY', 'LAGUNA BEACH', '8:00 PM', '(O)', 'Canyon Club', '20456 Laguna Canyon Rd', 92651, 'Al-Anon'),
+(193, 'WEDNESDAY', 'LAGUNA HILLS', '9:00 AM', '(O)', 'St George\'s Episcopal Church', 'Hospitality Room\r\n23802 Avenida de la Carlotta', 92653, 'Al-Anon'),
+(194, 'WEDNESDAY', 'LAGUNA HILLS', '6:00 PM', '(O)', 'St George\'s Episcopal Church', 'Hospitality Room\r\n23802 Avenida de la Carlotta\r\n(Beginner\'s Meeting)', 92653, 'Al-Anon'),
+(195, 'FRIDAY', 'NEWPORT BEACH', '12:00 PM', '(O,W)', 'St Andrews Presbyterian Church', '600 St Andrews Rd\r\nRoom B014\r\nReception Entrance\r\nPark in Church Lot', 92663, 'Al-Anon'),
+(196, 'FRIDAY', 'IRVINE', '7:00 PM', '(O, W)', 'Kaiser Permanente', '6650 Alton Pkwy / Sand Cyn\r\nBldg 2, 5th Floor, Room C-4', 92618, 'Al-Anon'),
+(197, 'FRIDAY', 'LAGUNA BEACH', '6:00 PM', '(O)', 'Canyon Club', '20456 Laguna Canyon Rd', 92651, 'Al-Anon'),
+(198, 'FRIDAY', 'LAGUNA NIGUEL', '12:30 PM', '(O)', 'Seventh Day Adventist Church', '29702 Kensington Drive', 92677, 'Al-Anon'),
+(199, 'FRIDAY', 'COSTA MESA', '10:00 AM', '(O)', 'Survival to Recovery Study', 'Presbyterian Church\r\n2850 Fairview Road\r\n(Survival to Recovery Study)', 92626, 'Al-Anon'),
+(200, 'SATURDAY', 'COSTA MESA', '8:00 AM', '(NC)', 'Parents of Alcoholic Focus - No Children Allowed', 'Presbyterian Church of Covenant\r\n2850 Fairview Road', 92626, 'Al-Anon'),
+(201, 'SATURDAY', 'LAGUNA BEACH', '10:30 AM', '(A)', 'Canyon Club Step Study', '20456 Laguna Canyon Rd\r\n(Step Study)', 92651, 'Al-Anon'),
+(202, 'SATURDAY', 'MISSION VIEJO', '8:30 AM', '(O)', 'Paths to Recover', 'Presbyterian Church of the Master\r\n26051 Marguerite Pkwy. / Oso\r\nYouth Center', 92692, 'Al-Anon'),
+(203, 'SATURDAY', 'LAKE FOREST', '8:00 AM', '(O)', 'Parents of Alcoholics Focus', 'Abiding Savior Lutheran Church\r\n23262 El Toro Road', 92630, 'Al-Anon'),
+(204, 'SATURDAY', 'NEWPORT BEACH', '12:30 PM', '(O)', 'Women\'s Meeting - Babysitting', 'St. Andrew\'s Presbyterian Church (O) \r\n600 St. Andrews Road, Room 216', 92663, 'Al-Anon'),
+(215, 'SATURDAY', 'COSTA MESA', '8:00 AM', '(O)', 'Parents of Alcoholic Focus - No Children Allowed', 'Presbyterian Church of Covenant\r\n2850 Fairview Road', 92626, 'Al-Anon'),
+(216, 'SATURDAY', 'LAGUNA BEACH', '10:30 AM', '(A)', 'Step Study', '20456 Laguna Canyon Rd', 92651, 'Al-Anon'),
+(217, 'SATURDAY', 'LAGUNA BEACH', '7:00 PM', '(W) ', 'Mission Hospital', '31872 South Coast Hwy\r\nDownstairs in Classroom B', 92651, 'Al-Anon'),
+(218, 'SATURDAY', 'LAKE FOREST', '8:00 AM', '(O)', 'Parents of Alcoholics Focus', 'Abiding Savior Lutheran Church\r\n23262 El Toro Road', 92630, 'Al-Anon'),
+(219, 'SATURDAY', 'MISSION VIEJO', '8:30 AM', '(O)', 'Paths to Recover', 'Presbyterian Church of the Master\r\n26051 Marguerite Pkwy. / Oso\r\nYouth Center', 92692, 'Al-Anon'),
+(220, 'SUNDAY', 'COSTA MESA', '10:30 am', '(O TG SO WC)', 'Costa Mesa Alano Club', '2040 Placentia Avenue', 92627, 'NA'),
+(221, 'SUNDAY', 'NEWPORT BEACH', '3:30 PM', '(O, D, BK, NS)', 'Basic Text', 'Newport Beach Alano Club\r\n414 32nd Street', 92663, 'NA'),
+(222, 'SUNDAY', 'COSTA MESA', '7:00 PM', '(O, D)', 'Round Table', 'Costa Mesa Alano Club\r\n2040 Placentia Avenue', 92627, 'NA'),
+(223, 'MONDAY', 'COSTA MESA', '4:00 PM', '(O, D, WC)', 'Costa Mesa Group', 'Costa Mesa Alano Club\r\n2040 Placentia Avenue', 92627, 'NA'),
+(224, 'MONDAY', 'NEWPORT BEACH', '6:45 PM', '(C, D, NS)', 'Just For Today', 'Newport Beach Alano Club\r\n414 32nd Street', 92663, 'NA'),
+(227, 'TUESDAY', 'SANTA ANA', '12:00 PM', '(O, D, RF)', 'Mid-Day Solutions Group', '2525 North Grand Avenue Suite X', 92705, 'NA'),
+(228, 'TUESDAY	', 'COSTA MESA', '7:00 PM', '(O, D, WC)', 'Costa Mesa Group', '2040 Placentia Avenue', 92627, 'NA'),
+(229, 'WEDNESDAY', 'COSTA MESA', '4:00 PM', '(O, D, WC)', 'Costa Mesa Group', 'Costa Mesa Alano Club\r\n2040 Placentia Avenue', 92627, 'NA'),
+(230, 'WEDNESDAY', 'COSTA MESA', '6:30 PM', '(O, D, WC)', 'Costa Mesa Group', '2040 Placentia Avenue\r\nBetween 19th Street', 92627, 'NA'),
+(231, 'WEDNESDAY', 'COSTA MESA', '7:30 PM', '(C, D, W, WC)', 'Women\'s Literature Study', 'Orange Coast Unitarian Universalist Church\r\n2845 Mesa Verde Drive East\r\nIn the courtyard - Rooms 3 and 4', 92626, 'NA'),
+(232, 'THURSDAY', 'COSTA MESA', '7:00 PM   	', '(O)', 'Costa Mesa Group', '2040 Placentia Avenue\r\nBetween 19th Street', 92627, 'NA'),
+(233, 'THURSDAY', 'COSTA MESA', '7:00 PM', '(O, W, BK)', 'Women\'s Book Study', '2040 Placentia Avenue', 92627, 'NA'),
+(234, 'FRIDAY', 'COSTA MESA', '7:00 PM   	', '(O, D, To)', 'Spiritual not Religious', 'Unitarian Universalist Church Room 4\r\n2845 Mesa Verde Drive', 92626, 'NA'),
+(235, 'FRIDAY', 'COSTA MESA', '7:00 PM', '(O, M, BK)', 'Friday Night Book Study', '2040 Placentia Avenue\r\nBetween 19th Street\r\n', 92627, 'NA'),
+(236, 'SATURDAY', 'NEWPORT BEACH	', '9:30 AM', '(O, D, Sm)', 'Sands of Recovery Group', '14th Street and West Balboa Boulevard on the Beach\r\nRainy days held at Newport Club', 92661, 'NA'),
+(237, 'SATURDAY	', 'NEWPORT BEACH	', '3:30 PM', '(O, D, BK)', 'Basic Text', 'Newport Beach Alano Club\r\n414 32nd Street', 92663, 'NA'),
+(238, 'SATURDAY', 'COSTA MESA', '6:30 PM', '(O, D, WC)', 'Old Starting Point Meeting at College Hospital', '275 Victoria Street', 92627, 'NA'),
+(239, 'THURSDAY', 'LAGUNA WOODS', '4:00 PM', 'Literature', 'Laguna Woods Village Community Center', '24351 El Toro Rd.\r\nSpruce or Pine Room', 92637, 'OA'),
+(240, 'TUESDAY', 'LAGUNA NIGUEL', '7:00 PM', 'Speaker', 'Laguna Niguel Presbyterian Church', '30071 Ivy Glen Dr', 92677, 'OA'),
+(241, 'SATURDAY', 'LAGUNA HILLS', '9:00 AM', 'Women', 'St George Episcopal Church', '23802 Avenida De La Carlota\r\nBldg A, Room 204', 92653, 'OA'),
+(242, 'WEDNESDAY', 'LAGUNA HILLS', '6:00 PM', 'Women', 'St George Episcopal Church', '23802 Avenida De La Carlota\r\nBldg A, Room 108', 92653, 'OA'),
+(243, 'FRIDAY', 'LAGUNA HILLS', '6:30 PM', 'Speaker', 'St George Episcopal Church', '23802 Avenida De La Carlota\r\nBldg A, Room 104', 92653, 'OA'),
+(244, 'SUNDAY', 'LAGUNA HILLS', '6:00 PM', 'Speaker', 'St George\'s Episcopal Church', '23802 Avenida de la Carlota\r\nHammonds Hall', 92653, 'OA'),
+(245, 'MONDAY', 'LAKE FOREST', '7:30 PM', 'An/Bu', 'Newcomer, Teen Friendly', 'Business Building\r\n23792 Rockfield Blvd \r\nSte 100', 92630, 'OA'),
+(246, 'FRIDAY', 'MISSION VIEJO', '10:00 AM', 'Literature', 'Presbyterian Church of the Master', '26051 Marguerite Pkwy\r\nRoom 201', 92675, 'OA'),
+(247, 'SATURDAY', 'LAGUNA BEACH', '5:00 PM', 'Topic', 'Mission Hospital Laguna Beach', '31872 S Coast Hwy\r\nBasement, Room B', 92651, 'OA'),
+(248, 'THURSDAY', 'SAN JUAN CAPISTRANO', '6:00 PM   	', 'Speaker', 'New Method Wellness Center', '31461 Rancho Viejo Rd\r\nSte 105', 92675, 'OA');
 
 --
 -- Indexes for dumped tables
@@ -221,7 +268,7 @@ ALTER TABLE `AA`
 -- AUTO_INCREMENT for table `AA`
 --
 ALTER TABLE `AA`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
