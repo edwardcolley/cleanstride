@@ -28,7 +28,7 @@ function RecoveryResultsCard(props) {
               name="Rate"
               starCount={5}
               value={props.input.rating}
-              starColor={'#04ecf0'}
+              starColor={'gold'}
             />
           </CardBody>
         </Card>
