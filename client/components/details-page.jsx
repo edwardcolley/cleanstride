@@ -123,8 +123,6 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
-    console.log("detailspage props: ", this.props);
-    console.log("detailspage state: ", this.state);
     if (this.state.details) {
       return (
         <React.Fragment>

@@ -6,7 +6,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default class NavBar extends React.Component {
@@ -28,40 +28,32 @@ export default class NavBar extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Navbar style={{ backgroundColor: '#A9A9A9' }} light expand="md" className="text-white">
-          <NavbarBrand className="navButton">
-            <Link to="/">
-              <img src="/images/croppedTransparentLogoOnly.png" style={{ width: 45, marginRight: 10 }} />
-            </Link> Clean Stride
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto text-white" navbar>
-              <NavItem>
-                <Link to="/">
-                  <NavLink className="navButton text-white">Search Recovery</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/meetings">
-                  <NavLink className="navButton text-white" >Meeting Directory</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/favorites">
-                  <NavLink className="navButton text-white">Favorite Meetings</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/calendar">
-                  <NavLink className="navButton text-white" >Calendar</NavLink>
-                </Link>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </React.Fragment>
+      <Navbar style={{ backgroundColor: '#A9A9A9' }} light expand="md" className="text-white">
+        <NavbarBrand tag={Link} to='/'className="navButton text-white" >
+          <img src="/images/croppedTransparentLogo.png" style={{ width: 45, marginRight: 10 }} />
+          Clean Stride
+        </NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto text-white" navbar>
+            <NavItem tag={Link} to='/' className="navButton text-white">
+              Search Recovery
+            </NavItem>
+            <DropdownItem divider />
+            <NavItem tag={Link} to='/meetings' className="navButton text-white">
+              Meeting Directory
+            </NavItem>
+            <DropdownItem divider />
+            <NavItem tag={Link} to='/favorites' className="navButton text-white">
+              Favorite Meetings
+            </NavItem>
+            <DropdownItem divider />
+            <NavItem tag={Link} to='/calendar' className="navButton text-white">
+              Calendar
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     );
   }
 }
