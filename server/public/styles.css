@@ -288,29 +288,34 @@ button {
     margin-top: 5%;
     margin-bottom: 2%;
 }
-.header {
-    background-color: lightgrey;
-}
 .header > p {
   font-size: 25px;
+}
+.header :nth-child(4) {
+  bottom: 50%;
+  font-size: 15px;
 }
 .contactInfoCard {
     margin-bottom: 2%;
 }
-.contactInfo {
-    background-color: lightgrey;
-}
 .contactInfo > h1 {
     font-size: 25px;
-}
-.description {
-    background-color: lightgrey;
 }
 .description > h1 {
     font-size: 25px;
 }
+.yelpStars {
+  left: 60px;
+  bottom: 45px;
+}
 .review-count {
   font-size: 5px;
+}
+.reviewCount {
+  font-size: 20px;
+}
+.googleResults {
+  font-size: 15px;
 }
 /*End of Details-Page CSS*/
 

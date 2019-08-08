@@ -26,7 +26,6 @@ export default class LandingPage extends React.Component {
   }
 
   render() {
-    console.log("landingpage props: ", this.props)
     return (
       <React.Fragment>
         <NavBar />
