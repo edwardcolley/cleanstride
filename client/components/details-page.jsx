@@ -81,7 +81,7 @@ export default class DetailsPage extends React.Component {
         next={this.next}
         previous={this.previous}
       >
-        <CarouselIndicators items={this.state.details.photos} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
+        <CarouselIndicators items={this.state.details.photos} activeIndex={activeIndex} interval={1000} onClickHandler={this.goToIndex} />
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
@@ -168,11 +168,11 @@ export default class DetailsPage extends React.Component {
                   </CardBody>
                 </Card>
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
-                  <CardBody className="header">
+                  <CardBody className="detailsHeader">
                     <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
-                        <p className="yelpRatingsFont font-weight-bold">Yelp:        <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
+                        <p className="yelpRatingsFont font-weight-bold">Yelp: <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
                         <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
                       </Col>
                       <Col xs={{ size: 4 }} className="mt-5">
@@ -191,7 +191,7 @@ export default class DetailsPage extends React.Component {
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
-                  <CardBody className="reviews">
+                  <CardBody className="googleReviewsCard">
                     <h1 className="googleReviewTitle">Google Reviews</h1>
                     {this.state.googleReviews.result.reviews &&
                       this.renderGoogleReviews()}
@@ -201,7 +201,7 @@ export default class DetailsPage extends React.Component {
                   </CardBody>
                 </Card>
                 <Card className=" mt-2 descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
-                  <CardBody className="reviews">
+                  <CardBody className="yelpReviewsCard">
                     <h1 className="yelpReviewTitle">Yelp Reviews</h1>
                     {this.renderYelpReviews()}
                     <a href={this.state.details.url}>Link to Yelp</a>
