@@ -104,7 +104,6 @@ class RecoveryResults extends React.Component {
                 <DropdownItem divider />
                 <DropdownItem onClick = {this.handleAscendingRating} >Rating: High to Low</DropdownItem>
                 <DropdownItem divider />
-
               </DropdownMenu>
             </Dropdown>
             {this.renderRecoveryCard()}
