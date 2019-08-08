@@ -28,6 +28,7 @@ export default class DetailsPage extends React.Component {
     this.onExited = this.onExited.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.carouselPhotos = this.carouselPhotos.bind(this);
+    this.getBusinessName = this.getBusinessName.bind(this);
   }
 
   onExiting() {
@@ -85,9 +86,20 @@ export default class DetailsPage extends React.Component {
     );
   }
 
-  getDetails() {
+  getBusinessName() {
     const { match: { params } } = this.props;
-    fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${params.name}&photos`)
+    let str = params.name;
+    if (str.length > 30) {
+      let name = str.slice(0, 25);
+      return name;
+    } else {
+      return str;
+    }
+  }
+
+  getDetails() {
+    // const { match: { params } } = this.props;
+    fetch(`/api/yelp_proxy_details.php?location=orange county&categories=recoverycenter&term=${this.getBusinessName()}&photos`)
       .then(res => res.json())
       .then(result => {
         let id = result.businesses[0].id;
@@ -138,7 +150,7 @@ export default class DetailsPage extends React.Component {
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
                     <p>{this.state.details.name}</p>
-                    <Row classname="yelpRatings">
+                    <Row className="yelpRatings">
                       <Col xs={{ size: 3 }}>
                         <p>Yelp: </p>
                       </Col>
@@ -165,7 +177,43 @@ export default class DetailsPage extends React.Component {
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
-                    <h1>Reviews</h1>
+                    <h1>Google Reviews</h1>
+                    {this.state.googleReviews.result.reviews[0] &&
+                     <React.Fragment>
+                       <p>{this.state.googleReviews.result.reviews[0].text}</p>
+                       <p>-{this.state.googleReviews.result.reviews[0].author_name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.googleReviews.result.reviews[1] &&
+                     <React.Fragment>
+                       <p>{this.state.googleReviews.result.reviews[1].text}</p>
+                       <p>-{this.state.googleReviews.result.reviews[1].author_name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.googleReviews.result.reviews[2] &&
+                     <React.Fragment>
+                       <p>{this.state.googleReviews.result.reviews[2].text}</p>
+                       <p>-{this.state.googleReviews.result.reviews[2].author_name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.googleReviews.result.reviews[3] &&
+                     <React.Fragment>
+                       <p>{this.state.googleReviews.result.reviews[3].text}</p>
+                       <p>-{this.state.googleReviews.result.reviews[3].author_name}</p>
+                     </React.Fragment>
+                    }
+                    {this.state.googleReviews.result.reviews[4] &&
+                     <React.Fragment>
+                       <p>{this.state.googleReviews.result.reviews[4].text}</p>
+                       <p>-{this.state.googleReviews.result.reviews[4].author_name}</p>
+                     </React.Fragment>
+                    }
+                    <a href={this.state.googleReviews.result.url}>Link to Google</a>
+                  </CardBody>
+                </Card>
+                <Card className=" mt-2 descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
+                  <CardBody className="reviews">
+                    <h6 className="display-4">Yelp Reviews</h6>
                     {this.state.yelpReviews.reviews[0] &&
                      <React.Fragment>
                        <p>{this.state.yelpReviews.reviews[0].text}</p>
