@@ -150,19 +150,13 @@ export default class DetailsPage extends React.Component {
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
                     <p>{this.state.details.name}</p>
-                    <Row className="yelpRatings">
-                      <Col xs={{ size: 3 }}>
-                        <p>Yelp: </p>
+                    <Row>
+                      <Col xs={{ size: 8 }} className="mt-1">
+                        <p className="font-weight-bold ratingsFont">Yelp:      <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
+                        <p className="font-weight-bold ratingsFont mt-1">Google: <span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total} reviews, {this.state.googleReviews.result.rating}/5</span></p>
                       </Col>
-                      <Col xs={{ size: 6 }} className="mt-5">
+                      <Col xs={{ size: 4 }} className="mt-5">
                         <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
-                      </Col>
-                    </Row>
-                    <Row className="googleRatings mb-1">
-                      <Col xs={{ size: 3 }}>
-                        <p>Google: </p>
-                      </Col>
-                      <Col xs={{ size: 6 }} className="mt-5">
                         <StarRatingComponent className="googleStars" name="Rate" starCount={5} value={this.state.googleReviews.result.rating} starColor={'gold'}/>
                       </Col>
                     </Row>
