@@ -334,6 +334,12 @@ button {
 .googleResults {
   font-size: 15px;
 }
+.googleReviewTitle {
+  font-size: 25px;
+}
+.googleReviewText {
+  font-style: italic;
+}
 /*End of Details-Page CSS*/
 
 .favoritesCardBody{

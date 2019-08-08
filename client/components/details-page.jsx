@@ -149,7 +149,7 @@ export default class DetailsPage extends React.Component {
                 </Card>
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
-                    <p>{this.state.details.name}</p>
+                    <p className="font-weight-bold">{this.state.details.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
                         <p className="font-weight-bold ratingsFont">Yelp:      <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
@@ -171,10 +171,10 @@ export default class DetailsPage extends React.Component {
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
-                    <h1>Google Reviews</h1>
+                    <h6 className="googleReviewTitle">Google Reviews</h6>
                     {this.state.googleReviews.result.reviews[0] &&
                      <React.Fragment>
-                       <p>{this.state.googleReviews.result.reviews[0].text}</p>
+                       <p className="googleReviewText">{this.state.googleReviews.result.reviews[0].text}</p>
                        <p>-{this.state.googleReviews.result.reviews[0].author_name}</p>
                      </React.Fragment>
                     }
