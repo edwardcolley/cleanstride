@@ -123,6 +123,8 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
+    console.log("detailspage props: ", this.props);
+    console.log("detailspage state: ", this.state);
     if (this.state.details) {
       return (
         <React.Fragment>
@@ -183,6 +185,7 @@ export default class DetailsPage extends React.Component {
     } else {
       return (
         <div>
+          <NavBar/>
           <div className="flexCentering loaderContainer">
             <div className="loader"></div>
           </div>

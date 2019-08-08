@@ -39,19 +39,21 @@ function RecoveryResultsCard(props) {
   } else {
     return (
       <Container className='Main mt-3'>
-        <Card className="shadow" onClick={() => props.onClick('details', { details: props.input })}>
-          <RecoveryResultsPhoto photos= {props.input.photos}/>
-          <CardBody className="cardBody">
-            <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
-            <CardSubtitle className='ratingsResults'>{props.input.vicinity}</CardSubtitle>
-            <StarRatingComponent
-              name="Rate"
-              starCount={5}
-              value={props.input.rating}
-              starColor={'#04ecf0'}
-            />
-          </CardBody>
-        </Card>
+        <Link to={'/detailspage/' + props.input.name + '/' + props.input.place_id}>
+          <Card className="shadow">
+            <RecoveryResultsPhoto photos= {props.input.photos}/>
+            <CardBody className="cardBody">
+              <CardTitle className='cardTitle'>{props.input.name}</CardTitle>
+              <CardSubtitle className='ratingsResults'>{props.input.vicinity}</CardSubtitle>
+              <StarRatingComponent
+                name="Rate"
+                starCount={5}
+                value={props.input.rating}
+                starColor={'#04ecf0'}
+              />
+            </CardBody>
+          </Card>
+        </Link>
       </Container >
     );
   }
