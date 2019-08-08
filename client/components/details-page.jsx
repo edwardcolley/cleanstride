@@ -137,11 +137,13 @@ export default class DetailsPage extends React.Component {
   }
 
   renderGoogleReviews() {
-    return this.state.googleReviews.result.reviews.map((input, index) => {
-      return (
-        <GoogleReview key={index} input={input} />
-      );
-    });
+    return (
+      this.state.googleReviews.result.reviews.map((input, index) => {
+        return (
+          <GoogleReview key={index} input={input} />
+        );
+      })
+    );
   }
 
   renderYelpReviews() {
@@ -167,7 +169,7 @@ export default class DetailsPage extends React.Component {
                 </Card>
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="header">
-                    <p className="font-weight-bold">{this.state.details.name}</p>
+                    <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
                         <p className="yelpRatingsFont font-weight-bold">Yelp:        <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
@@ -183,14 +185,18 @@ export default class DetailsPage extends React.Component {
                 <Card className="contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="contactInfo">
                     <h1>Contact Information</h1>
-                    <p><span className="font-weight-bold">Address: </span>{this.state.details.location.display_address[0]}, {this.state.details.location.display_address[1]}, {this.state.details.location.display_address[2]}</p>
-                    <p><span className="font-weight-bold">Phone: </span>{this.state.details.display_phone}</p>
+                    <p><span className="font-weight-bold">Address: </span>{this.state.googleReviews.result.formatted_address}</p>
+                    <p><span className="font-weight-bold">Phone: </span>{this.state.googleReviews.result.formatted_phone_number}</p>
+
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="reviews">
                     <h1 className="googleReviewTitle">Google Reviews</h1>
-                    {this.renderGoogleReviews()}
+                    {this.state.googleReviews.result.reviews &&
+                      this.renderGoogleReviews()}
+                    {!this.state.googleReviews.result.reviews &&
+                    <p> At this moment this location has no reviews. Thank You <br/> </p> }
                     <a href={this.state.googleReviews.result.url}>Link to Google</a>
                   </CardBody>
                 </Card>
