@@ -1,7 +1,7 @@
 import React from 'react';
 import dateFns from 'date-fns';
 import NavBar from './nav-bar';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -28,23 +28,23 @@ export default class Calendar extends React.Component {
     const dateFormat = 'MMMM YYYY';
 
     return (
-      <div className="header row flex-middle rowStyle">
-        <div className="col-4 col-start colStyle">
+      <Row className="header flex-middle rowStyle">
+        <Col xs={{ size: 4 }} className="col-start colStyle">
           <div className = "icon" onClick={this.prevMonth}>
             chevron_left
           </div>
-        </div>
-        <div className="col col-center colStyle">
+        </Col>
+        <Col className="col-center colStyle">
           <span>
             {dateFns.format(this.state.currentMonth, dateFormat)}
           </span>
-        </div>
-        <div className="col col-end colStyle" onClick={this.nextMonth}>
+        </Col>
+        <Col className="col-end colStyle" onClick={this.nextMonth}>
           <div className="icon">
             chevron_right
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     );
   }
 
@@ -54,12 +54,12 @@ export default class Calendar extends React.Component {
 
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className="col col-center col-style colStyle" key={i}>
+        <Col className="col-center col-style colStyle" key={i}>
           {daysOfWeek[i]}
-        </div>
+        </Col>
       );
     }
-    return <div className="days row rowStyle">{days}</div>;
+    return <Row className="days rowStyle">{days}</Row>;
   }
 
   renderCells() {
@@ -80,7 +80,7 @@ export default class Calendar extends React.Component {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
         days.push(
-          <div className={`col colStyle cell ${!dateFns.isSameMonth(day, monthStart)
+          <Col className={`colStyle cell ${!dateFns.isSameMonth(day, monthStart)
             ? 'disabled'
             : dateFns.isSameDay(day, selectedDate) ? 'selected' : ''
           }`}
@@ -90,14 +90,14 @@ export default class Calendar extends React.Component {
             <span className="number">{formattedDate}</span>
             <span>{this.renderMeetings(i)}</span>
             <span className="bg calNumberZindex">{formattedDate}</span>
-          </div>
+          </Col>
         );
         day = dateFns.addDays(day, 1);
       }
       rows.push(
-        <div className="row mr-0 rowStyle" key={day}>
+        <Row className="mr-0 rowStyle" key={day}>
           {days}
-        </div>
+        </Row>
       );
       days = [];
     }
