@@ -333,8 +333,8 @@ button {
   font-style: italic;
   font-size: 18px;
 }
-starContainer {
-  display: flex;
+.starContainer {
+  margin-bottom: -50px;
 }
 /*End of Details-Page CSS*/
 

@@ -230,7 +230,7 @@ export default class Calendar extends React.Component {
           </div>
           {this.state.clickedMeeting.info !== null && this.state.clickedMeeting.info !== undefined &&
           <Modal isOpen={this.state.clickedMeeting.modal} toggle={() => this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle} className="text-center">{this.state.clickedMeeting.info.program}<br/>{this.state.clickedMeeting.info.name}</ModalHeader>
+            <ModalHeader toggle={this.toggle}><span className="font-weight-bold">{this.state.clickedMeeting.info.program}<br/>{this.state.clickedMeeting.info.name}</span></ModalHeader>
             <ModalBody className="text-center">
               <p>{this.state.clickedMeeting.info.time}</p>
               <p>{this.state.clickedMeeting.info.day}</p>
