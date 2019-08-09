@@ -105,15 +105,19 @@ export default class DetailsPage extends React.Component {
     fetch(`/api/yelp_proxy_details.php?location=orange+county&categories=recoverycenter&term=${this.getBusinessName()}&photos`)
       .then(res => res.json())
       .then(result => {
-        let id = result.businesses[0].id;
-        let promises = [this.getYelpReviews(id), this.getGoogleReviews(), this.getBusinessDetails(id)];
-        Promise.all(promises).then(allResults => {
-          this.setState({
-            yelpReviews: allResults[0],
-            googleReviews: allResults[1],
-            details: allResults[2]
+        if (result.total === 0) {
+          this.getGoogleReviewsOnly();
+        } else if (result.businesses[0].id) {
+          let id = result.businesses[0].id;
+          let promises = [this.getYelpReviews(id), this.getGoogleReviews(), this.getBusinessDetails(id)];
+          Promise.all(promises).then(allResults => {
+            this.setState({
+              yelpReviews: allResults[0],
+              googleReviews: allResults[1],
+              details: allResults[2]
+            });
           });
-        });
+        }
       });
   }
 
@@ -126,6 +130,18 @@ export default class DetailsPage extends React.Component {
     const { match: { params } } = this.props;
     return fetch(`/api/googlereviews_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&place_id=${params.place_id}`)
       .then(res => res.json());
+
+  }
+
+  getGoogleReviewsOnly() {
+    const { match: { params } } = this.props;
+    return fetch(`/api/googlereviews_proxy.php?key=AIzaSyCC4k-zZUEeozf7452tXNKmHntB33napHg&place_id=${params.place_id}`)
+      .then(res => res.json())
+      .then(myJson => {
+        this.setState({
+          googleReviews: myJson
+        });
+      });
   }
 
   getBusinessDetails(id) {
@@ -156,30 +172,44 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
-    if (this.state.details) {
-      const ratingCount = this.state.googleReviews.result.user_ratings_total;
+    if (this.state.googleReviews) {
       return (
         <React.Fragment>
           <NavBar/>
           <Container>
             <Row>
               <Col>
+                {this.state.details &&
                 <Card className="carouselCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="carousel">
                     {this.carouselPhotos()}
                   </CardBody>
                 </Card>
+                }
+                {!this.state.details &&
+                <Card className="text-center mt-3 shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
+                  <CardBody>
+                    <p className="font-weight-bold">No images available</p>
+                  </CardBody>
+                </Card>
+                }
                 <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="detailsHeader">
                     <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
-                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{ratingCount ? ratingCount : 0} reviews, {ratingCount ? ratingCount : 0}/5</span></p>
-                        <p className="yelpRatingsFont font-weight-bold">Yelp: <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
-                      </Col>
-                      <Col xs={{ size: 4 }} className="mt-5">
-                        <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
-                        <StarRatingComponent className="googleStars" name="Rate" starCount={5} value={this.state.googleReviews.result.rating} starColor={'gold'}/>
+                        <div className="starContainer">
+                          <span className="font-weight-bold">Google:</span>
+                          <p className="googleRatingsFont mt-1"><span className="font-weight-light">{this.state.googleReviews.result.user_ratings_total || 0} Reviews, {this.state.googleReviews.result.rating || 0}/5</span></p>
+                          <StarRatingComponent className="googleStars" name="Rate" starCount={5} value={this.state.googleReviews.result.rating} starColor={'gold'}/>
+                        </div>
+                        {this.state.details &&
+                        <div className="starContainer">
+                          <span className="font-weight-bold">Yelp:</span>
+                          <p className="yelpRatingsFont"><span className="font-weight-light">{this.state.details.review_count || 0} Reviews, {this.state.details.rating || 0}/5</span></p>
+                          <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
+                        </div>
+                        }
                       </Col>
                     </Row>
                   </CardBody>
@@ -189,7 +219,7 @@ export default class DetailsPage extends React.Component {
                     <h1>Contact Information</h1>
                     <p><span className="font-weight-bold">Address: </span>{this.state.googleReviews.result.formatted_address}</p>
                     <p><span className="font-weight-bold">Phone: </span>{this.state.googleReviews.result.formatted_phone_number}</p>
-
+                    <p><span className="font-weight-bold">Website: </span><a href={this.state.googleReviews.result.website}>Click Here</a></p>
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
@@ -198,17 +228,19 @@ export default class DetailsPage extends React.Component {
                     {this.state.googleReviews.result.reviews &&
                       this.renderGoogleReviews()}
                     {!this.state.googleReviews.result.reviews &&
-                    <p> At this moment this location has no reviews. Thank You <br/> </p> }
-                    <a href={this.state.googleReviews.result.url}>Link to Google</a>
+                    <p> This location has no reviews at the moment. Thank You.<br/> </p> }
+                    <a href={this.state.googleReviews.result.url}>Open in Google</a>
                   </CardBody>
                 </Card>
+                {this.state.details &&
                 <Card className=" mt-2 descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="yelpReviewsCard">
                     <h1 className="yelpReviewTitle">Yelp Reviews</h1>
                     {this.renderYelpReviews()}
-                    <a href={this.state.details.url}>Link to Yelp</a>
+                    <a href={this.state.details.url}>Open in Yelp</a>
                   </CardBody>
                 </Card>
+                }
               </Col>
             </Row>
           </Container>
