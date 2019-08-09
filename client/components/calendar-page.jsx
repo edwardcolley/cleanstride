@@ -1,7 +1,7 @@
 import React from 'react';
 import dateFns from 'date-fns';
 import NavBar from './nav-bar';
-import { Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Row, Col, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -235,10 +235,10 @@ export default class Calendar extends React.Component {
               <p>{this.state.clickedMeeting.info.time}</p>
               <p>{this.state.clickedMeeting.info.day}</p>
               <p>{this.state.clickedMeeting.info.address}, {this.titleCase(this.state.clickedMeeting.info.city)} {this.state.clickedMeeting.info.zip}</p>
+              <Col xs={{ size: 6, offset: 3 }}>
+                <Button color="primary" onClick={() => this.deleteFromCalendarBackEnd(this.state.clickedMeeting.info)}>REMOVE</Button>
+              </Col>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={() => this.deleteFromCalendarBackEnd(this.state.clickedMeeting.info)}>Remove from Calendar</Button>
-            </ModalFooter>
           </Modal>
           }
         </React.Fragment>
