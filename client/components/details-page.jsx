@@ -82,7 +82,7 @@ export default class DetailsPage extends React.Component {
         next={this.next}
         previous={this.previous}
       >
-        <CarouselIndicators items={this.state.details.photos} activeIndex={activeIndex} interval={3000} onClickHandler={this.goToIndex} />
+        <CarouselIndicators items={this.state.details.photos} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
@@ -93,12 +93,8 @@ export default class DetailsPage extends React.Component {
   getBusinessName() {
     const { match: { params } } = this.props;
     let str = params.name;
-    if (str.length > 30) {
-      let name = str.slice(0, 25).replace(/ /g, '+');
-      return name;
-    } else {
-      return str;
-    }
+    let name = str.replace(/ /g, '+');
+    return name;
   }
 
   getDetails() {
