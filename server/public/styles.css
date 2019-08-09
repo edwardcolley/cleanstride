@@ -250,9 +250,10 @@ main {
   top: 3.0rem;
 }
 
-/* .position2 {
-  top: 3.7rem;
-} */
+.position3,
+.position2 {
+  display: none;
+}
 
 .Al-Anon {
   color: red;
