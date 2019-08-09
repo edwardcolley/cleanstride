@@ -172,6 +172,7 @@ export default class DetailsPage extends React.Component {
   }
 
   render() {
+
     if (this.state.googleReviews) {
       return (
         <React.Fragment>
