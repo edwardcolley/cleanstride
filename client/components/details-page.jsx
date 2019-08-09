@@ -220,7 +220,7 @@ export default class DetailsPage extends React.Component {
                     <h1>Contact Information</h1>
                     <p><span className="font-weight-bold">Address: </span>{this.state.googleReviews.result.formatted_address}</p>
                     <p><span className="font-weight-bold">Phone: </span>{this.state.googleReviews.result.formatted_phone_number}</p>
-                    <p><span className="font-weight-bold">Website: </span><a href={this.state.googleReviews.result.website}>Click Here</a></p>
+                    <p><span className="font-weight-bold">Website: </span><a href={this.state.googleReviews.result.website}>{this.state.googleReviews.result.website}</a></p>
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
