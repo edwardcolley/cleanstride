@@ -59,10 +59,7 @@ export default class Meetings extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       }
-    })
-      .then(response => {
-        response.json();
-      });
+    });
   }
 
   handleChangeDay(event) {
