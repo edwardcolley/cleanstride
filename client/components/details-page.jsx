@@ -157,7 +157,10 @@ export default class DetailsPage extends React.Component {
 
   render() {
     if (this.state.details) {
-      const ratingCount = this.state.googleReviews.result.user_ratings_total;
+      const googleRatingCount = this.state.googleReviews.result.rating;
+      const googleReviewCount = this.state.googleReviews.result.user_ratings_total;
+      const yelpRatingCount = this.state.details.rating;
+      const yelpReviewCount = this.state.details.review_count;
       return (
         <React.Fragment>
           <NavBar/>
@@ -174,12 +177,16 @@ export default class DetailsPage extends React.Component {
                     <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
-                        <p className="googleRatingsFont font-weight-bold mt-1">Google: <span className="font-weight-light">{ratingCount ? ratingCount : 0} reviews, {ratingCount ? ratingCount : 0}/5</span></p>
-                        <p className="yelpRatingsFont font-weight-bold">Yelp: <span className="font-weight-light">{this.state.details.rating} reviews, {this.state.details.rating}/5</span> </p>
-                      </Col>
-                      <Col xs={{ size: 4 }} className="mt-5">
-                        <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
-                        <StarRatingComponent className="googleStars" name="Rate" starCount={5} value={this.state.googleReviews.result.rating} starColor={'gold'}/>
+                        <div className="starContainer">
+                          <span className="font-weight-bold">Google:</span>
+                          <p className="googleRatingsFont mt-1"><span className="font-weight-light">{googleReviewCount || 0} Reviews, {googleRatingCount || 0}/5</span></p>
+                          <StarRatingComponent className="googleStars" name="Rate" starCount={5} value={this.state.googleReviews.result.rating} starColor={'gold'}/>
+                        </div>
+                        <div className="starContainer">
+                          <span className="font-weight-bold">Yelp:</span>
+                          <p className="yelpRatingsFont"><span className="font-weight-light">{yelpReviewCount || 0} Reviews, {yelpRatingCount || 0}/5</span></p>
+                          <StarRatingComponent className="yelpStars" name="Rate" starCount={5} value={this.state.details.rating} starColor={'orange'}/>
+                        </div>
                       </Col>
                     </Row>
                   </CardBody>
@@ -189,7 +196,7 @@ export default class DetailsPage extends React.Component {
                     <h1>Contact Information</h1>
                     <p><span className="font-weight-bold">Address: </span>{this.state.googleReviews.result.formatted_address}</p>
                     <p><span className="font-weight-bold">Phone: </span>{this.state.googleReviews.result.formatted_phone_number}</p>
-
+                    <p><span className="font-weight-bold">Website: </span><a href={this.state.googleReviews.result.website}>Click Here</a></p>
                   </CardBody>
                 </Card>
                 <Card className="descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
@@ -198,15 +205,15 @@ export default class DetailsPage extends React.Component {
                     {this.state.googleReviews.result.reviews &&
                       this.renderGoogleReviews()}
                     {!this.state.googleReviews.result.reviews &&
-                    <p> At this moment this location has no reviews. Thank You <br/> </p> }
-                    <a href={this.state.googleReviews.result.url}>Link to Google</a>
+                    <p> This location has no reviews at the moment. Thank You.<br/> </p> }
+                    <a href={this.state.googleReviews.result.url}>Open in Google</a>
                   </CardBody>
                 </Card>
                 <Card className=" mt-2 descriptionCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
                   <CardBody className="yelpReviewsCard">
                     <h1 className="yelpReviewTitle">Yelp Reviews</h1>
                     {this.renderYelpReviews()}
-                    <a href={this.state.details.url}>Link to Yelp</a>
+                    <a href={this.state.details.url}>Open in Yelp</a>
                   </CardBody>
                 </Card>
               </Col>
