@@ -306,12 +306,12 @@ button {
   font-size: 18px;
 }
 .yelpStars {
-  right: 2.5rem;
-  bottom: 2.8rem;
+  left: 9rem;
+  bottom: 2.7rem;
 }
 .googleStars {
-  right: 2.3rem;
-  bottom: 2.5rem;
+  left: 9rem;
+  bottom: 2.7rem;
 }
 .yelpRatingsFont {
   font-size:18px;
@@ -332,6 +332,9 @@ button {
 .yelpReviewText {
   font-style: italic;
   font-size: 18px;
+}
+starContainer {
+  display: flex;
 }
 /*End of Details-Page CSS*/
 
