@@ -194,9 +194,9 @@ export default class DetailsPage extends React.Component {
                   </CardBody>
                 </Card>
                 }
-                <Card className="headerCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
-                  <CardBody className="detailsHeader">
-                    <p className="font-weight-bold">{this.state.googleReviews.result.name}</p>
+                <Card className="mt-2 contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
+                  <CardBody className="contactInfo">
+                    <h1 className="googleReviewTitle">{this.state.googleReviews.result.name}</h1>
                     <Row>
                       <Col xs={{ size: 8 }} className="mt-1">
                         <div className="starContainer">
@@ -213,11 +213,6 @@ export default class DetailsPage extends React.Component {
                         }
                       </Col>
                     </Row>
-                  </CardBody>
-                </Card>
-                <Card className="contactInfoCard shadow style={{ borderColor: ‘rgb(218, 218, 218’ }}>">
-                  <CardBody className="contactInfo">
-                    <h1>Contact Information</h1>
                     <p><span className="font-weight-bold">Address: </span>{this.state.googleReviews.result.formatted_address}</p>
                     <p><span className="font-weight-bold">Phone: </span>{this.state.googleReviews.result.formatted_phone_number}</p>
                     <p><span className="font-weight-bold">Website: </span><a href={this.state.googleReviews.result.website}>{this.state.googleReviews.result.website}</a></p>

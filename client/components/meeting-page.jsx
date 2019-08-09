@@ -11,7 +11,7 @@ export default class Meetings extends React.Component {
     this.state = {
       program: null,
       day: null,
-      city: 'CITY',
+      city: 'CITY (optional)',
       meetings: {
 
       },
@@ -114,7 +114,7 @@ export default class Meetings extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <Input style={{ backgroundColor: '#A9A9A9', borderColor: '#A9A9A9' }} className="shadow text-white" type="select" name="" id="exampleSelect" onChange={this.handleChangeCity}>
-                    <option>CITY</option>
+                    <option>CITY (optional)</option>
                     <option>ALISO VIEJO</option>
                     <option>COSTA MESA</option>
                     <option>DANA POINT</option>
