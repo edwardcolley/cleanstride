@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Container } from 'reactstrap';
+import { Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Container } from 'reactstrap';
 import RecoveryResultsCard from './recovery-results-item';
 import NavBar from './nav-bar';
 import queryString from 'query-string';
@@ -106,7 +106,9 @@ class RecoveryResults extends React.Component {
                 <DropdownItem divider />
               </DropdownMenu>
             </Dropdown>
-            {this.renderRecoveryCard()}
+            <Row>
+              {this.renderRecoveryCard()}
+            </Row>
           </Container>
         </div>
       );
