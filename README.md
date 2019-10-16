@@ -1,4 +1,4 @@
-# path of currency
+# Clean Stride
 
 A full stack LAMP & React Addiction Recovery Facilitator Application
 
