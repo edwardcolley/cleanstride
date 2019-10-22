@@ -457,3 +457,8 @@ button {
 .ratingsFont {
   font-size:14px;
 }
+
+.resultsImg {
+  height: 10px !important;
+  display: block !important;
+}
