@@ -3,6 +3,8 @@ require_once('db_connection.php');
 
 header('Content-Type: application/json');
 
+require_once('session.php');
+
 $method = $_SERVER['REQUEST_METHOD'];
 $item = file_get_contents('php://input');
 if ($method == 'POST') {
@@ -10,8 +12,8 @@ if ($method == 'POST') {
   $itemConverted = json_decode($item);
 
   
-  $sql =  "INSERT INTO `Favorites` (program_id)
-            VALUES ($itemConverted->id)";
+  $sql =  "INSERT INTO `Favorites` (program_id, sessionID)
+            VALUES ($itemConverted->id, $sessionID)";
   $return_value = mysqli_query($conn, $sql);
   print(json_encode([
       'success' => $return_value
@@ -20,7 +22,8 @@ if ($method == 'POST') {
     http_response_code(201);
     $query = "SELECT a.*, (f.program_id is not null) as favorite
               from AA as a
-              right join Favorites as f on a.id = f.program_id";
+              right join Favorites as f on a.id = f.program_id
+              WHERE f.sessionID = $sessionID";
 
     $result = mysqli_query($conn, $query);
 
@@ -37,7 +40,7 @@ if ($method == 'POST') {
 } else if ($method == 'DELETE'){
   http_response_code(204);
   $itemConverted = json_decode($item);
-  $query = "DELETE FROM `Favorites` WHERE `program_id` = '$itemConverted->id'";
+  $query = "DELETE FROM `Favorites` WHERE `program_id` = '$itemConverted->id' AND `sessionID` = '$sessionID";
   
 
   $return_value = mysqli_query($conn, $query);
