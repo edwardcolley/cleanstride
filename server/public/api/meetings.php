@@ -1,5 +1,6 @@
 <?php
 require('functions.php');
+require_once('session.php');
 
 set_exception_handler('handleError');
 startUp();
@@ -15,12 +16,12 @@ if (!empty($_GET['day'] && !empty($_GET['city'])) && !empty($_GET['program'])) {
   if($city !== 'CITY (optional)') {
     $query = "SELECT a.*, (f.program_id is not null) as favorite
               from AA as a
-              left join Favorites as f on a.id = f.program_id
+              left join Favorites as f on a.id = f.program_id AND f.sessionID = $sessionID
               WHERE `day` = '$day' AND `city` = '$city' AND `program` = '$program'";
   } else {
     $query = "SELECT a.*, (f.program_id is not null) as favorite
               from AA as a
-              left join Favorites as f on a.id = f.program_id
+              left join Favorites as f on a.id = f.program_id AND f.sessionID = $sessionID
               WHERE `day` = '$day' AND `program` = '$program'";
   }
 
