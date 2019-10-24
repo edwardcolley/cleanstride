@@ -1,3 +1,85 @@
+
+/* MOBILE PORTRAIT STYLING */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+
+.landingInput,
+.landingLogo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landingForm2 {
+  margin-top: 7em !important;
+}
+
+.portraitMeetingBtn {
+  margin-left: 1px;
+}
+
+}
+
+/* IPHONEX PORTRAT */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+
+    .landingForm2 {
+      margin-top: 13em !important;
+    }
+
+}
+
+/* MOBILE LANDSCAPE */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+    
+    .landingForm2 {
+      margin-top: 7em !important;
+    }
+}
+
+/* IPHONEX LANDSCAPE */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+
+    .landingForm2 {
+      margin-top: 7em !important;
+    }
+}
+
+/* DESKTOP-SPECIFIC STYLING */
+@media only screen and (min-device-width : 1025px) {
+
+.landingInput,
+.landingLogo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landingForm2 {
+  margin-top: 7em !important;
+}
+
+.portraitMeetingBtn {
+  margin-left: 5px;
+}
+
+}
+
 /* FONT IMPORTS */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);

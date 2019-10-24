@@ -29,12 +29,12 @@ export default class LandingPage extends React.Component {
     return (
       <React.Fragment>
         <NavBar />
-        <Container className="landingPage">
-          <Row className="ml-2">
+        <Container fluid={ true } className="landingPage">
+          <Row className="ml-2 landingInput">
             <Col xs={{ size: 6 }} sm={{ size: 3 }} lg={{ size: 6, offset: 4 }}>
               <img src="./images/transparentLogo.png" height="300" alt="App Logo"/>
             </Col>
-            <Col className="landingForm" xs={{ size: 10, offset: 1 }} sm={{ size: 6, offset: 3 }} lg={{ size: 6, offset: 3 }}>
+            <Col className="landingForm2" xs={{ size: 10, offset: 1 }} sm={{ size: 6, offset: 3 }} lg={{ size: 6, offset: 3 }}>
               <Form onSubmit={this.handleSubmit} action="">
                 <FormGroup>
                   <div className="input-group mb-3">
@@ -55,7 +55,7 @@ export default class LandingPage extends React.Component {
                   <Row className="mt-1 mr-2">
                     <Col xs={{ size: 10, offset: 2 }} md={{ size: 10, offset: 3 }} lg={{ size: 10, offset: 4 }}>
                       <Link to="/meetings">
-                        <Button className="shadow" type="button" color="secondary">Meeting Directory</Button>{' '}
+                        <Button className="shadow portraitMeetingBtn" type="button" color="secondary">Meeting Directory</Button>{' '}
                       </Link>
                     </Col>
                   </Row>
