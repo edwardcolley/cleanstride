@@ -30,8 +30,9 @@ export default class LandingPage extends React.Component {
       <React.Fragment>
         <NavBar />
         <Container fluid={ true } className="landingPage">
-          <Row className="ml-2 landingInput">
-            <Col xs={{ size: 6 }} sm={{ size: 3 }} lg={{ size: 6, offset: 4 }}>
+          <img src="./images/transparentLogo.png" className="landingLogo staticLogo" height="300" alt="App Logo"/>
+          <Row className="ml-2 ">
+            <Col className="bootstrapLogo" xs={{ size: 6 }} sm={{ size: 3 }} lg={{ size: 6, offset: 4 }}>
               <img src="./images/transparentLogo.png" height="300" alt="App Logo"/>
             </Col>
             <Col className="landingForm2" xs={{ size: 10, offset: 1 }} sm={{ size: 6, offset: 3 }} lg={{ size: 6, offset: 3 }}>

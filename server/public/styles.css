@@ -6,6 +6,10 @@
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) { 
 
+.bootstrapLogo {
+  display: none;
+}
+
 .landingInput,
 .landingLogo {
   display: block;
@@ -31,9 +35,12 @@
   and (orientation: portrait) { 
 
     .landingForm2 {
-      margin-top: 13em !important;
+      margin-top: 10% !important;
     }
 
+    .bootstrapLogo {
+      display: none;
+    }
 }
 
 /* MOBILE LANDSCAPE */
@@ -42,9 +49,13 @@
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: landscape) { 
+
+    .staticLogo {
+      display: none;
+    }
     
     .landingForm2 {
-      margin-top: 7em !important;
+      margin-top: 18% !important;
     }
 }
 
@@ -55,13 +66,21 @@
   and (-webkit-min-device-pixel-ratio: 3)
   and (orientation: landscape) { 
 
+    .staticLogo {
+      display: none;
+    }
+
     .landingForm2 {
-      margin-top: 7em !important;
+      margin-top: 16% !important;
     }
 }
 
 /* DESKTOP-SPECIFIC STYLING */
 @media only screen and (min-device-width : 1025px) {
+
+.bootstrapLogo {
+  display: none;
+}
 
 .landingInput,
 .landingLogo {
@@ -71,7 +90,7 @@
 }
 
 .landingForm2 {
-  margin-top: 7em !important;
+  margin-top: 10% !important;
 }
 
 .portraitMeetingBtn {
