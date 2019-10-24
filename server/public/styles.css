@@ -1,6 +1,6 @@
 
 /* MOBILE PORTRAIT STYLING */
-@media only screen 
+/* @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2)
@@ -25,10 +25,10 @@
   margin-left: 1px;
 }
 
-}
+} */
 
 /* IPHONEX PORTRAT */
-@media only screen 
+/* @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3)
@@ -41,10 +41,10 @@
     .bootstrapLogo {
       display: none;
     }
-}
+} */
 
 /* MOBILE LANDSCAPE */
-@media only screen 
+/* @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2)
@@ -57,10 +57,10 @@
     .landingForm2 {
       margin-top: 18% !important;
     }
-}
+} */
 
 /* IPHONEX LANDSCAPE */
-@media only screen 
+/* @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3)
@@ -73,10 +73,27 @@
     .landingForm2 {
       margin-top: 16% !important;
     }
-}
+} */
+
+/* IPAD/TABLET PORTRAIT */
+/* @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    .staticLogo {
+      display: none;
+    }
+
+    .landingForm2 {
+      margin-top: 16% !important;
+    }
+
+} */
 
 /* DESKTOP-SPECIFIC STYLING */
-@media only screen and (min-device-width : 1025px) {
+/* @media only screen and (min-device-width : 1025px) {
 
 .bootstrapLogo {
   display: none;
@@ -97,7 +114,7 @@
   margin-left: 5px;
 }
 
-}
+} */
 
 /* FONT IMPORTS */
 
