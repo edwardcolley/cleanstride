@@ -1,130 +1,17 @@
-
-/* MOBILE PORTRAIT STYLING */
-/* @media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-
-.bootstrapLogo {
-  display: none;
-}
-
-.landingInput,
-.landingLogo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.landingForm2 {
-  margin-top: 7em !important;
-}
-
-.portraitMeetingBtn {
-  margin-left: 1px;
-}
-
-} */
-
-/* IPHONEX PORTRAT */
-/* @media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-
-    .landingForm2 {
-      margin-top: 10% !important;
-    }
-
-    .bootstrapLogo {
-      display: none;
-    }
-} */
-
-/* MOBILE LANDSCAPE */
-/* @media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) { 
-
-    .staticLogo {
-      display: none;
-    }
-    
-    .landingForm2 {
-      margin-top: 18% !important;
-    }
-} */
-
-/* IPHONEX LANDSCAPE */
-/* @media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: landscape) { 
-
-    .staticLogo {
-      display: none;
-    }
-
-    .landingForm2 {
-      margin-top: 16% !important;
-    }
-} */
-
-/* IPAD/TABLET PORTRAIT */
-/* @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-    .staticLogo {
-      display: none;
-    }
-
-    .landingForm2 {
-      margin-top: 16% !important;
-    }
-
-} */
-
-/* DESKTOP-SPECIFIC STYLING */
-@media only screen and (min-device-width : 1025px) {
-
-/* .bootstrapLogo {
-  display: none;
-}
-
-.landingInput,
-.landingLogo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.landingForm2 {
-  margin-top: 10% !important;
-}
-
-.portraitMeetingBtn {
-  margin-left: 5px;
-} */
-
-.resultsImg {
-  height: 10px !important;
-  display: block !important;
-}
-
-}
-
 /* FONT IMPORTS */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+/* DESKTOP-SPECIFIC STYLING */
+@media only screen and (min-device-width : 1025px) {
+  
+  .resultsImg {
+    height: 10px !important;
+    display: block !important;
+  }
+  
+  }
 
 .icon {
   font-family: 'Material Icons', serif;
@@ -580,4 +467,3 @@ button {
 .ratingsFont {
   font-size:14px;
 }
-
