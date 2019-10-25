@@ -93,9 +93,9 @@
 } */
 
 /* DESKTOP-SPECIFIC STYLING */
-/* @media only screen and (min-device-width : 1025px) {
+@media only screen and (min-device-width : 1025px) {
 
-.bootstrapLogo {
+/* .bootstrapLogo {
   display: none;
 }
 
@@ -112,9 +112,14 @@
 
 .portraitMeetingBtn {
   margin-left: 5px;
+} */
+
+.resultsImg {
+  height: 10px !important;
+  display: block !important;
 }
 
-} */
+}
 
 /* FONT IMPORTS */
 
@@ -576,7 +581,3 @@ button {
   font-size:14px;
 }
 
-.resultsImg {
-  height: 10px !important;
-  display: block !important;
-}
